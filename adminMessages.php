@@ -97,19 +97,6 @@ if(isset($_POST['delMsg'])) {
         echo $e->getMessage();
     }
 }
-//
-//if(isset($_POST['reply'])) {
-//    try {
-//        $sql = "UPDATE orders SET status='zrealizowano' WHERE ID = :id";
-//        $statement = $pdo->prepare($sql);
-//        $selectedItem = $_POST['reply'];
-//        $statement->bindValue(':id', $selectedItem);
-//        $delete = $statement->execute();
-//        header('Location: /?page=messages');
-//    } catch (PDOException $e){
-//        echo $e->getMessage();
-//    }
-//}
 
 if(isset($_POST['replied'])) {
     try {
