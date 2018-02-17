@@ -52,7 +52,6 @@
         <th>Status</th>
     </tr>
 
-
 <?php
 $stmt = $pdo->prepare('SELECT * FROM messages');
 $stmt->execute();
