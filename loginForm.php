@@ -38,15 +38,55 @@
 
 </style>
 
-<form action="/action_page.php">
+<form action="/?page=testy" method="post">
     <div class="logincontainer">
         <label style="margin-left: 80px;"><b>Login</b></label>
-        <input class = "login" type="text" placeholder="Wpisz login" name="userName" required>
+        <input class = "login" type="text" placeholder="Wpisz login" name="username" required>
 
         <label><b>Hasło</b></label>
         <input type="password" placeholder="Wpisz hasło" name="psw" required>
 
-        <button class = "button" type="submit">Login</button>
-        <input type="checkbox" checked="checked"> Remember me
+        <button class="button" name="login" type="submit">Login</button>
     </div>
 </form>
+
+
+<?php
+if(isset($_POST['login'])){
+    if(isset($_SESSION['username'])){
+        $username = $_SESSION['username'];
+        } else {
+        $username = [];
+        }
+        $username[] = $_POST['username'];
+        $_SESSION['username'] = $username;
+          header('Location: /?page=testy');
+
+//        if($username !== []){
+//            $usr = $_POST['username'];
+//            $password = $_POST['psw'];
+//            $stmt = $pdo->query('SELECT * FROM accounts WHERE username="'.$usr.'" AND password="'.$password.'"');
+//        if($stmt === false){
+//            throw new Exception("Database error");
+//        }
+//        $count = $stmt->rowCount();
+//        if($count == 1){
+//            $_SESSION['username'] = $username;
+//            header('Location: /?page=testy');
+//        } else {
+//            echo 'Invalid account';
+//        }
+//      }
+}
+
+//if (isset($_POST['addToCart'])) {
+//    if (isset($_SESSION['cart'])) {
+//        $sessionArray = $_SESSION['cart'];
+//    } else {
+//        $sessionArray = [];
+//    }
+//
+//    $sessionArray[] = $_POST['addToCart'];
+//    $_SESSION['cart'] = $sessionArray;
+//    header('Location: /?page=shoppingCart');
+//}

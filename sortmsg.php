@@ -1,7 +1,7 @@
 <style>
     .fabutton {
         background: none;
-        padding: 0;
+        padding: 0px;
         border: none;
         color: firebrick;
     }
@@ -15,14 +15,14 @@
         border-collapse: collapse;
         /*font-size: 15px;*/
     }
-     th {
-         padding-top: 12px;
-         padding-bottom: 12px;
-         text-align: center;
-         background-color: aliceblue;
-         color: black;
-         font-size: 16px;
-     }
+    th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+        background-color: aliceblue;
+        color: black;
+        font-size: 16px;
+    }
     tr {
         font-size: 13px;
         text-align: center;
@@ -46,7 +46,7 @@
     <tr>
         <th></th>
         <th><a href="/?page=sort-ID">ID</a></th>
-        <th width="80px"><a href="/?page=sort-firstname" >Imię</a></th>
+        <th width="80px"><a href="/?page=sort-firstname">Imię</a></th>
         <th width="80px"><a href="/?page=sort-surname">Nazwisko</a></th>
         <th width="140px"><a href="/?page=sort-email">Email</a></th>
         <th width="100px"><a href="/?page=sort-subject">Kategoria</a></th>
@@ -56,7 +56,8 @@
     </tr>
 
 <?php
-$stmt = $pdo->prepare('SELECT * FROM messages');
+$sortType = substr($_GET['page'],5);
+$stmt = $pdo->prepare("SELECT * FROM messages ORDER BY $sortType");
 $stmt->execute();
 $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 if($stmt === false){

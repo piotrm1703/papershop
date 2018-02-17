@@ -76,6 +76,7 @@ require_once ('../productNavi.php'); ?>
             }
         }
 
+
         if ($page === 'contact'){
             require('../contact.php');
         }
@@ -115,11 +116,12 @@ require_once ('../productNavi.php'); ?>
         elseif ($page === 'orders'){
             require ('../adminOrders.php');
         }
-//        elseif ($page === "?reply='.$id'"){
-//            require('../adminReply.php');
-//
-//        }
-
+        elseif ($page ==='sort-ID' || $page ==='sort-firstname'
+            || $page ==='sort-surname' || $page ==='sort-email'
+            || $page ==='sort-subject' || $page ==='sort-content'
+            || $page ==='sort-date' || $page ==='sort-status'){
+            require_once('../sortmsg.php');
+        }
         ?>
 
     <?php } else{ ?>

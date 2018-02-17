@@ -48,12 +48,12 @@ var_dump($serialized1);
 $deserialized1 = unserialize($serialized1);
 var_dump($deserialized1);
 
-session_start();
-
-$_SESSION['a'] = 'abc';
-$_SESSION['b'] = 'def';
-$_SESSION['c'] = 'ghi';
-$_SESSION['d'] = array(1,2,3);
+//session_start();
+//
+//$_SESSION['a'] = 'abc';
+//$_SESSION['b'] = 'def';
+//$_SESSION['c'] = 'ghi';
+//$_SESSION['d'] = array(1,2,3);
 
 //
 //<article>
@@ -116,3 +116,22 @@ $_SESSION['d'] = array(1,2,3);
 //}
 //
 
+echo 'Welcome'.' '.$_SESSION['username'];
+var_dump($_SESSION);
+
+//
+//ini_set( 'SMTP', 'smtp.gmail.com' ); // must be set to your own local ISP
+//ini_set( 'smtp_port', '465' ); // assumes no authentication (passwords) required
+//ini_set('username', 'pjotr.marcel@gmail.com');
+//ini_set('password','piotrek2');
+//ini_set( 'sendmail_from', 'any@example.com' ); // can be any e-mail address, but must be set
+//
+//$to = 'piot.studia@gmail.com'; // the address that will receive the e-mail
+//$subject = 'This is the subject of the e-mail';
+//$body = "This is the message body of the e-mail";
+//
+//$headers = 'MIME-Version: 1.0' . PHP_EOL; // PHP_EOL automatically inserts \r or \n or \r\n as appropriate
+//$headers .= 'Content-type: text/plain; charset=iso-8859-1' . PHP_EOL; // for HTML e-mail, use text/html
+//$headers .= 'From: pjotr.marcel@gmail.com'; // This instruction overrides sendmail_from above. IMPORTANT: do not include PHP_EOL here
+//
+//var_dump(mail( $to, $subject, $body, $headers )); // sends the e-mail
