@@ -35,7 +35,6 @@
         display: none;
     }
 
-
 </style>
 
 <table style="width:100%">
