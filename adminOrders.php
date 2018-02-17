@@ -45,6 +45,9 @@
 $stmt = $pdo->prepare('SELECT * FROM orders');
 $stmt->execute();
 $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+if($stmt === false){
+    throw new Exception("Database error");
+}
 ?>
 
 

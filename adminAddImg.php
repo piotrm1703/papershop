@@ -13,7 +13,7 @@
         <label for="imgSelect"><b>Wybierz zdjęcie:</b></label>
         <input type="file" name="imgSelect" id="imgSelect" required>
         <input type="submit" name="submit" value="Upload">
-        <p><strong>Note:</strong> Only .jpg, .jpeg, .gif, .png formats allowed.</p>
+        <p><strong>Note:</strong> Tylko zdjęcia w formatach .jpg, .jpeg, .gif, .png dozwolone.</p>
     </form>
 </div>
 <?php
@@ -41,6 +41,9 @@ if(isset($_POST['submit'])){
             // Query
             $src = htmlEscape("/images/".$_FILES['imgSelect']['name']);
             $stmt = $pdo->query("INSERT INTO images VALUES(NULL,'$src')");
+            if($stmt === false){
+                throw new Exception("Database error");
+            }
             echo "<meta http-equiv='refresh' content='0'>";
         } else {
             $message = $fileName.' nie został dodany!';

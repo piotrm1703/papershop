@@ -16,9 +16,6 @@
         border: none;
         border-radius: 4px;
         cursor: pointer;
-        /*float: right;*/
-        /*position: relative;*/
-        /*bottom: 10px;*/
     }
     input[type=submit]:hover {
         opacity: 0.8;
@@ -29,7 +26,6 @@
         background-color: lightcoral;
         padding: 20px;
         margin: 8px 8px 8px 210px;
-
     }
 </style>
 
@@ -55,17 +51,17 @@
     </form>
 </div>
 
-
-<?php
-
-if(isset($_POST['delete'])) {
+<?php if(isset($_POST['delete'])) {
     try {
         require_once('connectDB.php');
         $sql = "DELETE FROM products WHERE ID = :id";
-        $statement = $pdo->prepare($sql);
+        $stmt = $pdo->prepare($sql);
         $selectedItem = $_POST['item'];
-        $statement->bindValue(':id', $selectedItem);
-        $delete = $statement->execute();
+        $stmt->bindValue(':id', $selectedItem);
+        $delete = $stmt->execute();
+        if($stmt === false){
+            throw new Exception("Database error");
+        }
         header('Location: /?page=deleteitem');
     } catch (PDOException $e){
         echo $e->getMessage();

@@ -43,10 +43,9 @@ if(isset($_POST['submit'])){
         require_once ('connectDB.php');
         // Query
         $stmt = $pdo->query("INSERT INTO messages VALUES(NULL,'$name','$surname','$email','$subject','$content','$date','$status')");
+        if($stmt === false){
+            throw new Exception("Database error");
+        }
         echo "<script> alert('Wiadomość została wysłana. Dziękujemy za kontakt!')</script>";
-    } else {
-        echo "Uzupełnij informacje!";
     }
 }
-
-//phpinfo();

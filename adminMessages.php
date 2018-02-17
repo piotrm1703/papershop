@@ -55,6 +55,9 @@
 $stmt = $pdo->prepare('SELECT * FROM messages');
 $stmt->execute();
 $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+if($stmt === false){
+    throw new Exception("Database error");
+}
 foreach (($stmt->fetchAll()) as $k=>$v)
 
     echo '<tr>'.'<td>'.

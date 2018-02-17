@@ -76,6 +76,9 @@ if(isset($_POST['submit'])) {
     $stmt->bindParam(':date', $date);
     $stmt->bindParam(':status', $status);
     $stmt->execute();
+    if($stmt === false){
+        throw new Exception("Database error");
+    }
     $_SESSION['cart'] = [];
 
     header('Location: /?page=orderThanks');
