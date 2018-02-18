@@ -85,7 +85,6 @@ if (isset($_POST['deleteAll'])){
 
 if (isset($_SESSION['cart'])) {
     $cart = $_SESSION['cart'];
- //   var_dump($cart);
     if ($cart !== []) {
         $stmt1 = $pdo->query('SELECT * FROM products WHERE ID IN ('.implode(',', $cart).')');
         if ($stmt1 === false) {

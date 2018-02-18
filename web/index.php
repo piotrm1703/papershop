@@ -122,6 +122,13 @@ require_once ('../productNavi.php'); ?>
             || $page ==='sort-date' || $page ==='sort-status'){
             require_once('../sortmsg.php');
         }
+        elseif ($page ==='sortorders-id' || $page ==='sortorders-name'
+            || $page ==='sortorders-surname' || $page ==='sortorders-email'
+            || $page ==='sortorders-city' || $page ==='sortorders-sum'
+            || $page ==='sortorders-date' || $page ==='sortorders-status'){
+            require_once ('../sortorder.php');
+        }
+
         ?>
 
     <?php } else{ ?>
@@ -136,6 +143,7 @@ require_once ('../productNavi.php'); ?>
             <p>Dzięki długoletniej, bezpośredniej współpracy z wieloma producentami papieru, mamy duże możliwości dostosowania oferty handlowej do indywidualnych potrzeb naszych klientów, zarówno w zakresie cen jak i jakości produktów.</p>
             <p>Zapraszamy do korzystania z naszych usług.</p>
             <p>Zespół Przedsiębiorstwa Poligraficznego</p>
+
         </article>
 
     <?php } ?>

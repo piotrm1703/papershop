@@ -135,3 +135,4 @@ var_dump($_SESSION);
 //$headers .= 'From: pjotr.marcel@gmail.com'; // This instruction overrides sendmail_from above. IMPORTANT: do not include PHP_EOL here
 //
 //var_dump(mail( $to, $subject, $body, $headers )); // sends the e-mail
+var_dump($_SESSION['authenticatedUser']);

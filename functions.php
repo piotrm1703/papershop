@@ -11,9 +11,15 @@ function htmlEscape($text)
 
 function siteInterface(){
     require_once('../header.php');
-    require_once ('../loginForm.php');
+    if(!isset($_SESSION['authenticatedUser'])){
+        require_once ('../login.php');
+    }else {
+        require_once ('../logout.php');
+    }
     require_once ('../navtop.php');
-    require_once ('../adminNav.php');
+    if(isset($_SESSION['authenticatedUser'])){
+        require_once ('../adminNav.php');
+    }
     require_once('../sidemenu.php');
     require_once ('../article.php');
 

@@ -13,20 +13,18 @@ if (isset($_SESSION['cart'])) {
         $duplicate = array_count_values($cart);
 
         foreach ($cartProducts as $cartProduct) {
-            //   var_dump($cartProduct);
             $id = $cartProduct->ID;
             $count = $duplicate[$id];
             $price = htmlEscape($cartProduct->price);
-            $productSum = $count * $price;
-            $arraySum[] = $productSum;
+            $arraySum[] = $count * $price;
             $arrayProduct[] = [
                 'id'=>$id,
                 'quantity'=>$count,
                 'price'=>$price,
-             ];
+            ];
 
             echo '<div class="products">'.'<b>'.htmlEscape($cartProduct->content).'</b>'.' '.
-                '-'.' '.'Ilość: '.$count.', '.'suma: '.$productSum.' '.'zł'.
+                '-'.' '.'Ilość: '.$count.', '.'suma: '.($count * $price).' '.'zł'.
                 '</div>';
         }
         $sum = array_sum($arraySum);
@@ -39,8 +37,6 @@ if (isset($_SESSION['cart'])) {
     echo 'Brak produktów!';
 
 }
-
-//var_dump($arrayProduct);
 
 require_once ('orderForm.php');
 
@@ -55,24 +51,22 @@ if(isset($_POST['submit'])) {
         throw new Exception('Jakiś gamoń kombinuje z polami');
     }
 
-    $orderArray = [
-        'name' => $_POST['name'],
-        'surname' => $_POST['surname'],
-        'email' => $_POST['email'],
-        'city' => $_POST['city'],
-        'zipcode' => $_POST['zipcode'],
-        'address' => $_POST['address'],
-        'sum' => $sum,
-        'products' => $arrayProduct,
-    ];
-    $status='oczekujące';
+    $status='oczekujący';
+    $serialized = serialize($arrayProduct);
     $date = date("Y-m-d H:i:s");
-    $serialized = serialize($orderArray);
 
     require_once('connectDB.php');
     // Query
-    $stmt = $pdo->prepare("INSERT INTO orders VALUES(NULL, :data, :date, :status)");
-    $stmt->bindParam(':data', $serialized);
+    $stmt = $pdo->prepare("INSERT INTO orders VALUES(NULL,:name,:surname,:email,:city,:zipcode,:address,:sum,:products,:date,:status)");
+    var_dump($stmt);
+    $stmt->bindParam(':name', $_POST['name']);
+    $stmt->bindParam(':surname', $_POST['surname']);
+    $stmt->bindParam(':email', $_POST['email']);
+    $stmt->bindParam(':city', $_POST['city']);
+    $stmt->bindParam(':zipcode', $_POST['zipcode']);
+    $stmt->bindParam(':address', $_POST['address']);
+    $stmt->bindParam(':sum', $sum);
+    $stmt->bindParam(':products', $serialized);
     $stmt->bindParam(':date', $date);
     $stmt->bindParam(':status', $status);
     $stmt->execute();
@@ -81,7 +75,7 @@ if(isset($_POST['submit'])) {
     }
     $_SESSION['cart'] = [];
 
-    header('Location: /?page=orderThanks');
+    //   header('Location: /?page=orderThanks');
     echo "<script> alert('Zamówienie przyjęte do realizacji. Dziękujemy za zaufanie!!')</script>";
 
 }

@@ -1,7 +1,7 @@
 <style>
     .fabutton {
         background: none;
-        padding: 0px;
+        padding: 0;
         border: none;
         color: firebrick;
     }
@@ -38,11 +38,15 @@
     .ul-sidemenu {
         display: none;
     }
+    th a {
+        color: blue;
+        text-decoration: none;
+    }
 
 </style>
 
 <?php
-$stmt = $pdo->prepare('SELECT * FROM orders');
+$stmt = $pdo->prepare('SELECT * FROM orders'); // dodac bindy
 $stmt->execute();
 $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 if($stmt === false){
@@ -54,22 +58,20 @@ if($stmt === false){
 <table style="width:100%">
   <tr>
       <th></th>
-    <th width="30px">ID</th>
-    <th width="80px">Imię</th>
-    <th width="80px">Nazwisko</th>
-    <th width="140px">Email</th>
-    <th width="250px">Dane do wysyłki</th>
-    <th width="250x">Produkty</th>
-    <th width="50px">Suma</th>
-    <th width="80px">Data złożenia</th>
-    <th width="50px">Status</th>
+      <th width="30px"><a href="/?page=sortorders-id">ID</a></th>
+      <th width="80px"><a href="/?page=sortorders-name">Imię</th>
+      <th width="80px"><a href="/?page=sortorders-surname">Nazwisko</th>
+      <th width="140px"><a href="/?page=sortorders-email">Email</th>
+      <th width="250px"><a href="/?page=sortorders-city">Dane do wysyłki</th>
+      <th width="250x">Produkty</th>
+      <th width="50px"><a href="/?page=sortorders-sum">Suma</th>
+      <th width="80px"><a href="/?page=sortorders-date">Data złożenia</th>
+      <th width="50px"><a href="/?page=sortorders-status">Status</th>
   </tr>
 
 <?php
 foreach (($stmt->fetchAll()) as $k=>$v){
-    $un = unserialize($v['data']);
-    $productArray = $un['products'];
- //   var_dump($un);
+    $un = unserialize($v['products']);
     echo '<tr>'.'<td>'.
         '<form action="/?page=orders" method="post" >'.
         '<button class="fabutton" name="delIcon" type="submit" title="Usuń zamówienie" value="'.$v['id'].'" onClick="return confirm(\'Na pewno chcesz usunąć zamówienie nr: '.$v['id'].'?\')">'.'<i class="fa fa-close">'.'</i>'.'</button>'.
@@ -82,22 +84,20 @@ foreach (($stmt->fetchAll()) as $k=>$v){
         '</form>'.
         '</td>'.'<td>'.
         $v['id'].'</td>'.'<td>'.
-        $un['name'].'</td>'.'<td>'.
-        $un['surname'].'</td>'.'<td>'.
-        $un['email'].'</td>'.'<td>'.
-        $un['city'].', '.$un['zipcode'].', '.$un['address'].'</td>'.'<td>';
-        foreach ($productArray as $product) {
+        $v['name'].'</td>'.'<td>'.
+        $v['surname'].'</td>'.'<td>'.
+        $v['email'].'</td>'.'<td>'.
+        $v['city'].','.$v['zipcode'].', '.$v['address'].'</td>'.'<td>';
+        foreach($un as $product) {
             echo '<ul>'.'<li>'.'Id produktu:'.$product['id'].' '.'Ilość:'.$product['quantity'].'</li>'.'</ul>';
-            }
+        }
             echo '</td>'.'<td>'.
-        $un['sum'].' '.'zł'.'</td>'.'<td>'.
+        $v['sum'].' '.'zł'.'</td>'.'<td>'.
         $v['date'].'</td>'.'<td>'.
-        $v['status'].'</td>'.'</tr>'
-    ;
+        $v['status'].'</td>'.'</tr>';
 }
 $dsn = null;
 ?>
-
 </table>
 
 <?php
@@ -120,7 +120,7 @@ if(isset($_POST['realized'])) {
         $statement = $pdo->prepare($sql);
         $selectedItem = $_POST['realized'];
         $statement->bindValue(':id', $selectedItem);
-        $delete = $statement->execute();
+        $realized = $statement->execute();
         header('Location: /?page=orders');
     } catch (PDOException $e){
         echo $e->getMessage();
@@ -133,7 +133,7 @@ if(isset($_POST['expectant'])) {
         $statement = $pdo->prepare($sql);
         $selectedItem = $_POST['expectant'];
         $statement->bindValue(':id', $selectedItem);
-        $delete = $statement->execute();
+        $expectant = $statement->execute();
         header('Location: /?page=orders');
     } catch (PDOException $e){
         echo $e->getMessage();
