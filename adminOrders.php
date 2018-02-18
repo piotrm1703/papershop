@@ -8,7 +8,7 @@
     .fabutton:hover {
         background: none;
         opacity: 0.8;
-        color: orange;
+        color: darkslategray;
     }
     th {
         padding-top: 12px;

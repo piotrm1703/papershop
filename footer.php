@@ -2,7 +2,7 @@
     footer {
         padding: 1em;
         color: white;
-        background-color: grey;
+        background-color: cadetblue;
         clear: left;
         text-align: inherit;
         border-top: 1px solid black;

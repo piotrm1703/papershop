@@ -133,7 +133,7 @@ require_once ('../productNavi.php'); ?>
 
     <?php } else{ ?>
         <article >
-            <h3 style="color:Tomato">Witam na stronie głównej Przedsiębiorstwa Poligraficznego!</h3>
+            <h3 style="color:darkslategray">Witam na stronie głównej Przedsiębiorstwa Poligraficznego!</h3>
             <p>Przedsiębiorstwo  działa na rynku papierniczym od niemalże 30 lat.<br>Główna siedziba firmy mieści się w województwie mazowieckim, ale posiadamy biura handlowe w różnych częściach kraju.<br>
                 Nasze magazyny mieszczą się w województwie mazowieckim oraz na pomorzu.<br>
                 Jesteśmy firmą rodzinną, stawiamy na budowanie oraz rozwój pozytywnych relacji z naszymi klientami opartych na doświadczeniu, zaufaniu i przyjaźni.<br>

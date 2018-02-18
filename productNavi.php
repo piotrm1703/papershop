@@ -14,7 +14,7 @@
         bottom: 35px;
     }
     .addToCart {
-        background-color: orange;
+        background-color: darkslategray;
         color: white;
         border-radius: 4px;
         padding: 5px;

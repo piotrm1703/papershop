@@ -1,5 +1,5 @@
 <article>
-    <h1 style="color:Tomato">Oferta</h1>
+    <h1 style="color:darkslategray">Oferta</h1>
 </article>
 <?php
 

@@ -3,7 +3,7 @@
         list-style-type: none;
         padding: 0;
         width: 200px;
-        background-color: grey;
+        background-color: cadetblue;
         border-right: 1px solid black;
         float: left;
         margin-right: 20px;
@@ -22,8 +22,9 @@
         text-decoration: none;
     }
     .li-sidemenu a:hover:not(.active) {
-        background-color: orange;
+        background-color: darkslategray;
         color: white;
+        opacity: 0.8;
     }
     .li-sidemenu:last-child {
         border-bottom: 1px solid black;
@@ -31,7 +32,7 @@
     .li-shoppingCart {
         text-align: center;
         border-bottom: 1px solid black;
-        background-color: orange;
+        background-color: darkslategray;
         color: white;
     }
     .li-shoppingCart a {
@@ -41,8 +42,8 @@
         text-decoration: none;
     }
     .li-shoppingCart a:hover {
-        background-color: black;
-        color: orange;
+        background-color: darkred;
+        color: white;
     }
     .li-shoppingCart:last-child {
         border-bottom: 1px solid black;

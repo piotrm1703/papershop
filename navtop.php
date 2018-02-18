@@ -1,12 +1,10 @@
 <style>
-
     .topnav {
         overflow: hidden;
-        background-color: grey;
-        border: 1px solid black;
+        background-color: cadetblue;
+         border: 1px solid black;
         border-left: none;
         border-right: none;
-
     }
     .topnav a {
         float: left;
@@ -17,11 +15,12 @@
         font-size: 30px;
     }
     .topnav a:hover {
-        background-color: orange;
+        background-color: darkslategray;
         color: white;
+        opacity: 0.8;
     }
     .topnav a.active {
-        background-color: orange;
+        background-color: darkslategray;
         color: white;
     }
 </style>

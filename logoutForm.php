@@ -7,7 +7,7 @@
     }
 
     .button {
-        background-color: darkcyan;
+        background-color: darkslategray;
         color: white;
         border-radius: 4px;
         padding: 0 0;

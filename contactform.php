@@ -33,7 +33,7 @@
     }
 
     input[type=submit] {
-        background-color: orange;
+        background-color: darkslategray;
         color: white;
         padding: 12px 20px;
         border: none;
