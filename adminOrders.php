@@ -1,3 +1,9 @@
+<?php
+if(!isset($_SESSION['authenticatedUser'])) {
+    header('Location: /');
+}
+?>
+
 <style>
     .fabutton {
         background: none;
@@ -18,12 +24,7 @@
         color: black;
         font-size: 16px;
     }
-    table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
-        /*font-size: 15px;*/
-    }
-    table.inside {
+    table,th,td {
         border: 1px solid black;
         border-collapse: collapse;
     }
@@ -57,16 +58,16 @@ if($stmt === false){
 
 <table style="width:100%">
   <tr>
-      <th></th>
-      <th width="30px"><a href="/?page=sortorders-id">ID</a></th>
-      <th width="80px"><a href="/?page=sortorders-name">Imię</th>
-      <th width="80px"><a href="/?page=sortorders-surname">Nazwisko</th>
-      <th width="140px"><a href="/?page=sortorders-email">Email</th>
-      <th width="250px"><a href="/?page=sortorders-city">Dane do wysyłki</th>
-      <th width="250x">Produkty</th>
-      <th width="50px"><a href="/?page=sortorders-sum">Suma</th>
-      <th width="80px"><a href="/?page=sortorders-date">Data złożenia</th>
-      <th width="50px"><a href="/?page=sortorders-status">Status</th>
+      <th class="adminTh"></th>
+      <th class="adminTh" width="30px"><a href="/?page=sortorders-id">ID</a></th>
+      <th class="adminTh" width="80px"><a href="/?page=sortorders-name">Imię</th>
+      <th class="adminTh" width="80px"><a href="/?page=sortorders-surname">Nazwisko</th>
+      <th class="adminTh" width="140px"><a href="/?page=sortorders-email">Email</th>
+      <th class="adminTh" width="250px"><a href="/?page=sortorders-city">Dane do wysyłki</th>
+      <th class="adminTh" width="250x">Produkty</th>
+      <th class="adminTh" width="50px"><a href="/?page=sortorders-sum">Suma</th>
+      <th class="adminTh" width="80px"><a href="/?page=sortorders-date">Data złożenia</th>
+      <th class="adminTh" width="50px"><a href="/?page=sortorders-status">Status</th>
   </tr>
 
 <?php

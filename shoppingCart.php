@@ -11,7 +11,7 @@
         background-color:darkred;
     }
     .summaryButton {
-        background-color: orange;
+        background-color: darkcyan;
         color: white;
         padding: 5px 20px;
         border: none;
@@ -23,7 +23,7 @@
         font-size: 20px;
     }
     .summaryButton:hover {
-        background-color: coral;
+        background-color: darkred;
         opacity: 0.8;
     }
     .deleteAll {

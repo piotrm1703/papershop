@@ -11,6 +11,7 @@ function htmlEscape($text)
 
 function siteInterface(){
     require_once('../header.php');
+    require_once ('../style.php');
     if(!isset($_SESSION['authenticatedUser'])){
         require_once ('../login.php');
     }else {

@@ -19,7 +19,7 @@
     }
     .button:hover {
         opacity: 0.8;
-        background-color: coral;
+        background-color: darkred;
     }
 
 </style>

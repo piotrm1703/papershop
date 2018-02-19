@@ -1,35 +1,10 @@
-<style>
-    select {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid black;
-        border-radius: 4px;
-        box-sizing: border-box;
-        margin-top: 6px;
-        margin-bottom: 16px;
-        resize: vertical;
-    }
-    input[type=submit] {
-        background-color: red;
-        color: white;
-        padding: 12px 20px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-    input[type=submit]:hover {
-        opacity: 0.8;
-        background-color:darkred;
-    }
-    .deleteitem {
-        border-radius: 5px;
-        background-color: lightcoral;
-        padding: 20px;
-        margin: 8px 8px 8px 210px;
-    }
-</style>
+<?php
+if(!isset($_SESSION['authenticatedUser'])) {
+    header('Location: /');
+}
+?>
 
-<div class="deleteitem">
+<div class="adminDeleteItemForm">
     <form action="/?page=deleteitem" method="post" >
 
         <label for="item"><b>Wybierz produkt do usunięcia:</b></label>
@@ -42,12 +17,12 @@
                 echo $e->getMessage();
             }
             ?>
-            <select name="item" id="item">
+            <select class="selectDelete" name="item" id="item">
                 <?php foreach ($data as $row): ?>
                 <option value="<?php echo $row['ID'] ?>"><?php echo $row['content']?></option>
                 <?php endforeach ?>
             </select>
-        <input type="submit" name="delete" value="Usuń" ">
+        <input class="buttonAdminDelete" type="submit" name="delete" value="Usuń" ">
     </form>
 </div>
 

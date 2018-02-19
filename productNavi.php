@@ -25,11 +25,11 @@
     }
     .addToCart:hover {
         opacity: 0.8;
-        background-color: coral;
+        background-color: darkred;
     }
     .deleteItem {
         border-radius: 5px;
-        background-color: lightcoral;
+        background-color: darkred;
         padding: 20px;
         margin: 8px 8px 8px 210px;
         position: relative;

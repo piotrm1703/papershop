@@ -1,21 +1,18 @@
-<style>
+<?php
+if(!isset($_SESSION['authenticatedUser'])) {
+    header('Location: /');
+}
+?>
 
-    .newfile {
-        border-radius: 5px;
-        background-color: lightgreen;
-        padding: 20px;
-        margin: 8px 8px 8px 210px;
-    }
-
-</style>
 <div class="newfile">
     <form action="/?page=file" method="post" enctype="multipart/form-data">
         <label for="imgSelect"><b>Wybierz zdjęcie:</b></label>
         <input type="file" name="imgSelect" id="imgSelect" required>
-        <input type="submit" name="submit" value="Upload">
+        <input class="universalButton" type="submit" name="submit" value="Upload">
         <p><strong>Note:</strong> Tylko zdjęcia w formatach .jpg, .jpeg, .gif, .png dozwolone.</p>
     </form>
 </div>
+
 <?php
 if(isset($_POST['submit'])){
     $imagesDir = __DIR__.'/web/images/';

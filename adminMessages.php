@@ -1,3 +1,9 @@
+<?php
+if(!isset($_SESSION['authenticatedUser'])) {
+    header('Location: /');
+}
+?>
+
 <style>
     .fabutton {
         background: none;
@@ -10,19 +16,18 @@
         opacity: 0.8;
         color: darkslategray;
     }
+    th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: center;
+        background-color: aliceblue;
+        color: black;
+        font-size: 16px;
+    }
     table, th, td {
         border: 1px solid black;
         border-collapse: collapse;
-        /*font-size: 15px;*/
     }
-     th {
-         padding-top: 12px;
-         padding-bottom: 12px;
-         text-align: center;
-         background-color: aliceblue;
-         color: black;
-         font-size: 16px;
-     }
     tr {
         font-size: 13px;
         text-align: center;

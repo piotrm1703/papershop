@@ -4,7 +4,7 @@ require_once ('loginForm.php');
 
 if(isset($_POST['login'])){
     global $pdo;
-    $stmt = $pdo->prepare('SELECT * FROM accounts WHERE username = :username AND password = :password');
+    $stmt = $pdo->prepare('SELECT * FROM users WHERE username = :username AND password = :password');
     $stmt->bindValue(':username', $_POST['username']);
     $stmt->bindValue(':password', $_POST['psw']);
     $stmt->execute();
