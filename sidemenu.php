@@ -10,7 +10,6 @@
         margin-top: 0;
         margin-bottom: 10px;
     }
-
     .li-sidemenu {
         text-align: center;
         border-bottom: 1px solid black;
