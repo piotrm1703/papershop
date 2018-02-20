@@ -68,6 +68,7 @@ require_once ('../functions.php');
                 }
             }
         }
+        global $search;
         if ($page === 'contact'){
             require('../contact.php');
         }
@@ -100,6 +101,9 @@ require_once ('../functions.php');
         }
         elseif ($page === 'orders'){
             require('../adminOrders.php');
+        }
+        elseif ($page === 'orders-search'){
+            require ('../adminOrdersSearched.php');
         }
         elseif ($page === 'messages'){
             require('../adminMessages.php');

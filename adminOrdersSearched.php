@@ -3,10 +3,13 @@ if(!isset($_SESSION['authenticatedUser'])) {
     header('Location: /');
 }
 
-$stmt = $pdo->prepare('SELECT * FROM orders');
-$stmt->execute();
-$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-if($stmt === false){
+$sql = "SELECT * FROM orders WHERE id LIKE :id OR name LIKE :id OR surname LIKE :id OR email LIKE :id OR city LIKE :id OR zipcode LIKE :id OR address LIKE :id OR sum LIKE :id OR products LIKE :id OR date LIKE :id OR status LIKE :id";
+$search = "'%".$_POST['searchbox']."%'";
+$statement = $pdo->prepare($sql);
+$statement->bindValue(':id', $search);
+$statement->execute();
+$result = $statement->setFetchMode(PDO::FETCH_ASSOC);
+if($statement === false){
     throw new Exception("Database error");
 }
 
@@ -50,9 +53,5 @@ if(isset($_POST['expectant'])) {
         echo $e->getMessage();
     }
 }
-if(isset($_POST['search'])) {
-    $search = $_POST['searchbox'];
-    header("Location: /?page=search-$search");
-}
 
-
+var_dump($search);

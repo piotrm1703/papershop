@@ -4,6 +4,10 @@
     }
 </style>
 
+<form action="/?page=orders-search" method="post">
+     <input type="text" name="searchbox" placeholder="Czego szukasz?..." style="margin-left: 666px; margin-bottom: 5px; margin-top: 5px;"><button type="submit" name="search">Szukaj</button>
+</form>
+
 <div class="admin">
 <table style="width:100%">
   <tr>
@@ -32,7 +36,7 @@ foreach (($stmt->fetchAll()) as $k=>$v){
             <form action="/?page=orders" method="post" >
                 <button class="fabutton" name="expectant" type="submit" title="Zmień status na oczekujący" value="<?php $v['id'] ?>"><i class="fa fa-minus-square"></i></button>
             </form>
-        </td><td>
+            </td><td>
             <?php echo $v['id'] ?></td><td>
             <?php echo $v['name'] ?></td><td>
             <?php echo $v['surname'] ?></td><td>
@@ -41,7 +45,7 @@ foreach (($stmt->fetchAll()) as $k=>$v){
             <?php foreach($un as $product) { ?>
                 <ul><li>Id produktu:<?php echo $product['id']?>, Ilość:<?php echo $product['quantity'] ?></li></ul>
             <?php } ?>
-        </td><td>
+            </td><td>
             <?php echo $v['sum'] ?> zł</td><td>
             <?php echo $v['date']?></td><td>
             <?php echo $v['status']?></td></tr>
