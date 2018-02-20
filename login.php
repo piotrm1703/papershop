@@ -3,7 +3,7 @@
 require_once ('loginForm.php');
 
 if(isset($_POST['login'])){
-    global $pdo;
+    require_once ('connectDB.php');
     $stmt = $pdo->prepare('SELECT * FROM users WHERE username = :username AND password = :password');
     $stmt->bindValue(':username', $_POST['username']);
     $stmt->bindValue(':password', $_POST['psw']);

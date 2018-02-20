@@ -1,50 +1,16 @@
+<?php
+if(!isset($_SESSION['authenticatedUser'])) {
+    header('Location: /');
+}
+?>
+
 <style>
-    .fabutton {
-        background: none;
-        padding: 0;
-        border: none;
-        color: firebrick;
-    }
-    .fabutton:hover {
-        background: none;
-        opacity: 0.8;
-        color: orange;
-    }
-    th {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        text-align: center;
-        background-color: aliceblue;
-        color: black;
-        font-size: 16px;
-    }
-    table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
-        /*font-size: 15px;*/
-    }
-    table.inside {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
-    tr {
-        font-size: 13px;
-        text-align: center;
-    }
-    tr:nth-child(even){background-color: #f2f2f2;}
-
-    tr:hover {background-color: #ddd;}
-
     .ul-sidemenu {
         display: none;
     }
-    th a {
-        color: blue;
-        text-decoration: none;
-    }
-
 </style>
 
+<div class="admin">
 <table style="width:100%">
     <tr>
         <th></th>
@@ -99,7 +65,7 @@
     $dsn = null;
     ?>
 </table>
-
+</div>
 <?php
 if(isset($_POST['delIcon'])) {
     try {

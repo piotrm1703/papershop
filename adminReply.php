@@ -10,7 +10,7 @@
         margin-bottom: 16px;
         resize: vertical;
     }
-    .textinput {
+    .orderFormFields {
         width: 100%;
         padding: 10px;
         border: 1px solid black;

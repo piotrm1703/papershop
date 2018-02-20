@@ -19,10 +19,7 @@ function siteInterface(){
     }
     require_once ('../navtop.php');
     if(isset($_SESSION['authenticatedUser'])){
-        require_once ('../adminNav.php');
+        require_once ('../adminNavForm.php');
     }
     require_once('../sidemenu.php');
-    require_once ('../article.php');
-
 }
-

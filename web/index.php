@@ -23,20 +23,13 @@ ob_start(); ?>
 
 error_reporting(E_ALL);
 require_once ('../functions.php');
-require_once ('../container.php');
-require_once ('../productNavi.php'); ?>
-<?php
-
 
 ?>
-<div id="page-container">
+<div class="pageContainer">
 
     <?php siteInterface()  /* implementacja interfejsu */?>
-
     <?php  if(isset($_GET['page'])) { ?>
-
     <?php require_once ('../connectDB.php');
-  //  phpinfo();
         $page = $_GET['page'];
         $stmt = $pdo->query('SELECT * FROM products');
         if($stmt === false){
@@ -75,8 +68,6 @@ require_once ('../productNavi.php'); ?>
                 }
             }
         }
-
-
         if ($page === 'contact'){
             require('../contact.php');
         }
@@ -128,7 +119,6 @@ require_once ('../productNavi.php'); ?>
             || $page ==='sortorders-date' || $page ==='sortorders-status'){
             require_once ('../sortorder.php');
         }
-
         ?>
 
     <?php } else{ ?>
