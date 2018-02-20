@@ -2,37 +2,37 @@
 if(!isset($_SESSION['authenticatedUser'])) {
     header('Location: /');
 }
-
-$stmt = $pdo->prepare('SELECT * FROM orders');
+$sortType = substr($_GET['page'],5);
+$stmt = $pdo->prepare("SELECT * FROM messages ORDER BY $sortType");
 $stmt->execute();
 $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 if($stmt === false){
     throw new Exception("Database error");
 }
 
-require_once('web/templates/adminOrdersForm.php');
+require_once('web/templates/adminMessagesForm.php');
 
-if(isset($_POST['delIcon'])) {
+if(isset($_POST['delMsg'])) {
     try {
-        $sql = "DELETE FROM orders WHERE ID = :id";
+        $sql = "DELETE FROM messages WHERE ID = :id";
         $statement = $pdo->prepare($sql);
-        $selectedItem = $_POST['delIcon'];
+        $selectedItem = $_POST['delMsg'];
         $statement->bindValue(':id', $selectedItem);
         $delete = $statement->execute();
-        header('Location: /?page=orders');
+        header('Location: /?page=messages');
     } catch (PDOException $e){
         echo $e->getMessage();
     }
 }
 
-if(isset($_POST['realized'])) {
+if(isset($_POST['replied'])) {
     try {
-        $sql = "UPDATE orders SET status='zrealizowano' WHERE ID = :id";
+        $sql = "UPDATE messages SET status='odpowiedziano' WHERE ID = :id";
         $statement = $pdo->prepare($sql);
-        $selectedItem = $_POST['realized'];
+        $selectedItem = $_POST['replied'];
         $statement->bindValue(':id', $selectedItem);
-        $realized = $statement->execute();
-        header('Location: /?page=orders');
+        $delete = $statement->execute();
+        header('Location: /?page=messages');
     } catch (PDOException $e){
         echo $e->getMessage();
     }
@@ -40,14 +40,13 @@ if(isset($_POST['realized'])) {
 
 if(isset($_POST['expectant'])) {
     try {
-        $sql = "UPDATE orders SET status='oczekujący' WHERE ID = :id";
+        $sql = "UPDATE messages SET status='oczekujący' WHERE ID = :id";
         $statement = $pdo->prepare($sql);
         $selectedItem = $_POST['expectant'];
         $statement->bindValue(':id', $selectedItem);
-        $expectant = $statement->execute();
-        header('Location: /?page=orders');
+        $delete = $statement->execute();
+        header('Location: /?page=messages');
     } catch (PDOException $e){
         echo $e->getMessage();
     }
 }
-

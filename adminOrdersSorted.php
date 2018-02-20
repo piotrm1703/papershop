@@ -3,7 +3,8 @@ if(!isset($_SESSION['authenticatedUser'])) {
     header('Location: /');
 }
 
-$stmt = $pdo->prepare('SELECT * FROM orders');
+$sortType = substr($_GET['page'],11);
+$stmt = $pdo->prepare("SELECT * FROM orders ORDER BY $sortType");
 $stmt->execute();
 $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 if($stmt === false){
@@ -50,4 +51,3 @@ if(isset($_POST['expectant'])) {
         echo $e->getMessage();
     }
 }
-

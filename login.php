@@ -1,6 +1,6 @@
 <?php
 
-require_once ('loginForm.php');
+require_once ('web/templates/loginForm.php');
 
 if(isset($_POST['login'])){
     require_once ('connectDB.php');

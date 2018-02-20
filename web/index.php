@@ -83,9 +83,6 @@ require_once ('../functions.php');
         elseif ($page === 'file'){
             require('../adminAddImg.php');
         }
-        elseif ($page === 'messages'){
-            require('../adminMessages.php');
-        }
         elseif ($page === 'deleteitem'){
             require('../admindeleteitem.php');
         }
@@ -101,23 +98,23 @@ require_once ('../functions.php');
         elseif ($page === 'testy'){
             require ('../testy.php');
         }
-        elseif ($page === 'testy2'){
-            require ('../testy2.php');
-        }
         elseif ($page === 'orders'){
-            require ('../adminOrders.php');
+            require('../adminOrders.php');
+        }
+        elseif ($page === 'messages'){
+            require('../adminMessages.php');
         }
         elseif ($page ==='sort-ID' || $page ==='sort-firstname'
             || $page ==='sort-surname' || $page ==='sort-email'
             || $page ==='sort-subject' || $page ==='sort-content'
             || $page ==='sort-date' || $page ==='sort-status'){
-            require_once('../sortmsg.php');
+            require_once('../adminMessagesSorted.php');
         }
         elseif ($page ==='sortorders-id' || $page ==='sortorders-name'
             || $page ==='sortorders-surname' || $page ==='sortorders-email'
             || $page ==='sortorders-city' || $page ==='sortorders-sum'
             || $page ==='sortorders-date' || $page ==='sortorders-status'){
-            require_once ('../sortorder.php');
+            require_once('../adminOrdersSorted.php');
         }
         ?>
 
@@ -138,7 +135,7 @@ require_once ('../functions.php');
 
     <?php } ?>
 
-    <?php require_once('../footer.php'); ?>
+    <?php require_once('templates/footer.php'); ?>
 </div>
 
 </body>

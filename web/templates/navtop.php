@@ -4,5 +4,4 @@
     <a href="/?page=promotions">Promocje</a>
     <a href="/?page=contact">Kontakt</a>
     <a href="/?page=testy">Testy</a>
-    <a href="/?page=testy2">Testy2</a>
 </div>

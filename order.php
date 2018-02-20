@@ -38,7 +38,7 @@ if (isset($_SESSION['cart'])) {
 
 }
 
-require_once ('orderForm.php');
+require_once ('web/templates/orderForm.php');
 
 if(isset($_POST['submit'])) {
     if (!(isset($_POST['name']) &&
