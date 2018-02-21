@@ -4,6 +4,11 @@
     }
 </style>
 
+<form action="/?page=messages-search" method="post">
+    <input type="text" name="searchbox" placeholder="Czego szukasz?..." style="margin-left: 666px; margin-bottom: 5px; margin-top: 5px;"><button type="submit" name="searchmessages">Szukaj</button>
+</form>
+
+
 <div class="admin">
     <table style="width:100%">
 
@@ -23,16 +28,16 @@
 
         <tr><td>
                 <form action="/?page=messages" method="post" >
-                    <button class="fabutton" name="delMsg" type="submit" title="Usuń wiadomość" value="<?php $v['ID'] ?>" onClick="return confirm('Na pewno chcesz usunąć wiadomość nr: ' <?php echo $v['ID']; ?> ?')"><i class="fa fa-close"></i></button>
+                    <button class="fabutton" name="delMsg" type="submit" title="Usuń wiadomość" value="<?php echo $v['ID'] ?>" onClick="return confirm('Na pewno chcesz usunąć wiadomość nr: ' <?php echo $v['ID']; ?> ?')"><i class="fa fa-close"></i></button>
                 </form>
                 <form action="/?page=adminReply<?php $v['ID'] ?>" method="post" >
-                    <button class="fabutton" name="reply" type="submit" title="Odpowiedz na wiadomość" value="<?php $v['ID'] ?>"><i class="fa fa-envelope-open"></i></button>
+                    <button class="fabutton" name="reply" type="submit" title="Odpowiedz na wiadomość" value="<?php echo $v['ID'] ?>"><i class="fa fa-envelope-open"></i></button>
                 </form>
                 <form action="/?page=messages" method="post" >
-                    <button class="fabutton" name="replied" type="submit" title="Zmień status na odpowiedziano" value="<?php $v['ID'] ?>"><i class="fa fa-check-square"></i></button>
+                    <button class="fabutton" name="replied" type="submit" title="Zmień status na odpowiedziano" value="<?php echo $v['ID'] ?>"><i class="fa fa-check-square"></i></button>
                 </form>
                 <form action="/?page=messages" method="post" >
-                    <button class="fabutton" name="expectant" type="submit" title="Zmień status na oczekujący" value="<?php $v['ID'] ?>"><i class="fa fa-minus-square"></i></button>
+                    <button class="fabutton" name="expectant" type="submit" title="Zmień status na oczekujący" value="<?php echo $v['ID'] ?>"><i class="fa fa-minus-square"></i></button>
                 </form>
                 </td><td>
                 <?php echo $v['ID'] ?> </td><td>

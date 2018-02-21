@@ -6,7 +6,6 @@ if(!isset($_SESSION['authenticatedUser'])) {
 $sortType = substr($_GET['page'],11);
 $stmt = $pdo->prepare("SELECT * FROM orders ORDER BY $sortType");
 $stmt->execute();
-$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 if($stmt === false){
     throw new Exception("Database error");
 }

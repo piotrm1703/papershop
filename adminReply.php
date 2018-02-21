@@ -97,3 +97,8 @@
         <input type="submit" name="submit" value="Wyślij">
     </form>
 </div>
+<?php
+
+var_dump($v);
+
+?>

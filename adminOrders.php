@@ -3,9 +3,10 @@ if(!isset($_SESSION['authenticatedUser'])) {
     header('Location: /');
 }
 
+require_once ('connectDB.php');
+
 $stmt = $pdo->prepare('SELECT * FROM orders');
 $stmt->execute();
-$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 if($stmt === false){
     throw new Exception("Database error");
 }
@@ -50,9 +51,3 @@ if(isset($_POST['expectant'])) {
         echo $e->getMessage();
     }
 }
-if(isset($_POST['search'])) {
-    $search = $_POST['searchbox'];
-    header("Location: /?page=search-$search");
-}
-
-

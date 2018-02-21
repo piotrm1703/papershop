@@ -3,11 +3,11 @@ if(!isset($_SESSION['authenticatedUser'])) {
     header('Location: /');
 }
 
-if(isset($_POST['ordersearch'])) {
+if(isset($_POST['searchmessages'])) {
     try {
-        $sql = "SELECT * FROM orders WHERE id LIKE ? OR name LIKE ? OR surname LIKE ? OR email LIKE ? OR city LIKE ? OR zipcode LIKE ? OR address LIKE ? OR sum LIKE ? OR products LIKE ? OR status LIKE ? ";
+        $sql = "SELECT * FROM messages WHERE ID LIKE ? OR firstname LIKE ? OR surname LIKE ? OR email LIKE ? OR subject LIKE ? OR content LIKE ? OR status LIKE ? ";  //     OR date LIKE ? psuje polskie znaki
         $stmt = $pdo->prepare($sql);
-        $search = '%'.$_POST['searchboxorders'].'%';
+        $search = '%'.$_POST['searchbox'].'%';
         $stmt->bindParam(1,$search);
         $stmt->bindParam(2,$search);
         $stmt->bindParam(3,$search);
@@ -15,38 +15,35 @@ if(isset($_POST['ordersearch'])) {
         $stmt->bindParam(5,$search);
         $stmt->bindParam(6,$search);
         $stmt->bindParam(7,$search);
-        $stmt->bindParam(8,$search);
-        $stmt->bindParam(9,$search);
-        $stmt->bindParam(10,$search);
         $stmt->execute();
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
 }
 
-require_once('web/templates/adminOrdersForm.php');
+require_once('web/templates/adminMessagesForm.php');
 
-if(isset($_POST['delIcon'])) {
+if(isset($_POST['delMsg'])) {
     try {
-        $sql = "DELETE FROM orders WHERE ID = :id";
+        $sql = "DELETE FROM messages WHERE ID = :id";
         $statement = $pdo->prepare($sql);
-        $selectedItem = $_POST['delIcon'];
+        $selectedItem = $_POST['delMsg'];
         $statement->bindValue(':id', $selectedItem);
         $delete = $statement->execute();
-        header('Location: /?page=orders-search');
+        header('Location: /?page=messages');
     } catch (PDOException $e){
         echo $e->getMessage();
     }
 }
 
-if(isset($_POST['realized'])) {
+if(isset($_POST['replied'])) {
     try {
-        $sql = "UPDATE orders SET status='zrealizowano' WHERE ID = :id";
+        $sql = "UPDATE messages SET status='odpowiedziano' WHERE ID = :id";
         $statement = $pdo->prepare($sql);
-        $selectedItem = $_POST['realized'];
+        $selectedItem = $_POST['replied'];
         $statement->bindValue(':id', $selectedItem);
-        $realized = $statement->execute();
-        header('Location: /?page=orders-search');
+        $delete = $statement->execute();
+        header('Location: /?page=messages');
     } catch (PDOException $e){
         echo $e->getMessage();
     }
@@ -54,14 +51,13 @@ if(isset($_POST['realized'])) {
 
 if(isset($_POST['expectant'])) {
     try {
-        $sql = "UPDATE orders SET status='oczekujący' WHERE ID = :id";
+        $sql = "UPDATE messages SET status='oczekujący' WHERE ID = :id";
         $statement = $pdo->prepare($sql);
         $selectedItem = $_POST['expectant'];
         $statement->bindValue(':id', $selectedItem);
-        $expectant = $statement->execute();
-        header('Location: /?page=orders-search');
+        $delete = $statement->execute();
+        header('Location: /?page=messages');
     } catch (PDOException $e){
         echo $e->getMessage();
     }
 }
-

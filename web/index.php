@@ -99,26 +99,29 @@ require_once ('../functions.php');
         elseif ($page === 'testy'){
             require ('../testy.php');
         }
+        elseif ($page === 'messages'){
+            require('../adminMessages.php');
+        }
+        elseif ($page === 'messages-search'){
+            require ('../adminMessagesSearched.php');
+        }
+        elseif ($page ==='sort-ID' || $page ==='sort-firstname'
+            || $page ==='sort-surname' || $page ==='sort-email'
+            || $page ==='sort-subject' || $page ==='sort-content'
+            || $page ==='sort-date' || $page ==='sort-status'){
+            require('../adminMessagesSorted.php');
+        }
         elseif ($page === 'orders'){
             require('../adminOrders.php');
         }
         elseif ($page === 'orders-search'){
             require ('../adminOrdersSearched.php');
         }
-        elseif ($page === 'messages'){
-            require('../adminMessages.php');
-        }
-        elseif ($page ==='sort-ID' || $page ==='sort-firstname'
-            || $page ==='sort-surname' || $page ==='sort-email'
-            || $page ==='sort-subject' || $page ==='sort-content'
-            || $page ==='sort-date' || $page ==='sort-status'){
-            require_once('../adminMessagesSorted.php');
-        }
         elseif ($page ==='sortorders-id' || $page ==='sortorders-name'
             || $page ==='sortorders-surname' || $page ==='sortorders-email'
             || $page ==='sortorders-city' || $page ==='sortorders-sum'
             || $page ==='sortorders-date' || $page ==='sortorders-status'){
-            require_once('../adminOrdersSorted.php');
+            require('../adminOrdersSorted.php');
         }
         ?>
 
