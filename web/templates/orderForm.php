@@ -20,7 +20,7 @@
             <input class="orderFormFields" type="text" id="address" name="address" placeholder="Podaj adres..." required>
             <label for="address">Adres</label>
             <br>
-            <input class="universalButton" type="submit" name="submit" value="Złóż zamówienie">
+            <input class="universalButton" type="submit" name="submit" value="Złóż zamówienie" onClick="return confirm('Czy na pewno chcesz złożyć to zamówienie?')">
         </form>
     </div>
 </article>

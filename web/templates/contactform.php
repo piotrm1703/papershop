@@ -25,7 +25,7 @@
 
     <p><b>Zapraszamy do korzystania z naszych usług.</b></p>
 
-    <div class="contactform">
+    <div class="replyMsgForm">
         <h1>Skontaktuj się z nami!</h1>
         <form action="" method="post">
 

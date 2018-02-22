@@ -9,9 +9,9 @@ if(isset($_POST['submit'])){
     $date = date("Y-m-d H:i:s");
     $status ='oczekujący';
     if(isset($name) && isset($surname) && isset($email) && isset($subject) && isset($content)){
-        require_once ('connectDB.php');
-        // Query
-        $stmt = $pdo->query("INSERT INTO messages VALUES(NULL,'$name','$surname','$email','$subject','$content','$date','$status')");
+
+        $sql = "INSERT INTO messages VALUES(NULL,'$name','$surname','$email','$subject','$content','$date','$status')";
+        $stmt = $pdo->query($sql);
         if($stmt === false){
             throw new Exception("Database error");
         }

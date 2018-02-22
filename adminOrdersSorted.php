@@ -4,7 +4,8 @@ if(!isset($_SESSION['authenticatedUser'])) {
 }
 
 $sortType = substr($_GET['page'],11);
-$stmt = $pdo->prepare("SELECT * FROM orders ORDER BY $sortType");
+$sql = "SELECT * FROM orders ORDER BY $sortType";
+$stmt = $pdo->prepare($sql);
 $stmt->execute();
 if($stmt === false){
     throw new Exception("Database error");

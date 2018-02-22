@@ -27,7 +27,7 @@
         margin-bottom: 16px;
         resize: vertical;
     }
-    .contactform {
+    .replyMsgForm {
         border-radius: 5px;
         background-color: aliceblue;
         padding: 10px;
@@ -36,7 +36,7 @@
     /*end of contant form style*/
 
     /*admin new img style*/
-    .newfile {
+    .addImgForm {
         border-radius: 5px;
         background-color: lightgreen;
         padding: 20px;
@@ -131,7 +131,7 @@
     /*top navigation panel style*/
     .topnav {
         overflow: hidden;
-        background-color: cadetblue;
+        background-color: #008080;
         border: 1px solid black;
         border-left: none;
         border-right: none;
@@ -178,7 +178,7 @@
         margin-left: 220px;
     }
     article.content {
-        padding-top: 20px;
+        padding-top: 10px;
     }
     /*end of article style*/
 
@@ -212,7 +212,7 @@
     footer {
         padding: 1em;
         color: white;
-        background-color: cadetblue;
+        background-color: #008080;
         clear: left;
         text-align: inherit;
         border-top: 1px solid black;
@@ -284,10 +284,10 @@
         color: white;
         border-radius: 4px;
         padding: 5px;
-        margin: 12px 0;
         border: none;
         cursor: pointer;
         width: 30%;
+        margin-top: 12px;
     }
     .addToCart:hover {
         opacity: 0.8;
@@ -442,4 +442,48 @@
         text-decoration: none;
     }
     /*end of admin tables style*/
+
+    /*edit products icon style*/
+    .editButton {
+        background: none;
+        border: none;
+        color: firebrick;
+        font-size: 30px;
+        position: relative;
+        bottom: 20px;
+        left: 515px;
+    }
+    .editButton:hover {
+        background: none;
+        opacity: 0.8;
+        color: orange;
+    }
+    .editItemForm {
+        border-radius: 5px;
+        background-color: gainsboro;
+        padding: 20px;
+        margin: 8px 8px 8px 210px;
+    }
+
+    /*end of edit products icon style*/
+
+    /*reply msg form style*/
+    .replyMsgArea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid black;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+        height: 150px;
+    }
+    .replyMsgForm {
+        border-radius: 5px;
+        background-color: aliceblue;
+        padding: 10px;
+        margin: 15px 10px 10px 215px;
+    }
+    /*end of reply msg form style*/
 </style>

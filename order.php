@@ -75,7 +75,7 @@ if(isset($_POST['submit'])) {
     }
     $_SESSION['cart'] = [];
 
-    //   header('Location: /?page=orderThanks');
+       header('Location: /?page=orderThanks');
     echo "<script> alert('Zamówienie przyjęte do realizacji. Dziękujemy za zaufanie!!')</script>";
 
 }

@@ -27,30 +27,23 @@ require_once ('../functions.php');
 ?>
 <div class="pageContainer">
 
-    <?php siteInterface()  /* implementacja interfejsu */?>
-    <?php  if(isset($_GET['page'])) { ?>
-    <?php require_once ('../connectDB.php');
+    <?php
+    siteInterface();
+    if(isset($_GET['page'])) {
+        require_once ('../connectDB.php');
         $page = $_GET['page'];
         $stmt = $pdo->query('SELECT * FROM products');
         if($stmt === false){
             throw new Exception("Database error");
         }
-
         $arrayQuantity = $stmt->rowCount() - 1;
         for ($x = 0; $x <= $arrayQuantity; $x++) {
             while ($row = $stmt->fetch(PDO::FETCH_OBJ)) {
                 if ($row->category === $page) {
-                    echo '<article class="content">'.htmlEscape($row->content).' '.
-                        '<img src='.htmlEscape($row->img).' class="imgView">'.
-                        '<p class="price">'.' '.'Cena'.' '.htmlEscape($row->price).' '.'zł'.'</p>'.'</article><br>';
 
-                    echo '<div class="productcontainer">'.
-                        '<form action="/?page=shoppingCart" method="post">'.
-                        '<button class="addToCart" name="addToCart" type="submit" value="'.$row->ID.'" >'.'Dodaj do koszyka'.'</button>'.
-                        '</form>'.
-                        '</div>'.
-                        '<hr class="horizontalLine">';
-                    $dsn = null;
+                    require ('templates/productViewForm.php');
+
+                     $dsn = null;
                 }
             }
         }
@@ -68,7 +61,20 @@ require_once ('../functions.php');
                 }
             }
         }
-        global $search;
+        $stmt2 = $pdo->prepare('SELECT * FROM products');
+        $stmt2->execute();
+        $result = $stmt2->setFetchMode(PDO::FETCH_ASSOC);
+        if($stmt2 === false){
+            throw new Exception("Database error");
+        }
+        $arrayQuantity3 = $stmt2->rowCount() - 1;
+        for ($y = 0; $y <= $arrayQuantity3; $y++){
+            while ($row3 = $stmt2->fetch(PDO::FETCH_OBJ)){
+                if($page === 'editProduct'.$row3->ID){
+                    require ('../adminEditProduct.php');
+                }
+            }
+        }
         if ($page === 'contact'){
             require('../contact.php');
         }
@@ -76,7 +82,7 @@ require_once ('../functions.php');
             require('../promotions.php');
         }
         elseif ($page === 'offer'){
-            require('../offer.php');
+            require('templates/offer.php');
         }
         elseif  ($page === 'newitem'){
             require('../adminNewItem.php');
@@ -94,7 +100,7 @@ require_once ('../functions.php');
             require ('../order.php');
         }
         elseif ($page ==='orderThanks'){
-            require ('../orderThanks.php');
+            require('../orderThanks.php');
         }
         elseif ($page === 'testy'){
             require ('../testy.php');
@@ -123,28 +129,12 @@ require_once ('../functions.php');
             || $page ==='sortorders-date' || $page ==='sortorders-status'){
             require('../adminOrdersSorted.php');
         }
-        ?>
+} else {
+        require_once ('templates/mainPage.php');
+    }
+    require_once('templates/footer.php'); ?>
 
-    <?php } else{ ?>
-        <article >
-            <h3 style="color:darkslategray">Witam na stronie głównej Przedsiębiorstwa Poligraficznego!</h3>
-            <p>Przedsiębiorstwo  działa na rynku papierniczym od niemalże 30 lat.<br>Główna siedziba firmy mieści się w województwie mazowieckim, ale posiadamy biura handlowe w różnych częściach kraju.<br>
-                Nasze magazyny mieszczą się w województwie mazowieckim oraz na pomorzu.<br>
-                Jesteśmy firmą rodzinną, stawiamy na budowanie oraz rozwój pozytywnych relacji z naszymi klientami opartych na doświadczeniu, zaufaniu i przyjaźni.<br>
-                Młody, profesjonalny zespół, bogata oferta handlowa, niewielkie marże oraz szybka realizacja zleceń to mocne strony przedsiębiorstwa.<br>
-                Wykorzystując szerokie możliwości bezpośredniego importu oraz własne możliwości przerobowe papieru, oferujemy produkty wysokiej jakości w konkurencyjnych cenach.<br>
-                Nasza oferta handlowa znana jest również za granicą. <br>
-            <p>Dzięki długoletniej, bezpośredniej współpracy z wieloma producentami papieru, mamy duże możliwości dostosowania oferty handlowej do indywidualnych potrzeb naszych klientów, zarówno w zakresie cen jak i jakości produktów.</p>
-            <p>Zapraszamy do korzystania z naszych usług.</p>
-            <p>Zespół Przedsiębiorstwa Poligraficznego</p>
-
-        </article>
-
-    <?php } ?>
-
-    <?php require_once('templates/footer.php'); ?>
-</div>
-
+ </div>
 </body>
 </html>
 

@@ -3,11 +3,12 @@ if(!isset($_SESSION['authenticatedUser'])) {
     header('Location: /');
 }
 
-require_once('connectDB.php');
-// Query
 $stmt = $pdo->prepare('SELECT DISTINCT url FROM images');
 $stmt->execute();
 $data = $stmt->fetchAll();
+if($stmt === false){
+    throw new Exception("Database error");
+}
 
 require_once ('web/templates/adminNewItemForm.php');
 

@@ -3,7 +3,8 @@ if(!isset($_SESSION['authenticatedUser'])) {
     header('Location: /');
 }
 $sortType = substr($_GET['page'],5);
-$stmt = $pdo->prepare("SELECT * FROM messages ORDER BY $sortType");
+$sql = "SELECT * FROM messages ORDER BY $sortType";
+$stmt = $pdo->prepare($sql);
 $stmt->execute();
 $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 if($stmt === false){

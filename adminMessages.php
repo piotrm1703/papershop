@@ -2,8 +2,8 @@
 if(!isset($_SESSION['authenticatedUser'])) {
     header('Location: /');
 }
-
-$stmt = $pdo->prepare('SELECT * FROM messages');
+$sql = "SELECT * FROM messages";
+$stmt = $pdo->prepare($sql);
 $stmt->execute();
 $result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
 if($stmt === false){

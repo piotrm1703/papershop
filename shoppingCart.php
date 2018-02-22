@@ -9,7 +9,6 @@ if (isset($_POST['addToCart'])) {
     } else {
         $sessionArray = [];
     }
-
     $sessionArray[] = $_POST['addToCart'];
     $_SESSION['cart'] = $sessionArray;
     header('Location: /?page=shoppingCart');
@@ -30,29 +29,19 @@ if (isset($_POST['deleteAll'])){
 }
 
 if (isset($_SESSION['cart'])) {
-    $cart = $_SESSION['cart'];
-    if ($cart !== []) {
-        $stmt1 = $pdo->query('SELECT * FROM products WHERE ID IN ('.implode(',', $cart).')');
+    if ($_SESSION['cart'] !== []) {
+        $stmt1 = $pdo->query('SELECT * FROM products WHERE ID IN ('.implode(',', $_SESSION['cart']).')');
         if ($stmt1 === false) {
             throw new Exception("Database error");
         }
-
         $cartProducts = $stmt1->fetchAll(PDO::FETCH_OBJ);
-        $duplicate = array_count_values($cart);
+        $duplicate = array_count_values($_SESSION['cart']);
 
         foreach ($cartProducts as $cartProduct) {
-            //   var_dump($cartProduct);
-            $id = $cartProduct->ID;
-            $count = $duplicate[$id];
-            $price = htmlEscape($cartProduct->price);
-            $productSum = $count * $price;
+            $count = $duplicate[$cartProduct->ID];
+            $productSum = $count * htmlEscape($cartProduct->price);
 
-            echo '<div class="shoppingCart">'.'<b>'.htmlEscape($cartProduct->content).'</b>'.' '.
-                '<img src='.htmlEscape($cartProduct->img).' '.'class = "imgView">'.' '.
-                '<p class="price">'.' '.'Cena'.' '.$productSum.' '.'zł'.'</p>'.
-                '<form action="/?page=shoppingCart" method="post">'.
-                '<button class="deleteFromCart" type="submit" name="deleteFromCart"  value="'.$cartProduct->ID.'">Usuń 1szt.</button>'.
-                '</form>'.'</div>';
+            require ('web/templates/cartProductView.php');
         }
     } else {
         echo 'Koszyk jest pusty!';
@@ -60,11 +49,8 @@ if (isset($_SESSION['cart'])) {
 } else {
     echo 'Koszyk jest pusty!';
 }
-if($_SESSION['cart'] !== [])
-{
-    echo '<article class="cart">'.'<form action="/?page=order" method="post">'.
-        '<button class="summaryButton" type="submit" name="summary" >Podsumowanie</button>'.'</form>'.
-        '<form action="/?page=shoppingCart" method="post">'.
-        '<button class="deleteAll" type="submit" name="deleteAll" >Usuń wszystko</button>'.'</form>'.
-        '</article>';
+if($_SESSION['cart'] !== []) {
+    require_once ('web/templates/cartButtons.php');
 }
+
+

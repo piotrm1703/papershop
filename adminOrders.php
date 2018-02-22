@@ -2,10 +2,8 @@
 if(!isset($_SESSION['authenticatedUser'])) {
     header('Location: /');
 }
-
-require_once ('connectDB.php');
-
-$stmt = $pdo->prepare('SELECT * FROM orders');
+$sql = "SELECT * FROM orders";
+$stmt = $pdo->prepare($sql);
 $stmt->execute();
 if($stmt === false){
     throw new Exception("Database error");
