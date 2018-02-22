@@ -7,7 +7,7 @@ if(isset($_POST['ordersearch'])) {
     try {
         $sql = "SELECT * FROM orders WHERE id LIKE ? OR name LIKE ? OR surname LIKE ? OR email LIKE ? OR city LIKE ? OR zipcode LIKE ? OR address LIKE ? OR sum LIKE ? OR products LIKE ? OR status LIKE ? ";
         $stmt = $pdo->prepare($sql);
-        $search = '%'.$_POST['searchboxorders'].'%';
+        $search = '%'.htmlEscape($_POST['searchboxorders']).'%';
         $stmt->bindParam(1,$search);
         $stmt->bindParam(2,$search);
         $stmt->bindParam(3,$search);

@@ -1,5 +1,13 @@
 <style>
 
+    /*site container style*/
+    .pageContainer {
+        max-width: 900px;
+        margin: 0 auto;
+        /*border: 1px solid black;*/
+    }
+    /*end of site container style*/
+
     /* main button style*/
     .universalButton {
         background-color: darkslategray;
@@ -15,6 +23,16 @@
     }
     /*end of main button style*/
 
+    /*search button style*/
+    .searchButton{
+        background-color: darkslategray;
+        color: white;
+        padding: 3px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    /*end of search button style*/
 
     /*contact form style*/
     .contactformFields{
@@ -27,11 +45,13 @@
         margin-bottom: 16px;
         resize: vertical;
     }
-    .replyMsgForm {
+    .contactForm {
         border-radius: 5px;
         background-color: aliceblue;
         padding: 10px;
-        margin: 10px;
+        margin-left: -215px;
+        margin-right: 5px;
+        margin-bottom: 5px;
     }
     /*end of contant form style*/
 
@@ -131,10 +151,8 @@
     /*top navigation panel style*/
     .topnav {
         overflow: hidden;
-        background-color: #008080;
+        background-color: darkgrey;
         border: 1px solid black;
-        border-left: none;
-        border-right: none;
     }
     .topnav a {
         float: left;
@@ -149,15 +167,25 @@
         color: white;
         opacity: 0.8;
     }
+    .home {
+        text-align: center;
+        background-color: darkslategray;
+        color: white;
+    }
+
+    .home:hover {
+        background-color: darkred;
+        color: white;
+    }
     /*end of top navigation panel style*/
 
 
     /*admin navigation panel style*/
     .adminnav {
-        width: 100%;
         overflow: hidden;
-        background-color: lightblue;
-        border-bottom: 1px solid black;
+        background-color: lightgrey;
+        border: 1px solid black;
+        border-top: none;
     }
     .adminnav a {
         float: right;
@@ -182,14 +210,6 @@
     }
     /*end of article style*/
 
-    /*site container style*/
-    .pageContainer {
-        max-width: 900px;
-        margin: 0 auto;
-        border: 1px solid black;
-    }
-    /*end of site container style*/
-
     /*header style*/
     header {
         padding: 3px;
@@ -197,14 +217,16 @@
         clear: left;
         text-align: center;
         text-decoration: none;
-        background-image: url("/images/tło.jpg");
-        width: 850px;
+        background-image: url("/images/background.jpg");
+        width: 894px;
         height: 205px;
-        margin: 20px;
     }
     header a {
-        color: black;
+        color: white;
         text-decoration: none;
+        position: relative;
+        top: 50px;
+        font-size: 40px;
     }
     /*end of header style*/
 
@@ -212,21 +234,20 @@
     footer {
         padding: 1em;
         color: white;
-        background-color: #008080;
+        background-color: darkgrey;
         clear: left;
         text-align: inherit;
-        border-top: 1px solid black;
+        border: 1px solid black;
     }
     /*end of footer style*/
 
     /*login form style*/
 
     .logincontainer {
-        width: 100%;
-        border-top: 1px solid black;
-        background-color: cadetblue;
+        border: 1px solid black;
+        border-bottom: none;
+        background-color: lightgrey;
     }
-
     .loginNamePasswordStyle {
         width: 20%;
         padding: 3px 20px;
@@ -237,7 +258,7 @@
     }
 
     .loginOutButton {
-        background-color: darkcyan;
+        background-color: darkslategrey;
         color: white;
         border-radius: 4px;
         padding: 3px 10px;
@@ -295,6 +316,7 @@
     }
     .horizontalLine{
         margin-left: 220px;
+        margin-right: 20px;
         position: relative;
         bottom: 10px;
     }
@@ -359,8 +381,9 @@
         list-style-type: none;
         padding: 0;
         width: 200px;
-        background-color: cadetblue;
-        border-right: 1px solid black;
+        background-color: darkgrey;
+        border: 1px solid black;
+        border-top: none;
         float: left;
         margin-right: 20px;
         margin-top: 0;
@@ -420,6 +443,7 @@
     .admin table, th, td {
         border: 1px solid black;
         border-collapse: collapse;
+        margin-bottom: 10px;
     }
     .admin th {
         padding-top: 12px;
@@ -450,8 +474,8 @@
         color: firebrick;
         font-size: 30px;
         position: relative;
+        left: 510px;
         bottom: 20px;
-        left: 515px;
     }
     .editButton:hover {
         background: none;

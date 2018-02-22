@@ -5,7 +5,7 @@
 </style>
 
 <form action="/?page=messages-search" method="post">
-    <input type="text" name="searchbox" placeholder="Czego szukasz?..." style="margin-left: 666px; margin-bottom: 5px; margin-top: 5px;"><button type="submit" name="searchmessages">Szukaj</button>
+    <input type="text" name="searchbox" placeholder="Czego szukasz?..." style="margin-left: 666px; margin-bottom: 5px; margin-top: 5px;"><button class="searchButton" type="submit" name="searchmessages">Szukaj</button>
 </form>
 
 <div class="admin">

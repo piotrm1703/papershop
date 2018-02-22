@@ -7,7 +7,7 @@ if(isset($_POST['searchmessages'])) {
     try {
         $sql = "SELECT * FROM messages WHERE ID LIKE ? OR firstname LIKE ? OR surname LIKE ? OR email LIKE ? OR subject LIKE ? OR content LIKE ? OR status LIKE ? ";  //     OR date LIKE ? psuje polskie znaki
         $stmt = $pdo->prepare($sql);
-        $search = '%'.$_POST['searchbox'].'%';
+        $search = '%'.htmlEscape($_POST['searchbox']).'%';
         $stmt->bindParam(1,$search);
         $stmt->bindParam(2,$search);
         $stmt->bindParam(3,$search);

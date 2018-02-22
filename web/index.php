@@ -75,47 +75,23 @@ require_once ('../functions.php');
                 }
             }
         }
-        if ($page === 'contact'){
-            require('../contact.php');
+        if ($page === 'offer'){
+            require('templates/offer.php');
         }
         elseif ($page === 'promotions'){
             require('../promotions.php');
         }
-        elseif ($page === 'offer'){
-            require('templates/offer.php');
-        }
-        elseif  ($page === 'newitem'){
-            require('../adminNewItem.php');
+        elseif ($page === 'contact'){
+            require('../contact.php');
         }
         elseif ($page === 'file'){
             require('../adminAddImg.php');
         }
+        elseif  ($page === 'newitem'){
+            require('../adminNewItem.php');
+        }
         elseif ($page === 'deleteitem'){
             require('../admindeleteitem.php');
-        }
-        elseif ($page === 'shoppingCart'){
-            require ('../shoppingCart.php');
-        }
-        elseif ($page === 'order'){
-            require ('../order.php');
-        }
-        elseif ($page ==='orderThanks'){
-            require('../orderThanks.php');
-        }
-        elseif ($page === 'testy'){
-            require ('../testy.php');
-        }
-        elseif ($page === 'messages'){
-            require('../adminMessages.php');
-        }
-        elseif ($page === 'messages-search'){
-            require ('../adminMessagesSearched.php');
-        }
-        elseif ($page ==='sort-ID' || $page ==='sort-firstname'
-            || $page ==='sort-surname' || $page ==='sort-email'
-            || $page ==='sort-subject' || $page ==='sort-content'
-            || $page ==='sort-date' || $page ==='sort-status'){
-            require('../adminMessagesSorted.php');
         }
         elseif ($page === 'orders'){
             require('../adminOrders.php');
@@ -129,6 +105,28 @@ require_once ('../functions.php');
             || $page ==='sortorders-date' || $page ==='sortorders-status'){
             require('../adminOrdersSorted.php');
         }
+        elseif ($page === 'messages'){
+            require('../adminMessages.php');
+        }
+        elseif ($page === 'messages-search'){
+            require ('../adminMessagesSearched.php');
+        }
+        elseif ($page ==='sort-ID' || $page ==='sort-firstname'
+            || $page ==='sort-surname' || $page ==='sort-email'
+            || $page ==='sort-subject' || $page ==='sort-content'
+            || $page ==='sort-date' || $page ==='sort-status'){
+            require('../adminMessagesSorted.php');
+        }
+        elseif ($page === 'shoppingCart'){
+            require ('../shoppingCart.php');
+        }
+        elseif ($page === 'order'){
+            require ('../order.php');
+        }
+        elseif ($page ==='orderThanks'){
+            require('../orderThanks.php');
+        }
+
 } else {
         require_once ('templates/mainPage.php');
     }
