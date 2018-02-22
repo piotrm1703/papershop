@@ -2,8 +2,11 @@
 
     /*site container style*/
     .pageContainer {
+        position: relative;
         max-width: 900px;
         margin: 0 auto;
+        height: 100%;
+        min-height:100%;
         /*border: 1px solid black;*/
     }
     /*end of site container style*/
@@ -232,12 +235,11 @@
 
     /*footer style*/
     footer {
-        padding: 1em;
-        color: white;
-        background-color: darkgrey;
-        clear: left;
-        text-align: inherit;
-        border: 1px solid black;
+        position: relative;
+        margin-top: -5px;
+        height: 18px;
+        clear: both;
+        text-align: right;
     }
     /*end of footer style*/
 
