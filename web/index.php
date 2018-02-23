@@ -40,13 +40,12 @@ require_once ('../functions.php');
         for ($x = 0; $x <= $arrayQuantity; $x++) {
             while ($row = $stmt->fetch(PDO::FETCH_OBJ)) {
                 if ($row->category === $page) {
-
                     require ('templates/productViewForm.php');
-
-                     $dsn = null;
+                    $dsn = null;
                 }
             }
         }
+
         $stmt1 = $pdo->prepare('SELECT * FROM messages');
         $stmt1->execute();
         $result = $stmt1->setFetchMode(PDO::FETCH_ASSOC);

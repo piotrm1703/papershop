@@ -26,6 +26,7 @@
         <select name="img" id="img">
             <?php foreach ($data as $row): ?>
                 <option><?=$row["url"]?></option>
+                <img src=" <?=$row['url']?>" class="imgView">
             <?php endforeach ?>
         </select>
 

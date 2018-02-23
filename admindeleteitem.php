@@ -4,7 +4,7 @@ if(!isset($_SESSION['authenticatedUser'])) {
 }
 
 try {
-    $sql = "SELECT * FROM products";
+    $sql = "SELECT * FROM products ORDER BY content";
     $stmt = $pdo->prepare($sql);
     $stmt->execute();
     $data = $stmt->fetchAll();
@@ -17,7 +17,7 @@ require_once ('web/templates/adminDeleteItemForm.php');
 if(isset($_POST['delete'])) {
     try {
         require_once('connectDB.php');
-        $sql = "DELETE FROM products WHERE ID = :id";
+        $sql = "DELETE FROM products WHERE ID = :id ";
         $stmt = $pdo->prepare($sql);
         $selectedItem = $_POST['item'];
         $stmt->bindValue(':id', $selectedItem);

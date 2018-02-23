@@ -7,7 +7,6 @@
         margin: 0 auto;
         height: 100%;
         min-height:100%;
-        /*border: 1px solid black;*/
     }
     /*end of site container style*/
 
@@ -111,7 +110,7 @@
     }
     .newItem {
         border-radius: 5px;
-        background-color: lightskyblue;
+        background-color: skyblue;
         padding: 20px;
         margin: 8px 8px 8px 210px;
     }
@@ -155,7 +154,6 @@
     .topnav {
         overflow: hidden;
         background-color: darkgrey;
-        border: 1px solid black;
     }
     .topnav a {
         float: left;
@@ -187,8 +185,6 @@
     .adminnav {
         overflow: hidden;
         background-color: lightgrey;
-        border: 1px solid black;
-        border-top: none;
     }
     .adminnav a {
         float: right;
@@ -240,15 +236,13 @@
         height: 18px;
         clear: both;
         text-align: right;
+        background-color: lightgrey;
     }
     /*end of footer style*/
 
     /*login form style*/
-
     .logincontainer {
-        border: 1px solid black;
-        border-bottom: none;
-        background-color: lightgrey;
+
     }
     .loginNamePasswordStyle {
         width: 20%;
@@ -258,7 +252,6 @@
         border: 1px solid #ccc;
         box-sizing: border-box;
     }
-
     .loginOutButton {
         background-color: darkslategrey;
         color: white;
@@ -384,8 +377,6 @@
         padding: 0;
         width: 200px;
         background-color: darkgrey;
-        border: 1px solid black;
-        border-top: none;
         float: left;
         margin-right: 20px;
         margin-top: 0;
