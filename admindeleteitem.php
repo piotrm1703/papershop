@@ -17,7 +17,7 @@ require_once ('web/templates/adminDeleteItemForm.php');
 if(isset($_POST['delete'])) {
     try {
         require_once('connectDB.php');
-        $sql = "DELETE FROM products WHERE ID = :id ";
+        $sql = "DELETE FROM products WHERE id = :id ";
         $stmt = $pdo->prepare($sql);
         $selectedItem = $_POST['item'];
         $stmt->bindValue(':id', $selectedItem);

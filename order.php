@@ -2,9 +2,8 @@
 
 if (isset($_SESSION['cart'])) {
     $cart = $_SESSION['cart'];
-    //   var_dump($cart);
     if ($cart !== []) {
-        $stmt1 = $pdo->query('SELECT * FROM products WHERE ID IN ('.implode(',', $cart).')');
+        $stmt1 = $pdo->query('SELECT * FROM products WHERE id IN ('.implode(',', $cart).')');
         if ($stmt1 === false) {
             throw new Exception("Database error");
         }
@@ -13,7 +12,7 @@ if (isset($_SESSION['cart'])) {
         $duplicate = array_count_values($cart);
 
         foreach ($cartProducts as $cartProduct) {
-            $id = $cartProduct->ID;
+            $id = $cartProduct->id;
             $count = $duplicate[$id];
             $price = htmlEscape($cartProduct->price);
             $arraySum[] = $count * $price;
@@ -56,7 +55,6 @@ if(isset($_POST['submit'])) {
     $date = date("Y-m-d H:i:s");
 
     require_once('connectDB.php');
-    // Query
     $stmt = $pdo->prepare("INSERT INTO orders VALUES(NULL,:name,:surname,:email,:city,:zipcode,:address,:sum,:products,:date,:status)");
     var_dump($stmt);
     $stmt->bindParam(':name', $_POST['name']);

@@ -26,19 +26,19 @@
 
         <tr><td>
                 <form action="/?page=messages" method="post" >
-                    <button class="fabutton" name="delMsg" type="submit" title="Usuń wiadomość" value="<?php echo $v['ID'] ?>" onClick="return confirm('Czy na pewno chcesz usunąć tę wiadomość?')"><i class="fa fa-close"></i></button>
+                    <button class="fabutton" name="delMsg" type="submit" title="Usuń wiadomość" value="<?php echo $v['id'] ?>" onClick="return confirm('Czy na pewno chcesz usunąć tę wiadomość?')"><i class="fa fa-close"></i></button>
                 </form>
-                <form action="/?page=adminReply<?php echo $v['ID'] ?>" method="post" >
-                    <button class="fabutton" name="reply" type="submit" title="Odpowiedz na wiadomość" value="<?php echo $v['ID'] ?>"><i class="fa fa-envelope-open"></i></button>
-                </form>
-                <form action="/?page=messages" method="post" >
-                    <button class="fabutton" name="replied" type="submit" title="Zmień status na odpowiedziano" value="<?php echo $v['ID'] ?>"><i class="fa fa-check-square"></i></button>
+                <form action="/?page=adminReply<?php echo $v['id'] ?>" method="post" >
+                    <button class="fabutton" name="reply" type="submit" title="Odpowiedz na wiadomość" value="<?php echo $v['id'] ?>"><i class="fa fa-envelope-open"></i></button>
                 </form>
                 <form action="/?page=messages" method="post" >
-                    <button class="fabutton" name="expectant" type="submit" title="Zmień status na oczekujący" value="<?php echo $v['ID'] ?>"><i class="fa fa-minus-square"></i></button>
+                    <button class="fabutton" name="replied" type="submit" title="Zmień status na odpowiedziano" value="<?php echo $v['id'] ?>"><i class="fa fa-check-square"></i></button>
+                </form>
+                <form action="/?page=messages" method="post" >
+                    <button class="fabutton" name="expectant" type="submit" title="Zmień status na oczekujący" value="<?php echo $v['id'] ?>"><i class="fa fa-minus-square"></i></button>
                 </form>
                 </td><td>
-                <?php echo $v['ID'] ?> </td><td>
+                <?php echo $v['id'] ?> </td><td>
                 <?php echo $v['firstname'] ?></td><td>
                 <?php echo $v['surname'] ?></td><td>
                 <?php echo $v['email'] ?></td><td>

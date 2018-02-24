@@ -7,7 +7,7 @@
         <?php foreach (($stmt->fetchAll()) as $k=>$v) {
 
         $productID = substr( $_GET['page'], 11);
-        if ($v['ID'] === $productID) { ?>
+        if ($v['id'] === $productID) { ?>
 
         <label for="cat">Kategoria</label>
         <select class="newItemFieldsAdmin" title="cat" name="category" id="category" required>

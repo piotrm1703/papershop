@@ -55,7 +55,7 @@ require_once ('../functions.php');
         $arrayQuantity2 = $stmt1->rowCount() - 1;
         for ($y = 0; $y <= $arrayQuantity2; $y++){
             while ($row2 = $stmt1->fetch(PDO::FETCH_OBJ)){
-                if($page === 'adminReply'.$row2->ID){
+                if($page === 'adminReply'.$row2->id){
                     require ('../adminReply.php');
                 }
             }
@@ -69,7 +69,7 @@ require_once ('../functions.php');
         $arrayQuantity3 = $stmt2->rowCount() - 1;
         for ($y = 0; $y <= $arrayQuantity3; $y++){
             while ($row3 = $stmt2->fetch(PDO::FETCH_OBJ)){
-                if($page === 'editProduct'.$row3->ID){
+                if($page === 'editProduct'.$row3->id){
                     require ('../adminEditProduct.php');
                 }
             }
@@ -98,7 +98,7 @@ require_once ('../functions.php');
         elseif ($page === 'orders-search'){
             require ('../adminOrdersSearched.php');
         }
-        elseif ($page ==='sortorders-id' || $page ==='sortorders-name'
+        elseif ($page ==='sortorders-id' || $page ==='sortorders-firstname'
             || $page ==='sortorders-surname' || $page ==='sortorders-email'
             || $page ==='sortorders-city' || $page ==='sortorders-sum'
             || $page ==='sortorders-date' || $page ==='sortorders-status'){

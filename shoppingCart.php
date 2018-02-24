@@ -13,6 +13,15 @@ if (isset($_POST['addToCart'])) {
     $_SESSION['cart'] = $sessionArray;
     header('Location: /?page=shoppingCart');
 }
+if (isset($_POST['addOne'])) {
+    if (isset($_SESSION['cart'])) {
+        $sessionArray = $_SESSION['cart'];
+    } else {
+        $sessionArray = [];
+    }
+    $sessionArray[] = $_POST['addOne'];
+    $_SESSION['cart'] = $sessionArray;
+}
 
 if (isset($_POST['deleteFromCart'])) {
     $sessionArray = $_SESSION['cart'];
@@ -30,7 +39,7 @@ if (isset($_POST['deleteAll'])){
 
 if (isset($_SESSION['cart'])) {
     if ($_SESSION['cart'] !== []) {
-        $stmt1 = $pdo->query('SELECT * FROM products WHERE ID IN ('.implode(',', $_SESSION['cart']).')');
+        $stmt1 = $pdo->query('SELECT * FROM products WHERE id IN ('.implode(',', $_SESSION['cart']).')');
         if ($stmt1 === false) {
             throw new Exception("Database error");
         }
@@ -38,7 +47,7 @@ if (isset($_SESSION['cart'])) {
         $duplicate = array_count_values($_SESSION['cart']);
 
         foreach ($cartProducts as $cartProduct) {
-            $count = $duplicate[$cartProduct->ID];
+            $count = $duplicate[$cartProduct->id];
             $productSum = $count * htmlEscape($cartProduct->price);
 
             require ('web/templates/cartProductView.php');

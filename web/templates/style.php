@@ -142,7 +142,7 @@
     .sum {
         border: 1px solid;
         border-radius: 30px;
-        background-color: orange;
+        background-color: lightgrey;
         padding: 5px;
         margin: 10px 15px 10px 215px;
         color: black;
@@ -329,8 +329,19 @@
         opacity: 0.8;
         background-color:darkred;
     }
+    .addOne {
+        background-color: darkslategrey;
+        color: white;
+        border: none;
+        border-radius: 15px;
+        cursor: pointer;
+    }
+    .addOne:hover {
+        opacity: 0.8;
+        background-color:darkred;
+    }
     .summaryButton {
-        background-color: darkcyan;
+        background-color: darkslategrey;
         color: white;
         padding: 5px 20px;
         border: none;

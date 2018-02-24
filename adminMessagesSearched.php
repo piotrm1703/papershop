@@ -25,7 +25,7 @@ require_once('web/templates/adminMessagesForm.php');
 
 if(isset($_POST['delMsg'])) {
     try {
-        $sql = "DELETE FROM messages WHERE ID = :id";
+        $sql = "DELETE FROM messages WHERE id = :id";
         $statement = $pdo->prepare($sql);
         $selectedItem = $_POST['delMsg'];
         $statement->bindValue(':id', $selectedItem);
@@ -38,7 +38,7 @@ if(isset($_POST['delMsg'])) {
 
 if(isset($_POST['replied'])) {
     try {
-        $sql = "UPDATE messages SET status='odpowiedziano' WHERE ID = :id";
+        $sql = "UPDATE messages SET status='odpowiedziano' WHERE id = :id";
         $statement = $pdo->prepare($sql);
         $selectedItem = $_POST['replied'];
         $statement->bindValue(':id', $selectedItem);
@@ -51,7 +51,7 @@ if(isset($_POST['replied'])) {
 
 if(isset($_POST['expectant'])) {
     try {
-        $sql = "UPDATE messages SET status='oczekujący' WHERE ID = :id";
+        $sql = "UPDATE messages SET status='oczekujący' WHERE id = :id";
         $statement = $pdo->prepare($sql);
         $selectedItem = $_POST['expectant'];
         $statement->bindValue(':id', $selectedItem);

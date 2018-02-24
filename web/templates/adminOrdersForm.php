@@ -13,7 +13,7 @@
   <tr>
       <th class="adminTh"></th>
       <th class="adminTh" width="30px"><a href="/?page=sortorders-id">ID</a></th>
-      <th class="adminTh" width="80px"><a href="/?page=sortorders-name">Imię</th>
+      <th class="adminTh" width="80px"><a href="/?page=sortorders-firstname">Imię</th>
       <th class="adminTh" width="80px"><a href="/?page=sortorders-surname">Nazwisko</th>
       <th class="adminTh" width="140px"><a href="/?page=sortorders-email">Email</th>
       <th class="adminTh" width="250px"><a href="/?page=sortorders-city">Dane do wysyłki</th>
@@ -38,7 +38,7 @@ foreach (($stmt->fetchAll()) as $k=>$v){ $un = unserialize($v['products']); ?>
             </form>
             </td><td>
             <?php echo $v['id'] ?></td><td>
-            <?php echo $v['name'] ?></td><td>
+            <?php echo $v['firstname'] ?></td><td>
             <?php echo $v['surname'] ?></td><td>
             <?php echo $v['email'] ?></td><td>
             <?php echo $v['city'] ?>,<?php echo $v['zipcode']?>,<?php echo $v['address'] ?></td><td>

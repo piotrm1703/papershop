@@ -5,7 +5,7 @@
         <?php foreach (($stmt->fetchAll()) as $k=>$v) {
 
             $msgID = substr( $_GET['page'], 10);
-            if ($v['ID'] === $msgID) { ?>
+            if ($v['id'] === $msgID) { ?>
                 <label>Nadawca:</label> <?php echo $v['firstname']; echo $v['surname']; ?>
                 <br>
                 <label>Email : </label> <?php echo $v['email']; ?>

@@ -15,7 +15,7 @@ require_once('web/templates/adminOrdersForm.php');
 
 if(isset($_POST['delIcon'])) {
     try {
-        $sql = "DELETE FROM orders WHERE ID = :id";
+        $sql = "DELETE FROM orders WHERE id = :id";
         $statement = $pdo->prepare($sql);
         $selectedItem = $_POST['delIcon'];
         $statement->bindValue(':id', $selectedItem);
@@ -28,7 +28,7 @@ if(isset($_POST['delIcon'])) {
 
 if(isset($_POST['realized'])) {
     try {
-        $sql = "UPDATE orders SET status='zrealizowano' WHERE ID = :id";
+        $sql = "UPDATE orders SET status='zrealizowano' WHERE id = :id";
         $statement = $pdo->prepare($sql);
         $selectedItem = $_POST['realized'];
         $statement->bindValue(':id', $selectedItem);
@@ -41,7 +41,7 @@ if(isset($_POST['realized'])) {
 
 if(isset($_POST['expectant'])) {
     try {
-        $sql = "UPDATE orders SET status='oczekujący' WHERE ID = :id";
+        $sql = "UPDATE orders SET status='oczekujący' WHERE id = :id";
         $statement = $pdo->prepare($sql);
         $selectedItem = $_POST['expectant'];
         $statement->bindValue(':id', $selectedItem);
