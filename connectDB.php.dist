@@ -1,0 +1,19 @@
+<?php
+
+$host = 'localhost';
+$dbUser = 'root';
+$dbPass = "mysql";
+$dbName = 'shopDB';
+$charset = 'utf8';
+
+
+// Set DSN
+$dsn = "mysql:host=$host;dbname=$dbName;charset=$charset";
+
+// Create PDO instance
+$pdo = new PDO($dsn, $dbUser, $dbPass);
+
+
+
+
+
