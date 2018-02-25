@@ -3,10 +3,8 @@ if(!isset($_SESSION['authenticatedUser'])) {
     header('Location: /');
     die();
 }
-$sql = "SELECT * FROM messages";
-$messagesStatement = $pdo->prepare($sql);
+$messagesStatement = $pdo->prepare("SELECT * FROM messages");
 $messagesStatement->execute();
-$result = $messagesStatement->setFetchMode(PDO::FETCH_ASSOC);
 if($messagesStatement === false){
     throw new Exception("Database error");
 }
@@ -15,8 +13,7 @@ require_once(__DIR__.'/web/templates/adminMessagesForm.php');
 
 if(isset($_POST['delMsg'])) {
     try {
-        $sql = "DELETE FROM messages WHERE id = ?";
-        $messageStatement = $pdo->prepare($sql);
+        $messageStatement = $pdo->prepare("DELETE FROM messages WHERE id = ?");
         $selectedItem = $_POST['delMsg'];
         $messageStatement->bindParam(1, $selectedItem);
         $delete = $messageStatement->execute();
@@ -27,8 +24,7 @@ if(isset($_POST['delMsg'])) {
 
 if(isset($_POST['replied'])) {
     try {
-        $sql = "UPDATE messages SET status='odpowiedziano' WHERE id = ?";
-        $messageStatement = $pdo->prepare($sql);
+        $messageStatement = $pdo->prepare("UPDATE messages SET status='odpowiedziano' WHERE id = ?");
         $selectedItem = $_POST['replied'];
         $messageStatement->bindparam(1, $selectedItem);
         $delete = $messageStatement->execute();
@@ -41,8 +37,7 @@ if(isset($_POST['replied'])) {
 
 if(isset($_POST['expectant'])) {
     try {
-        $sql = "UPDATE messages SET status='oczekujący' WHERE id = ?";
-        $messageStatement = $pdo->prepare($sql);
+        $messageStatement = $pdo->prepare("UPDATE messages SET status='oczekujący' WHERE id = ?");
         $selectedItem = $_POST['expectant'];
         $messageStatement->bindParam(1, $selectedItem);
         $delete = $messageStatement->execute();

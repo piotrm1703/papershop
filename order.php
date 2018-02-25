@@ -2,8 +2,7 @@
 
 if (isset($_SESSION['cart'])) {
     if ($_SESSION['cart'] !== []) {
-        $sql ='SELECT * FROM products WHERE id IN ('.implode(',', $_SESSION['cart']).')';
-        $productsStatement = $pdo->query($sql);
+        $productsStatement = $pdo->query('SELECT * FROM products WHERE id IN ('.implode(',', $_SESSION['cart']).')');
         if ($productsStatement === false) {
             throw new Exception("Database error");
         }

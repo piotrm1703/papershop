@@ -5,8 +5,7 @@ if(!isset($_SESSION['authenticatedUser'])) {
 }
 
 try {
-    $sql = "SELECT * FROM products ORDER BY content";
-    $productsStatement = $pdo->prepare($sql);
+    $productsStatement = $pdo->prepare("SELECT * FROM products ORDER BY content");
     $productsStatement->execute();
     $data = $productsStatement->fetchAll();
 }catch(PDOException $e){
@@ -18,12 +17,11 @@ require_once (__DIR__.'/web/templates/adminDeleteItemForm.php');
 if(isset($_POST['delete'])) {
     try {
         require_once('connectDB.php');
-        $sql = "DELETE FROM products WHERE id = :id ";
-        $deleteProductStatement = $pdo->prepare($sql);
+        $productStatement = $pdo->prepare("DELETE FROM products WHERE id = :id ");
         $selectedItem = $_POST['item'];
-        $deleteProductStatement->bindValue(':id', $selectedItem);
-        $delete = $deleteProductStatement->execute();
-        if($deleteProductStatement === false){
+        $productStatement->bindValue(':id', $selectedItem);
+        $delete = $productStatement->execute();
+        if($productStatement === false){
             throw new Exception("Database error");
         }
         header('Location: /?page=deleteitem');

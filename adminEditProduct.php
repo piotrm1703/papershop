@@ -6,11 +6,10 @@ if(!isset($_SESSION['authenticatedUser'])) {
 
 $productsStatement = $pdo->prepare('SELECT * FROM products');
 $productsStatement->execute();
-$result = $productsStatement->setFetchMode(PDO::FETCH_ASSOC);
 
-$urlStatement = $pdo->prepare('SELECT DISTINCT url FROM images');
-$urlStatement->execute();
-$data = $urlStatement->fetchAll();
+$imagesStatement = $pdo->prepare('SELECT DISTINCT url FROM images');
+$imagesStatement->execute();
+$data = $imagesStatement->fetchAll();
 
 require_once (__DIR__.'/web/templates/adminEditProductForm.php');
 
@@ -21,8 +20,7 @@ if(isset($_POST['edited'])) {
         $price = htmlEscape($_POST['price']);
         $img = htmlEscape($_POST['img']);
         $id = substr($_GET['page'], 11);
-        $sql = "UPDATE products SET category = ? , content = ?, img = ? , price = ? WHERE id = ?";
-        $productStatement = $pdo->prepare($sql);
+        $productStatement = $pdo->prepare("UPDATE products SET category = ? , content = ?, img = ? , price = ? WHERE id = ?");
         $productStatement->bindParam(1, $category);
         $productStatement->bindParam(2, $content);
         $productStatement->bindParam(3, $img);

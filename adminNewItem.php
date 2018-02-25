@@ -20,8 +20,7 @@ if(isset($_POST['submit'])){
     $img = htmlEscape($_POST['img']);
     if(isset($category) && isset($content) && isset($price) && isset($img)){
         require_once ('connectDB.php');
-        $sql = "INSERT INTO products VALUES(NULL,'$category','$content','$img','$price')";
-        $productStatement = $pdo->query($sql);
+        $productStatement = $pdo->query("INSERT INTO products VALUES(NULL,'$category','$content','$img','$price')");
         echo "<script> alert('Produkt został dodany!')</script>";
     } else {
         echo "Uzupełnij informacje!";

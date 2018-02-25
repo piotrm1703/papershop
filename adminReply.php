@@ -2,7 +2,6 @@
 $sql = "SELECT * FROM messages";
 $messagesStatement = $pdo->prepare($sql);
 $messagesStatement->execute();
-$result = $messagesStatement->setFetchMode(PDO::FETCH_ASSOC);
 
 require_once ('web/templates/adminReplyForm.php');
 
