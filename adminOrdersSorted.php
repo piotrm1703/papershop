@@ -1,26 +1,28 @@
 <?php
 if(!isset($_SESSION['authenticatedUser'])) {
     header('Location: /');
+    die();
 }
 
 $sortType = substr($_GET['page'],11);
 $sql = "SELECT * FROM orders ORDER BY $sortType";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-if($stmt === false){
+$ordersStatement = $pdo->prepare($sql);
+$ordersStatement->execute();
+if($ordersStatement === false){
     throw new Exception("Database error");
 }
 
-require_once('web/templates/adminOrdersForm.php');
+require_once(__DIR__.'/web/templates/adminOrdersForm.php');
 
 if(isset($_POST['delIcon'])) {
     try {
-        $sql = "DELETE FROM orders WHERE id = :id";
-        $statement = $pdo->prepare($sql);
+        $sql = "DELETE FROM orders WHERE id = ?";
+        $ordersStatement = $pdo->prepare($sql);
         $selectedItem = $_POST['delIcon'];
-        $statement->bindValue(':id', $selectedItem);
-        $delete = $statement->execute();
+        $ordersStatement->bindParam(1, $selectedItem);
+        $delete = $ordersStatement->execute();
         header('Location: /?page=orders');
+        die();
     } catch (PDOException $e){
         echo $e->getMessage();
     }
@@ -28,12 +30,13 @@ if(isset($_POST['delIcon'])) {
 
 if(isset($_POST['realized'])) {
     try {
-        $sql = "UPDATE orders SET status='zrealizowano' WHERE id = :id";
-        $statement = $pdo->prepare($sql);
+        $sql = "UPDATE orders SET status='zrealizowano' WHERE id = ?";
+        $ordersStatement = $pdo->prepare($sql);
         $selectedItem = $_POST['realized'];
-        $statement->bindValue(':id', $selectedItem);
-        $realized = $statement->execute();
+        $ordersStatement->bindParam(1, $selectedItem);
+        $realized = $ordersStatement->execute();
         header('Location: /?page=orders');
+        die();
     } catch (PDOException $e){
         echo $e->getMessage();
     }
@@ -41,12 +44,13 @@ if(isset($_POST['realized'])) {
 
 if(isset($_POST['expectant'])) {
     try {
-        $sql = "UPDATE orders SET status='oczekujący' WHERE id = :id";
-        $statement = $pdo->prepare($sql);
+        $sql = "UPDATE orders SET status='oczekujący' WHERE id = ?";
+        $ordersStatement = $pdo->prepare($sql);
         $selectedItem = $_POST['expectant'];
-        $statement->bindValue(':id', $selectedItem);
-        $expectant = $statement->execute();
+        $ordersStatement->bindParam(1, $selectedItem);
+        $expectant = $ordersStatement->execute();
         header('Location: /?page=orders');
+        die();
     } catch (PDOException $e){
         echo $e->getMessage();
     }

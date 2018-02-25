@@ -7,5 +7,5 @@
     <li class="li-sidemenu"><a href="/?page=papieryetykietowe"><b>Papiery etykietowe</b></a></li>
     <li class="li-sidemenu"><a href="/?page=papierysamokopiujace"><b>Papiery samokopiujące</b></a></li>
     <li class="li-sidemenu"><a href="/?page=papieroffsetowy"><b>Papier offsetowy</b></a></li>
-    <li class="li-shoppingCart"><a href="/?page=shoppingCart"><b>Koszyk</b><i class="fa fa-shopping-cart" style="font-size:20px"></i></a></li>
+    <li class="li-shoppingCart"><a href="/?page=shoppingCart"><b>Koszyk</b><span class="fa fa-shopping-cart"></span></a></li>
 </ul>

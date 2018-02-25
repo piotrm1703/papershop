@@ -24,7 +24,9 @@
   </tr>
 
 <?php
-foreach (($stmt->fetchAll()) as $k=>$v){ $un = unserialize($v['products']); ?>
+foreach (($ordersStatement->fetchAll()) as $k=>$v){ $un = unserialize($v['products']);
+    var_dump($ordersStatement);
+    ?>
 
     <tr><td>
             <form action="/?page=orders" method="post" >
@@ -52,5 +54,3 @@ foreach (($stmt->fetchAll()) as $k=>$v){ $un = unserialize($v['products']); ?>
 <?php } ?>
 </table>
 </div>
-
-

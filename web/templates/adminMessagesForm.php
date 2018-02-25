@@ -12,7 +12,7 @@
     <table style="width:100%">
         <tr>
             <th></th>
-            <th><a href="/?page=sort-ID">ID</a></th>
+            <th><a href="/?page=sort-id">ID</a></th>
             <th width="80px"><a href="/?page=sort-firstname" >Imię</a></th>
             <th width="80px"><a href="/?page=sort-surname">Nazwisko</a></th>
             <th width="140px"><a href="/?page=sort-email">Email</a></th>
@@ -22,7 +22,7 @@
             <th><a href="/?page=sort-status">Status</a></th>
         </tr>
 
-    <?php foreach (($stmt->fetchAll()) as $k=>$v) {?>
+    <?php foreach (($messagesStatement->fetchAll()) as $k=>$v) { var_dump($messagesStatement);?>
 
         <tr><td>
                 <form action="/?page=messages" method="post" >

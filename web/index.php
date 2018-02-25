@@ -1,16 +1,17 @@
 <?php
-session_start();
+error_reporting(E_ALL);
+
 function myErrorHandler(){
     ob_get_clean();
     echo "Przepraszamy, wystąpił błąd";
 }
-if (file_exists("debug.txt")) {
-
-} else {
+if (!file_exists("debug.txt")) {
     set_error_handler("myErrorHandler");
     set_exception_handler("myErrorHandler");
 }
-ob_start(); ?>
+ob_start();
+session_start();
+?>
 
 <!DOCTYPE html>
 <html>
@@ -21,7 +22,7 @@ ob_start(); ?>
 <body>
 <?php
 
-error_reporting(E_ALL);
+
 require_once ('../functions.php');
 
 ?>
@@ -30,102 +31,85 @@ require_once ('../functions.php');
     <?php
     siteInterface();
     if(isset($_GET['page'])) {
-        require_once ('../connectDB.php');
+        require_once (__DIR__.'/../connectDB.php');
         $page = $_GET['page'];
-        $stmt = $pdo->query('SELECT * FROM products');
-        if($stmt === false){
+        $sql ='SELECT * FROM products';
+        $productsStatement = $pdo->query($sql);
+        if($productsStatement === false){
             throw new Exception("Database error");
         }
-        $arrayQuantity = $stmt->rowCount() - 1;
-        for ($x = 0; $x <= $arrayQuantity; $x++) {
-            while ($row = $stmt->fetch(PDO::FETCH_OBJ)) {
-                if ($row->category === $page) {
-                    require ('templates/productViewForm.php');
-                    $dsn = null;
-                }
+        while ($row = $productsStatement->fetch(PDO::FETCH_OBJ)) {
+            if ($row->category === $page) {
+                require (__DIR__.'/templates/productViewForm.php');
+                $dsn = null;
             }
         }
 
-        $stmt1 = $pdo->prepare('SELECT * FROM messages');
-        $stmt1->execute();
-        $result = $stmt1->setFetchMode(PDO::FETCH_ASSOC);
-        if($stmt1 === false){
+        $sql1 = 'SELECT * FROM messages';
+        $messagesStatement = $pdo->prepare($sql1);
+        $messagesStatement->execute();
+        $result = $messagesStatement->setFetchMode(PDO::FETCH_ASSOC);
+        if($messagesStatement === false){
             throw new Exception("Database error");
         }
-        $arrayQuantity2 = $stmt1->rowCount() - 1;
-        for ($y = 0; $y <= $arrayQuantity2; $y++){
-            while ($row2 = $stmt1->fetch(PDO::FETCH_OBJ)){
-                if($page === 'adminReply'.$row2->id){
-                    require ('../adminReply.php');
-                }
+        while ($row2 = $messagesStatement->fetch(PDO::FETCH_OBJ)){
+            if($page === 'adminReply'.$row2->id){
+                require (__DIR__.'/../adminReply.php');
             }
         }
-        $stmt2 = $pdo->prepare('SELECT * FROM products');
-        $stmt2->execute();
-        $result = $stmt2->setFetchMode(PDO::FETCH_ASSOC);
-        if($stmt2 === false){
+
+        $sql2 ='SELECT * FROM products';
+        $productsStatement = $pdo->prepare($sql2);
+        $productsStatement->execute();
+        $result = $productsStatement->setFetchMode(PDO::FETCH_ASSOC);
+        if($productsStatement === false){
             throw new Exception("Database error");
         }
-        $arrayQuantity3 = $stmt2->rowCount() - 1;
-        for ($y = 0; $y <= $arrayQuantity3; $y++){
-            while ($row3 = $stmt2->fetch(PDO::FETCH_OBJ)){
+        $arrayQuantity2 = $productsStatement->rowCount();
+        for ($y = 0; $y <= ($arrayQuantity2 - 1); $y++){
+            while ($row3 = $productsStatement->fetch(PDO::FETCH_OBJ)){
                 if($page === 'editProduct'.$row3->id){
-                    require ('../adminEditProduct.php');
+                    require (__DIR__.'/../adminEditProduct.php');
                 }
             }
         }
-        if ($page === 'offer'){
-            require('templates/offer.php');
-        }
-        elseif ($page === 'promotions'){
-            require('../promotions.php');
-        }
-        elseif ($page === 'contact'){
-            require('../contact.php');
-        }
-        elseif ($page === 'file'){
-            require('../adminAddImg.php');
-        }
-        elseif  ($page === 'newitem'){
-            require('../adminNewItem.php');
-        }
-        elseif ($page === 'deleteitem'){
-            require('../admindeleteitem.php');
-        }
-        elseif ($page === 'orders'){
-            require('../adminOrders.php');
-        }
-        elseif ($page === 'orders-search'){
-            require ('../adminOrdersSearched.php');
-        }
-        elseif ($page ==='sortorders-id' || $page ==='sortorders-firstname'
-            || $page ==='sortorders-surname' || $page ==='sortorders-email'
-            || $page ==='sortorders-city' || $page ==='sortorders-sum'
-            || $page ==='sortorders-date' || $page ==='sortorders-status'){
-            require('../adminOrdersSorted.php');
-        }
-        elseif ($page === 'messages'){
-            require('../adminMessages.php');
-        }
-        elseif ($page === 'messages-search'){
-            require ('../adminMessagesSearched.php');
-        }
-        elseif ($page ==='sort-ID' || $page ==='sort-firstname'
-            || $page ==='sort-surname' || $page ==='sort-email'
-            || $page ==='sort-subject' || $page ==='sort-content'
-            || $page ==='sort-date' || $page ==='sort-status'){
-            require('../adminMessagesSorted.php');
-        }
-        elseif ($page === 'shoppingCart'){
-            require ('../shoppingCart.php');
-        }
-        elseif ($page === 'order'){
-            require ('../order.php');
-        }
-        elseif ($page ==='orderThanks'){
-            require('../orderThanks.php');
-        }
 
+        $pages = [
+          'offer' => '/templates/offer.php',
+          'promotions' => '/../promotions.php',
+          'contact' => '/../contact.php',
+          'file' => '/../adminAddImg.php',
+          'newitem' => '/../adminNewItem.php',
+          'deleteitem' => '/../admindeleteitem.php',
+          'orders' => '/../adminOrders.php',
+          'orders-search' => '/../adminOrdersSearched.php',
+          'sortorders-id' => '/../adminOrdersSorted.php',
+          'sortorders-firstname' => '/../adminOrdersSorted.php',
+          'sortorders-surname' => '/../adminOrdersSorted.php',
+          'sortorders-email' => '/../adminOrdersSorted.php',
+          'sortorders-city' => '/../adminOrdersSorted.php',
+          'sortorders-sum' => '/../adminOrdersSorted.php',
+          'sortorders-date' => '/../adminOrdersSorted.php',
+          'sortorders-status' => '/../adminOrdersSorted.php',
+          'messages' => '/../adminMessages.php',
+          'messages-search' => '/../adminMessagesSearched.php',
+          'sort-id' => '/../adminMessagesSorted.php',
+          'sort-firstname' => '/../adminMessagesSorted.php',
+          'sort-surname' => '/../adminMessagesSorted.php',
+          'sort-email' => '/../adminMessagesSorted.php',
+          'sort-subject' => '/../adminMessagesSorted.php',
+          'sort-content' => '/../adminMessagesSorted.php',
+          'sort-date' => '/../adminMessagesSorted.php',
+          'sort-status' => '/../adminMessagesSorted.php',
+          'shoppingCart' => '/../shoppingCart.php',
+          'order' => '/../order.php',
+          'orderThanks' => '/../orderThanks.php',
+
+        ];
+
+        if (isset($pages[$page])){
+            require __DIR__.$pages[$page];
+        }
 } else {
         require_once ('templates/mainPage.php');
     }

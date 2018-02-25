@@ -10,16 +10,16 @@ function htmlEscape($text)
 }
 
 function siteInterface(){
-    require_once('templates/header.php');
-    require_once ('templates/style.php');
+    require_once(__DIR__.'/web/templates/header.php');
+    require_once (__DIR__.'/web/templates/style.php');
     if(!isset($_SESSION['authenticatedUser'])){
-        require_once ('../login.php');
+        require_once (__DIR__.'/login.php');
     }else {
-        require_once ('../logout.php');
+        require_once (__DIR__.'/logout.php');
     }
-    require_once ('templates/navtop.php');
+    require_once (__DIR__.'/web/templates/navtop.php');
     if(isset($_SESSION['authenticatedUser'])){
-        require_once ('templates/adminNavForm.php');
+        require_once (__DIR__.'/web/templates/adminNavForm.php');
     }
-    require_once('templates/sidemenu.php');
+    require_once(__DIR__.'/web/templates/sidemenu.php');
 }

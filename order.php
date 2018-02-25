@@ -1,29 +1,26 @@
 <?php
 
 if (isset($_SESSION['cart'])) {
-    $cart = $_SESSION['cart'];
-    if ($cart !== []) {
-        $stmt1 = $pdo->query('SELECT * FROM products WHERE id IN ('.implode(',', $cart).')');
-        if ($stmt1 === false) {
+    if ($_SESSION['cart'] !== []) {
+        $sql ='SELECT * FROM products WHERE id IN ('.implode(',', $_SESSION['cart']).')';
+        $productsStatement = $pdo->query($sql);
+        if ($productsStatement === false) {
             throw new Exception("Database error");
         }
 
-        $cartProducts = $stmt1->fetchAll(PDO::FETCH_OBJ);
-        $duplicate = array_count_values($cart);
+        $cartProducts = $productsStatement->fetchAll(PDO::FETCH_OBJ);
+        $duplicate = array_count_values($_SESSION['cart']);
 
         foreach ($cartProducts as $cartProduct) {
-            $id = $cartProduct->id;
-            $count = $duplicate[$id];
-            $price = htmlEscape($cartProduct->price);
-            $arraySum[] = $count * $price;
+            $arraySum[] = $duplicate[$cartProduct->id] * htmlEscape($cartProduct->price);
             $arrayProduct[] = [
-                'id'=>$id,
-                'quantity'=>$count,
-                'price'=>$price,
+                'id'=> $cartProduct->id,
+                'quantity'=> $duplicate[$cartProduct->id],
+                'price'=> htmlEscape($cartProduct->price),
             ];
 
             echo '<div class="products">'.'<b>'.htmlEscape($cartProduct->content).'</b>'.' '.
-                '-'.' '.'Ilość: '.$count.', '.'suma: '.($count * $price).' '.'zł'.
+                '-'.' '.'Ilość: '. $duplicate[$cartProduct->id] .', '.'suma: '.($duplicate[$cartProduct->id] * htmlEscape($cartProduct->price)).' '.'zł'.
                 '</div>';
         }
         $sum = array_sum($arraySum);
@@ -37,7 +34,7 @@ if (isset($_SESSION['cart'])) {
 
 }
 
-require_once ('web/templates/orderForm.php');
+require_once (__DIR__.'/web/templates/orderForm.php');
 
 if(isset($_POST['submit'])) {
     if (!(isset($_POST['name']) &&
@@ -55,25 +52,23 @@ if(isset($_POST['submit'])) {
     $date = date("Y-m-d H:i:s");
 
     require_once('connectDB.php');
-    $stmt = $pdo->prepare("INSERT INTO orders VALUES(NULL,:name,:surname,:email,:city,:zipcode,:address,:sum,:products,:date,:status)");
-    var_dump($stmt);
-    $stmt->bindParam(':name', $_POST['name']);
-    $stmt->bindParam(':surname', $_POST['surname']);
-    $stmt->bindParam(':email', $_POST['email']);
-    $stmt->bindParam(':city', $_POST['city']);
-    $stmt->bindParam(':zipcode', $_POST['zipcode']);
-    $stmt->bindParam(':address', $_POST['address']);
-    $stmt->bindParam(':sum', $sum);
-    $stmt->bindParam(':products', $serialized);
-    $stmt->bindParam(':date', $date);
-    $stmt->bindParam(':status', $status);
-    $stmt->execute();
-    if($stmt === false){
+    $ordersStatement = $pdo->prepare("INSERT INTO orders VALUES(NULL,:name,:surname,:email,:city,:zipcode,:address,:sum,:products,:date,:status)");
+    $ordersStatement->bindParam(':name', $_POST['name']);
+    $ordersStatement->bindParam(':surname', $_POST['surname']);
+    $ordersStatement->bindParam(':email', $_POST['email']);
+    $ordersStatement->bindParam(':city', $_POST['city']);
+    $ordersStatement->bindParam(':zipcode', $_POST['zipcode']);
+    $ordersStatement->bindParam(':address', $_POST['address']);
+    $ordersStatement->bindParam(':sum', $sum);
+    $ordersStatement->bindParam(':products', $serialized);
+    $ordersStatement->bindParam(':date', $date);
+    $ordersStatement->bindParam(':status', $status);
+    $ordersStatement->execute();
+    if($ordersStatement === false){
         throw new Exception("Database error");
     }
     $_SESSION['cart'] = [];
 
        header('Location: /?page=orderThanks');
-    echo "<script> alert('Zamówienie przyjęte do realizacji. Dziękujemy za zaufanie!!')</script>";
-
+       die();
 }

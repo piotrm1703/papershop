@@ -1,16 +1,17 @@
 <?php
 if(!isset($_SESSION['authenticatedUser'])) {
     header('Location: /');
+    die();
 }
 
-$stmt = $pdo->prepare('SELECT DISTINCT url FROM images');
-$stmt->execute();
-$data = $stmt->fetchAll();
-if($stmt === false){
+$distinctUrlStatement = $pdo->prepare('SELECT DISTINCT url FROM images');
+$distinctUrlStatement->execute();
+$data = $distinctUrlStatement->fetchAll();
+if($distinctUrlStatement === false){
     throw new Exception("Database error");
 }
 
-require_once ('web/templates/adminNewItemForm.php');
+require_once (__DIR__.'/web/templates/adminNewItemForm.php');
 
 if(isset($_POST['submit'])){
     $category = htmlEscape($_POST['category']);
@@ -19,8 +20,8 @@ if(isset($_POST['submit'])){
     $img = htmlEscape($_POST['img']);
     if(isset($category) && isset($content) && isset($price) && isset($img)){
         require_once ('connectDB.php');
-        // Query
-        $stmt = $pdo->query("INSERT INTO products VALUES(NULL,'$category','$content','$img','$price')");
+        $sql = "INSERT INTO products VALUES(NULL,'$category','$content','$img','$price')";
+        $addStatement = $pdo->query($sql);
         echo "<script> alert('Produkt został dodany!')</script>";
     } else {
         echo "Uzupełnij informacje!";

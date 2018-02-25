@@ -3,7 +3,7 @@ if(!isset($_SESSION['authenticatedUser'])) {
     header('Location: /');
 }
 
-require_once ('web/templates/adminAddImgForm.php');
+require_once (__DIR__.'/web/templates/adminAddImgForm.php');
 
 if(isset($_POST['submit'])){
     $imagesDir = __DIR__.'/web/images/';
@@ -25,16 +25,16 @@ if(isset($_POST['submit'])){
 
             $src = htmlEscape("/images/".$_FILES['imgSelect']['name']);
             $sql = "INSERT INTO images VALUES(NULL,'$src')";
-            $stmt = $pdo->query($sql);
-            if($stmt === false){
+            $imagesStatement = $pdo->query($sql);
+            if($messagesStatement === false){
                 throw new Exception("Database error");
             }
             header('Location: /?page=file');
+            die();
         } else {
             echo ($fileName.' nie został dodany!');
         }
     } else {
         echo ('Błąd! Wybrany plik posiada nieprawidłowe rozszerzenie!');
     }
-
 }

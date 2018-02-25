@@ -4,7 +4,7 @@
     <br>
     <form method="post" >
 
-        <?php foreach (($stmt->fetchAll()) as $k=>$v) {
+        <?php foreach (($productsStatement->fetchAll()) as $k=>$v) {
 
         $productID = substr( $_GET['page'], 11);
         if ($v['id'] === $productID) { ?>

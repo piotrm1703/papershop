@@ -1,25 +1,25 @@
 <?php
 if(!isset($_SESSION['authenticatedUser'])) {
     header('Location: /');
+    die();
 }
 $sql = "SELECT * FROM messages";
-$stmt = $pdo->prepare($sql);
-$stmt->execute();
-$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
-if($stmt === false){
+$messagesStatement = $pdo->prepare($sql);
+$messagesStatement->execute();
+$result = $messagesStatement->setFetchMode(PDO::FETCH_ASSOC);
+if($messagesStatement === false){
     throw new Exception("Database error");
 }
 
-require_once('web/templates/adminMessagesForm.php');
+require_once(__DIR__.'/web/templates/adminMessagesForm.php');
 
 if(isset($_POST['delMsg'])) {
     try {
-        $sql = "DELETE FROM messages WHERE id = :id";
-        $statement = $pdo->prepare($sql);
+        $sql = "DELETE FROM messages WHERE id = ?";
+        $messagesStatement = $pdo->prepare($sql);
         $selectedItem = $_POST['delMsg'];
-        $statement->bindValue(':id', $selectedItem);
-        $delete = $statement->execute();
-        header('Location: /?page=messages');
+        $messagesStatement->bindParam(1, $selectedItem);
+        $delete = $messagesStatement->execute();
     } catch (PDOException $e){
         echo $e->getMessage();
     }
@@ -27,12 +27,13 @@ if(isset($_POST['delMsg'])) {
 
 if(isset($_POST['replied'])) {
     try {
-        $sql = "UPDATE messages SET status='odpowiedziano' WHERE id = :id";
-        $statement = $pdo->prepare($sql);
+        $sql = "UPDATE messages SET status='odpowiedziano' WHERE id = ?";
+        $messagesStatement = $pdo->prepare($sql);
         $selectedItem = $_POST['replied'];
-        $statement->bindValue(':id', $selectedItem);
-        $delete = $statement->execute();
+        $messagesStatement->bindparam(1, $selectedItem);
+        $delete = $messagesStatement->execute();
         header('Location: /?page=messages');
+        die();
     } catch (PDOException $e){
         echo $e->getMessage();
     }
@@ -40,14 +41,14 @@ if(isset($_POST['replied'])) {
 
 if(isset($_POST['expectant'])) {
     try {
-        $sql = "UPDATE messages SET status='oczekujący' WHERE ID = :id";
-        $statement = $pdo->prepare($sql);
+        $sql = "UPDATE messages SET status='oczekujący' WHERE id = ?";
+        $messagesStatement = $pdo->prepare($sql);
         $selectedItem = $_POST['expectant'];
-        $statement->bindValue(':id', $selectedItem);
-        $delete = $statement->execute();
+        $messagesStatement->bindParam(1, $selectedItem);
+        $delete = $messagesStatement->execute();
         header('Location: /?page=messages');
+        die();
     } catch (PDOException $e){
         echo $e->getMessage();
     }
 }
-

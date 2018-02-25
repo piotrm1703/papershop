@@ -2,7 +2,7 @@
     <p><b>Odpowiedź do wiadomości:</b></p>
     <form action="" method="post">
 
-        <?php foreach (($stmt->fetchAll()) as $k=>$v) {
+        <?php foreach (($messagesStatement->fetchAll()) as $k=> $v) {
 
             $msgID = substr( $_GET['page'], 10);
             if ($v['id'] === $msgID) { ?>

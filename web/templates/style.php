@@ -514,4 +514,9 @@
         margin: 15px 10px 10px 215px;
     }
     /*end of reply msg form style*/
+
+    /*cartButton*/
+    .fa-shopping-cart {
+        font-size: 20px;
+    }
 </style>

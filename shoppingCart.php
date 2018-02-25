@@ -12,7 +12,9 @@ if (isset($_POST['addToCart'])) {
     $sessionArray[] = $_POST['addToCart'];
     $_SESSION['cart'] = $sessionArray;
     header('Location: /?page=shoppingCart');
+    die();
 }
+
 if (isset($_POST['addOne'])) {
     if (isset($_SESSION['cart'])) {
         $sessionArray = $_SESSION['cart'];
@@ -30,27 +32,29 @@ if (isset($_POST['deleteFromCart'])) {
     }
     $_SESSION['cart'] = $sessionArray;
     header('Location: /?page=shoppingCart');
+    die();
 }
 
 if (isset($_POST['deleteAll'])){
     $_SESSION['cart'] = [];
     header('Location: /?page=shoppingCart');
+    die();
 }
 
 if (isset($_SESSION['cart'])) {
     if ($_SESSION['cart'] !== []) {
-        $stmt1 = $pdo->query('SELECT * FROM products WHERE id IN ('.implode(',', $_SESSION['cart']).')');
-        if ($stmt1 === false) {
+        $productsStatement = $pdo->query('SELECT * FROM products WHERE id IN ('.implode(',', $_SESSION['cart']).')');
+        if ($productsStatement === false) {
             throw new Exception("Database error");
         }
-        $cartProducts = $stmt1->fetchAll(PDO::FETCH_OBJ);
+        $cartProducts = $productsStatement->fetchAll(PDO::FETCH_OBJ);
         $duplicate = array_count_values($_SESSION['cart']);
 
         foreach ($cartProducts as $cartProduct) {
             $count = $duplicate[$cartProduct->id];
             $productSum = $count * htmlEscape($cartProduct->price);
 
-            require ('web/templates/cartProductView.php');
+            require (__DIR__.'/web/templates/cartProductView.php');
         }
     } else {
         echo 'Koszyk jest pusty!';
@@ -59,7 +63,7 @@ if (isset($_SESSION['cart'])) {
     echo 'Koszyk jest pusty!';
 }
 if($_SESSION['cart'] !== []) {
-    require_once ('web/templates/cartButtons.php');
+    require_once (__DIR__.'/web/templates/cartButtons.php');
 }
 
 
