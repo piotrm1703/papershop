@@ -43,6 +43,9 @@ if (isset($_POST['deleteAll'])){
 
 if (isset($_SESSION['cart'])) {
     if ($_SESSION['cart'] !== []) {
+        $cartArray = $_SESSION['cart'];
+        $convert = array_map('intval', $cartArray);
+
         $productsStatement = $pdo->query('SELECT * FROM products WHERE id IN ('.implode(',', $_SESSION['cart']).')');
         if ($productsStatement === false) {
             throw new DatabaseException();
@@ -59,6 +62,7 @@ if (isset($_SESSION['cart'])) {
     } else {
         echo 'Koszyk jest pusty!';
     }
+
 } else {
     echo 'Koszyk jest pusty!';
 }

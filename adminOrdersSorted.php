@@ -5,9 +5,25 @@ if(!isset($_SESSION['authenticatedUser'])) {
 }
 
 $sortType = substr($_GET['page'],11);
+$sortTypes = [
+    'id',
+    'firstname',
+    'surname',
+    'email',
+    'city',
+    'sum',
+    'date',
+    'status',
+];
+
+if(!in_array($sortType,$sortTypes)){
+    throw new Exception('Nieprawidłowa wartość sortowania');
+}
+
 $ordersStatement = $pdo->prepare("SELECT * FROM orders ORDER BY $sortType");
 $ordersStatement->execute();
 $ordersArray = $ordersStatement->fetchAll();
+
 if($ordersStatement === false){
     throw new DatabaseException();
 }

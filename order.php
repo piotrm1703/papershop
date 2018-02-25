@@ -2,6 +2,8 @@
 
 if (isset($_SESSION['cart'])) {
     if ($_SESSION['cart'] !== []) {
+        $orderArray = $_SESSION['cart'];
+        $convert = array_map('intval', $orderArray);
         $productsStatement = $pdo->query('SELECT * FROM products WHERE id IN ('.implode(',', $_SESSION['cart']).')');
         if ($productsStatement === false) {
             throw new DatabaseException();

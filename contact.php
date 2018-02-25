@@ -1,20 +1,26 @@
 <?php require_once (__DIR__.'/web/templates/contactform.php');
 
 if(isset($_POST['submit'])){
-    $firstname = htmlEscape($_POST['name']);
-    $surname = htmlEscape($_POST['surname']);
-    $email = htmlEscape($_POST['email']);
-    $subject = htmlEscape($_POST['subject']);
-    $content = htmlEscape($_POST['content']);
+    $firstname = ($_POST['name']);
+    $surname = ($_POST['surname']);
+    $email = ($_POST['email']);
+    $subject = ($_POST['subject']);
+    $content = ($_POST['content']);
     $date = date("Y-m-d H:i:s");
     $status ='oczekujący';
-    if(isset($firstname) && isset($surname) && isset($email) && isset($subject) && isset($content)){
 
-        $sql = "INSERT INTO messages VALUES(NULL,'$firstname','$surname','$email','$subject','$content','$date','$status')";
-        $insertMessagesStatement = $pdo->query($sql);
-        if($insertMessagesStatement === false){
-            throw new DatabaseException();
-        }
-        echo "<script> alert('Wiadomość została wysłana. Dziękujemy za kontakt!')</script>";
+    $insertMessagesStatement = $pdo->prepare("INSERT INTO messages VALUES(NULL,?,?,?,?,?,?,?)");
+    $insertMessagesStatement->bindParam(1,$firstname);
+    $insertMessagesStatement->bindParam(1,$surname);
+    $insertMessagesStatement->bindParam(1,$email);
+    $insertMessagesStatement->bindParam(1,$subject);
+    $insertMessagesStatement->bindParam(1,$content);
+    $insertMessagesStatement->bindParam(1,$date);
+    $insertMessagesStatement->bindParam(1,$status);
+
+    if($insertMessagesStatement === false){
+        throw new DatabaseException();
     }
+    echo "<script> alert('Wiadomość została wysłana. Dziękujemy za kontakt!')</script>";
+
 }

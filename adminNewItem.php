@@ -14,15 +14,16 @@ if($imagesStatement === false){
 require_once (__DIR__.'/web/templates/adminNewItemForm.php');
 
 if(isset($_POST['submit'])){
-    $category = htmlEscape($_POST['category']);
-    $content = htmlEscape($_POST['content']);
-    $price = htmlEscape($_POST['price']);
-    $img = htmlEscape($_POST['img']);
-    if(isset($category) && isset($content) && isset($price) && isset($img)){
-        require_once ('connectDB.php');
-        $productStatement = $pdo->query("INSERT INTO products VALUES(NULL,'$category','$content','$img','$price')");
-        echo "<script> alert('Produkt został dodany!')</script>";
-    } else {
-        echo "Uzupełnij informacje!";
-    }
+    $category = ($_POST['category']);
+    $content = ($_POST['content']);
+    $price = ($_POST['price']);
+    $img = ($_POST['img']);
+    require_once ('connectDB.php');
+    $productStatement = $pdo->prepare("INSERT INTO products VALUES(NULL,?,?,?,?)");
+    $productStatement->bindParam(1, $category);
+    $productStatement->bindParam(2,$content);
+    $productStatement->bindParam(3,$img);
+    $productStatement->bindParam(4,$price);
+
+    echo "<script> alert('Produkt został dodany!')</script>";
 }

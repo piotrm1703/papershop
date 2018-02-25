@@ -55,6 +55,8 @@ require_once (__DIR__.'/../classes.php');
             require __DIR__.$pages[$page];
         } else {
 
+            $isProductCategoryPage = false;
+
             $productsStatement = $pdo->query('SELECT * FROM products');
             if ($productsStatement === false) {
                 throw new DatabaseException();
@@ -62,31 +64,43 @@ require_once (__DIR__.'/../classes.php');
             while ($row = $productsStatement->fetch(PDO::FETCH_OBJ)) {
                 if ($row->category === $page) {
                     require(__DIR__ . '/templates/productViewForm.php');
-                    $dsn = null;
+                    $isProductCategoryPage = true;
                 }
             }
 
-            $messagesStatement = $pdo->prepare('SELECT * FROM messages');
-            $messagesStatement->execute();
-            if ($messagesStatement === false) {
-                throw new DatabaseException();
-            }
-            while ($row2 = $messagesStatement->fetch(PDO::FETCH_OBJ)) {
-                if ($page === 'adminReply' . $row2->id) {
-                    require(__DIR__ . '/../adminReply.php');
-                }
-            }
+            if (!$isProductCategoryPage) {
+                $isProductMessagesPage = false;
 
-            $sql2 = 'SELECT * FROM products';
-            $productsStatement = $pdo->prepare($sql2);
-            $productsStatement->execute();
-            if ($productsStatement === false) {
-                throw new DatabaseException();
-            }
-            $arrayQuantity2 = $productsStatement->rowCount();
-            while ($row3 = $productsStatement->fetch(PDO::FETCH_OBJ)) {
-                if ($page === 'editProduct' . $row3->id) {
-                    require(__DIR__ . '/../adminEditProduct.php');
+                $messagesStatement = $pdo->prepare('SELECT * FROM messages');
+                $messagesStatement->execute();
+                if ($messagesStatement === false) {
+                    throw new DatabaseException();
+                }
+                while ($row2 = $messagesStatement->fetch(PDO::FETCH_OBJ)) {
+                    if ($page === 'adminReply' . $row2->id) {
+                        require(__DIR__ . '/../adminReply.php');
+                        $isProductMessagesPage = true;
+                        break;
+                    }
+                }
+                if(!$isProductMessagesPage){
+                    $isEditPage = false;
+                    $productsStatement = $pdo->prepare('SELECT * FROM products');
+                    $productsStatement->execute();
+                    if ($productsStatement === false) {
+                        throw new DatabaseException();
+                    }
+                    $arrayQuantity2 = $productsStatement->rowCount();
+                    while ($row3 = $productsStatement->fetch(PDO::FETCH_OBJ)) {
+                        if ($page === 'editProduct' . $row3->id) {
+                            require(__DIR__ . '/../adminEditProduct.php');
+                            $isEditPage = true;
+                            break;
+                        }
+                    }
+                    if(!$isEditPage){
+                        echo "Nieprawidłowy adres strony!";
+                    }
                 }
             }
         }

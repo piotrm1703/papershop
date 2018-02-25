@@ -24,9 +24,10 @@ if(isset($_POST['submit'])){
         elseif (move_uploaded_file($_FILES['imgSelect']['tmp_name'],$imagesDir.$fileName)){
             echo ($fileName.' zdjęcie dodane!');
 
-            $src = htmlEscape("/images/".$_FILES['imgSelect']['name']);
-            $sql = "INSERT INTO images VALUES(NULL,'$src')";
-            $imagesStatement = $pdo->query($sql);
+            $imagesStatement = $pdo->prepare("INSERT INTO images VALUES(NULL, ?)");
+            $src = ("/images/".$_FILES['imgSelect']['name']);
+            $imagesStatement->bindParam(1,$src);
+            $imagesStatement->execute();
             if($messagesStatement === false){
                 throw new DatabaseException();
             }
