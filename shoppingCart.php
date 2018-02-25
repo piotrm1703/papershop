@@ -44,9 +44,9 @@ if (isset($_POST['deleteAll'])){
 if (isset($_SESSION['cart'])) {
     if ($_SESSION['cart'] !== []) {
         $cartArray = $_SESSION['cart'];
-        $convert = array_map('intval', $cartArray);
+        $productIds = array_map('intval', $cartArray);
 
-        $productsStatement = $pdo->query('SELECT * FROM products WHERE id IN ('.implode(',', $_SESSION['cart']).')');
+        $productsStatement = $pdo->query('SELECT * FROM products WHERE id IN ('.implode(',', $productIds).')');
         if ($productsStatement === false) {
             throw new DatabaseException();
         }

@@ -15,20 +15,18 @@ try {
 require_once (__DIR__.'/web/templates/adminDeleteItemForm.php');
 
 if(isset($_POST['delete'])) {
-    try {
-        require_once('connectDB.php');
-        $productStatement = $pdo->prepare("DELETE FROM products WHERE id = :id ");
-        $selectedItem = $_POST['item'];
-        $productStatement->bindValue(':id', $selectedItem);
-        $delete = $productStatement->execute();
-        if($productStatement === false){
-            throw new DatabaseException();
-        }
-        header('Location: /?page=deleteitem');
-        die();
-    } catch (PDOException $e){
-        echo $e->getMessage();
+
+    require_once('connectDB.php');
+    $productStatement = $pdo->prepare("DELETE FROM products WHERE id = :id ");
+    $selectedItem = $_POST['item'];
+    $productStatement->bindValue(':id', $selectedItem);
+    $delete = $productStatement->execute();
+    if($productStatement === false){
+        throw new DatabaseException();
     }
+    header('Location: /?page=deleteitem');
+    die();
+
 }
 
 

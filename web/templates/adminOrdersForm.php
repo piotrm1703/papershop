@@ -24,7 +24,7 @@
   </tr>
 
 <?php
-foreach ($ordersArray as $k=>$v){ $un = unserialize($v['products']); ?>
+foreach ($ordersArray as $k=>$v){ $un = unserialize($v['products']) ?>
 
     <tr><td>
             <form action="/?page=orders" method="post" >

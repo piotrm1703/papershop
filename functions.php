@@ -23,3 +23,8 @@ function siteInterface(){
     }
     require_once(__DIR__.'/web/templates/sidemenu.php');
 }
+
+function sqlLikeEscape($value)
+{
+    return addcslashes($value,'%_');
+}

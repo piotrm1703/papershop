@@ -1,6 +1,5 @@
 <?php
-$sql = "SELECT * FROM messages";
-$messagesStatement = $pdo->prepare($sql);
+$messagesStatement = $pdo->prepare("SELECT * FROM messages");
 $messagesStatement->execute();
 
 $currentPage = substr( $_GET['page'], 10);
