@@ -12,7 +12,7 @@ if(isset($_POST['login'])){
     $usersStatement->bindValue(':password', $password);
     $usersStatement->execute();
     if($usersStatement === false){
-        throw new Exception("Database error");
+        throw new DatabaseException();
     }
     $row = $usersStatement->fetch(PDO::FETCH_OBJ);
     if($row === false){

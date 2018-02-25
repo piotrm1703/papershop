@@ -28,7 +28,7 @@ if(isset($_POST['submit'])){
             $sql = "INSERT INTO images VALUES(NULL,'$src')";
             $imagesStatement = $pdo->query($sql);
             if($messagesStatement === false){
-                throw new Exception("Database error");
+                throw new DatabaseException();
             }
             header('Location: /?page=file');
             die();

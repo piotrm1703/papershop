@@ -6,7 +6,9 @@
 </head>
     <body>
         <div class="pageContainer">
-            <?php echo $pageContainer ?>
+            <?php echo $pageContainer ;
+                require(__DIR__.'/footer.php');
+            ?>
         </div>
     </body>
 </html>

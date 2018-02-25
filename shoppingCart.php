@@ -45,7 +45,7 @@ if (isset($_SESSION['cart'])) {
     if ($_SESSION['cart'] !== []) {
         $productsStatement = $pdo->query('SELECT * FROM products WHERE id IN ('.implode(',', $_SESSION['cart']).')');
         if ($productsStatement === false) {
-            throw new Exception("Database error");
+            throw new DatabaseException();
         }
         $cartProducts = $productsStatement->fetchAll(PDO::FETCH_OBJ);
         $duplicate = array_count_values($_SESSION['cart']);

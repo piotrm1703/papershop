@@ -12,7 +12,8 @@ if (!file_exists("debug.txt")) {
 ob_start();
 session_start();
 
-require_once ('../functions.php');
+require_once (__DIR__.'/../functions.php');
+require_once (__DIR__.'/../classes.php');
 
     siteInterface();
     if(isset($_GET['page'])) {
@@ -56,7 +57,7 @@ require_once ('../functions.php');
 
             $productsStatement = $pdo->query('SELECT * FROM products');
             if ($productsStatement === false) {
-                throw new Exception("Database error");
+                throw new DatabaseException();
             }
             while ($row = $productsStatement->fetch(PDO::FETCH_OBJ)) {
                 if ($row->category === $page) {
@@ -68,7 +69,7 @@ require_once ('../functions.php');
             $messagesStatement = $pdo->prepare('SELECT * FROM messages');
             $messagesStatement->execute();
             if ($messagesStatement === false) {
-                throw new Exception("Database error");
+                throw new DatabaseException();
             }
             while ($row2 = $messagesStatement->fetch(PDO::FETCH_OBJ)) {
                 if ($page === 'adminReply' . $row2->id) {
@@ -80,7 +81,7 @@ require_once ('../functions.php');
             $productsStatement = $pdo->prepare($sql2);
             $productsStatement->execute();
             if ($productsStatement === false) {
-                throw new Exception("Database error");
+                throw new DatabaseException();
             }
             $arrayQuantity2 = $productsStatement->rowCount();
             while ($row3 = $productsStatement->fetch(PDO::FETCH_OBJ)) {
@@ -92,7 +93,6 @@ require_once ('../functions.php');
 } else {
         require (__DIR__.'/templates/mainPage.php');
     }
-    require(__DIR__.'/templates/footer.php');
 
     $pageContainer = ob_get_clean();
 

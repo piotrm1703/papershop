@@ -8,7 +8,7 @@ $imagesStatement = $pdo->prepare('SELECT DISTINCT url FROM images');
 $imagesStatement->execute();
 $data = $imagesStatement->fetchAll();
 if($imagesStatement === false){
-    throw new Exception("Database error");
+    throw new DatabaseException();
 }
 
 require_once (__DIR__.'/web/templates/adminNewItemForm.php');

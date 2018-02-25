@@ -8,7 +8,7 @@ $sortType = substr($_GET['page'],11);
 $ordersStatement = $pdo->prepare("SELECT * FROM orders ORDER BY $sortType");
 $ordersStatement->execute();
 if($ordersStatement === false){
-    throw new Exception("Database error");
+    throw new DatabaseException();
 }
 
 require_once(__DIR__.'/web/templates/adminOrdersForm.php');

@@ -13,7 +13,7 @@ if(isset($_POST['submit'])){
         $sql = "INSERT INTO messages VALUES(NULL,'$firstname','$surname','$email','$subject','$content','$date','$status')";
         $insertMessagesStatement = $pdo->query($sql);
         if($insertMessagesStatement === false){
-            throw new Exception("Database error");
+            throw new DatabaseException();
         }
         echo "<script> alert('Wiadomość została wysłana. Dziękujemy za kontakt!')</script>";
     }

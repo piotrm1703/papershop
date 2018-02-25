@@ -6,7 +6,7 @@ if(!isset($_SESSION['authenticatedUser'])) {
 $ordersStatement = $pdo->prepare("SELECT * FROM orders");
 $ordersStatement->execute();
 if($ordersStatement === false){
-    throw new Exception("Database error");
+    throw new DatabaseException();
 }
 
 require_once(__DIR__.'/web/templates/adminOrdersForm.php');

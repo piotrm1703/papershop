@@ -7,7 +7,7 @@ $sortType = substr($_GET['page'],5);
 $messagesStatement = $pdo->prepare("SELECT * FROM messages ORDER BY $sortType");
 $messagesStatement->execute();
 if($messagesStatement === false){
-    throw new Exception("Database error");
+    throw new DatabaseException();
 }
 
 require_once(__DIR__.'/web/templates/adminMessagesForm.php');

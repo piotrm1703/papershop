@@ -22,7 +22,7 @@ if(isset($_POST['delete'])) {
         $productStatement->bindValue(':id', $selectedItem);
         $delete = $productStatement->execute();
         if($productStatement === false){
-            throw new Exception("Database error");
+            throw new DatabaseException();
         }
         header('Location: /?page=deleteitem');
         die();
