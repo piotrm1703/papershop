@@ -25,7 +25,7 @@
     }
     /*end of main button style*/
 
-    /*search button style*/
+    /*search  style*/
     .searchButton{
         background-color: darkslategray;
         color: white;
@@ -34,7 +34,12 @@
         border-radius: 5px;
         cursor: pointer;
     }
-    /*end of search button style*/
+    .searchbox {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-left: 666px;
+    }
+    /*end of search style*/
 
     /*contact form style*/
     .contactformFields{
@@ -241,8 +246,11 @@
     /*end of footer style*/
 
     /*login form style*/
-    .logincontainer {
-
+    .loginlabel {
+        margin-left: 300px;
+    }
+    .logoutlabel {
+        margin-left: 660px;
     }
     .loginNamePasswordStyle {
         width: 20%;

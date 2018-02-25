@@ -1,6 +1,7 @@
 <?php
 if(!isset($_SESSION['authenticatedUser'])) {
     header('Location: /');
+    die();
 }
 
 require_once (__DIR__.'/web/templates/adminAddImgForm.php');

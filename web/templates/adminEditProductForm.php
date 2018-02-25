@@ -20,10 +20,10 @@
             <option value="papieroffsetowy">Papier offsetowy</option>
         </select>
         <label for="content">Nazwa i opis</label>
-        <textarea id="content" class="newItemFieldsAdmin" name="content" style="height: 150px" required><?php echo $v['content']; ?></textarea>
+        <textarea id="content" class="newItemFieldsAdmin" name="content" style="height: 150px" required><?php echo htmlEscape($v['content']); ?></textarea>
 
         <label for="price">Cena</label>
-        <input class="newItemFieldsAdmin" type="number" id="price" name="price" value="<?php echo $v['price']; ?>" min="0" step="0.01" required>
+        <input class="newItemFieldsAdmin" type="number" id="price" name="price" value="<?php echo htmlEscape($v['price']); ?>" min="0" step="0.01" required>
 
         <?php }} ?>
 
@@ -31,7 +31,7 @@
 
         <select name="img" id="img">
             <?php foreach ($data as $row): ?>
-                <option><?=$row["url"]?></option>
+                <option><?php echo htmlEscape($row["url"])?></option>
             <?php endforeach ?>
         </select>
         <input class="universalButton" type="submit" name="edited" value="Zaktualizuj" onClick="return confirm('Czy na pewno chcesz zaktualizować ten produkt?')">

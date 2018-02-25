@@ -6,11 +6,11 @@
 
             $msgID = substr( $_GET['page'], 10);
             if ($v['id'] === $msgID) { ?>
-                <label>Nadawca:</label> <?php echo $v['firstname']; echo $v['surname']; ?>
+                <label>Nadawca:</label> <?php echo htmlEscape($v['firstname']); echo $v['surname']; ?>
                 <br>
-                <label>Email : </label> <?php echo $v['email']; ?>
+                <label>Email : </label> <?php echo htmlEscape($v['email']); ?>
                 <br>
-                <label>Treść :</label> <?php echo $v['content']; ?>
+                <label>Treść :</label> <?php echo htmlEscape($v['content']); ?>
                 <br><br>
                 <?php
             }

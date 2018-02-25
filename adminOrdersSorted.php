@@ -12,15 +12,15 @@ if($ordersStatement === false){
     throw new Exception("Database error");
 }
 
-require_once(__DIR__.'/web/templates/adminOrdersForm.php');
+rrequire_once(__DIR__.'/web/templates/adminOrdersForm.php');
 
 if(isset($_POST['delIcon'])) {
     try {
         $sql = "DELETE FROM orders WHERE id = ?";
-        $ordersStatement = $pdo->prepare($sql);
+        $orderStatement = $pdo->prepare($sql);
         $selectedItem = $_POST['delIcon'];
-        $ordersStatement->bindParam(1, $selectedItem);
-        $delete = $ordersStatement->execute();
+        $orderStatement->bindParam(1, $selectedItem);
+        $delete = $orderStatement->execute();
         header('Location: /?page=orders');
         die();
     } catch (PDOException $e){
@@ -31,10 +31,10 @@ if(isset($_POST['delIcon'])) {
 if(isset($_POST['realized'])) {
     try {
         $sql = "UPDATE orders SET status='zrealizowano' WHERE id = ?";
-        $ordersStatement = $pdo->prepare($sql);
+        $orderStatement = $pdo->prepare($sql);
         $selectedItem = $_POST['realized'];
-        $ordersStatement->bindParam(1, $selectedItem);
-        $realized = $ordersStatement->execute();
+        $orderStatement->bindParam(1, $selectedItem);
+        $realized = $orderStatement->execute();
         header('Location: /?page=orders');
         die();
     } catch (PDOException $e){
@@ -45,10 +45,10 @@ if(isset($_POST['realized'])) {
 if(isset($_POST['expectant'])) {
     try {
         $sql = "UPDATE orders SET status='oczekujący' WHERE id = ?";
-        $ordersStatement = $pdo->prepare($sql);
+        $orderStatement = $pdo->prepare($sql);
         $selectedItem = $_POST['expectant'];
-        $ordersStatement->bindParam(1, $selectedItem);
-        $expectant = $ordersStatement->execute();
+        $orderStatement->bindParam(1, $selectedItem);
+        $expectant = $orderStatement->execute();
         header('Location: /?page=orders');
         die();
     } catch (PDOException $e){

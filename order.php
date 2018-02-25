@@ -18,16 +18,16 @@ if (isset($_SESSION['cart'])) {
                 'quantity'=> $duplicate[$cartProduct->id],
                 'price'=> htmlEscape($cartProduct->price),
             ];
+            ?>
+            <div class="products"><b><?php echo htmlEscape($cartProduct->content) ?></b>
+               - Ilość: <?php echo htmlEscape($duplicate[$cartProduct->id]) ?> suma: <?php echo htmlEscape(($duplicate[$cartProduct->id]) * ($cartProduct->price)) ?> zł
+                </div>
 
-            echo '<div class="products">'.'<b>'.htmlEscape($cartProduct->content).'</b>'.' '.
-                '-'.' '.'Ilość: '. $duplicate[$cartProduct->id] .', '.'suma: '.($duplicate[$cartProduct->id] * htmlEscape($cartProduct->price)).' '.'zł'.
-                '</div>';
-        }
-        $sum = array_sum($arraySum);
-        echo '<div class ="sum">'.'<b>'.'Do zapłaty: '.$sum.' zł'.'</b>'.'</div>';
-    } else {
+        <?php }
+        $sum = array_sum($arraySum); ?>
+        <div class ="sum"><b>Do zapłaty: <?php echo htmlEscape($sum) ?> zł</b></div>
+   <?php } else {
         echo 'Brak produktów!';
-
     }
 } else {
     echo 'Brak produktów!';
@@ -68,7 +68,6 @@ if(isset($_POST['submit'])) {
         throw new Exception("Database error");
     }
     $_SESSION['cart'] = [];
-
        header('Location: /?page=orderThanks');
        die();
 }

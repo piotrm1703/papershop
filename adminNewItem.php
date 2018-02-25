@@ -4,10 +4,10 @@ if(!isset($_SESSION['authenticatedUser'])) {
     die();
 }
 
-$distinctUrlStatement = $pdo->prepare('SELECT DISTINCT url FROM images');
-$distinctUrlStatement->execute();
-$data = $distinctUrlStatement->fetchAll();
-if($distinctUrlStatement === false){
+$imagesStatement = $pdo->prepare('SELECT DISTINCT url FROM images');
+$imagesStatement->execute();
+$data = $imagesStatement->fetchAll();
+if($imagesStatement === false){
     throw new Exception("Database error");
 }
 
@@ -21,7 +21,7 @@ if(isset($_POST['submit'])){
     if(isset($category) && isset($content) && isset($price) && isset($img)){
         require_once ('connectDB.php');
         $sql = "INSERT INTO products VALUES(NULL,'$category','$content','$img','$price')";
-        $addStatement = $pdo->query($sql);
+        $productStatement = $pdo->query($sql);
         echo "<script> alert('Produkt został dodany!')</script>";
     } else {
         echo "Uzupełnij informacje!";

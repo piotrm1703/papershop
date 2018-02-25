@@ -22,13 +22,13 @@ if(isset($_POST['edited'])) {
         $img = htmlEscape($_POST['img']);
         $id = substr($_GET['page'], 11);
         $sql = "UPDATE products SET category = ? , content = ?, img = ? , price = ? WHERE id = ?";
-        $updateProductStatement = $pdo->prepare($sql);
-        $updateProductStatement->bindParam(1, $category);
-        $updateProductStatement->bindParam(2, $content);
-        $updateProductStatement->bindParam(3, $img);
-        $updateProductStatement->bindParam(4, $price);
-        $updateProductStatement->bindParam(5, $id);
-        $updateProductStatement->execute();
+        $productStatement = $pdo->prepare($sql);
+        $productStatement->bindParam(1, $category);
+        $productStatement->bindParam(2, $content);
+        $productStatement->bindParam(3, $img);
+        $productStatement->bindParam(4, $price);
+        $productStatement->bindParam(5, $id);
+        $productStatement->execute();
 
         header('Location: /?page='.$category.'');
         die();

@@ -25,8 +25,7 @@
         <label for="img"> Wybierz zdjęcie z listy: </label>
         <select name="img" id="img">
             <?php foreach ($data as $row): ?>
-                <option><?=$row["url"]?></option>
-                <img src=" <?=$row['url']?>" class="imgView">
+                <option><?php echo htmlEscape($row["url"]) ?></option>
             <?php endforeach ?>
         </select>
 
