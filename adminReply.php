@@ -3,6 +3,9 @@ $sql = "SELECT * FROM messages";
 $messagesStatement = $pdo->prepare($sql);
 $messagesStatement->execute();
 
+$currentPage = substr( $_GET['page'], 10);
+$messagesArray = $messagesStatement->fetchAll();
+
 require_once ('web/templates/adminReplyForm.php');
 
 if(isset($_POST['submit'])){

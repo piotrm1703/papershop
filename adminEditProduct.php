@@ -6,6 +6,8 @@ if(!isset($_SESSION['authenticatedUser'])) {
 
 $productsStatement = $pdo->prepare('SELECT * FROM products');
 $productsStatement->execute();
+$productArray = $productsStatement->fetchAll();
+$currentPage = substr( $_GET['page'], 11);
 
 $imagesStatement = $pdo->prepare('SELECT DISTINCT url FROM images');
 $imagesStatement->execute();

@@ -5,6 +5,7 @@ if(!isset($_SESSION['authenticatedUser'])) {
 }
 $messagesStatement = $pdo->prepare("SELECT * FROM messages");
 $messagesStatement->execute();
+$messagesArray = $messagesStatement->fetchAll();
 if($messagesStatement === false){
     throw new DatabaseException();
 }

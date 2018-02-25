@@ -6,6 +6,7 @@ if(!isset($_SESSION['authenticatedUser'])) {
 $sortType = substr($_GET['page'],5);
 $messagesStatement = $pdo->prepare("SELECT * FROM messages ORDER BY $sortType");
 $messagesStatement->execute();
+$messagesArray = $messagesStatement->fetchAll();
 if($messagesStatement === false){
     throw new DatabaseException();
 }

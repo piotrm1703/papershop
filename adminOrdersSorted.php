@@ -7,6 +7,7 @@ if(!isset($_SESSION['authenticatedUser'])) {
 $sortType = substr($_GET['page'],11);
 $ordersStatement = $pdo->prepare("SELECT * FROM orders ORDER BY $sortType");
 $ordersStatement->execute();
+$ordersArray = $ordersStatement->fetchAll();
 if($ordersStatement === false){
     throw new DatabaseException();
 }

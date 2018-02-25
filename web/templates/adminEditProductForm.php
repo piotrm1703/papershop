@@ -4,10 +4,9 @@
     <br>
     <form method="post" >
 
-        <?php foreach (($productsStatement->fetchAll()) as $k=>$v) {
+        <?php foreach ($productArray as $k=>$v) {
 
-        $productID = substr( $_GET['page'], 11);
-        if ($v['id'] === $productID) { ?>
+        if ($v['id'] === $currentPage) { ?>
 
         <label for="cat">Kategoria</label>
         <select class="newItemFieldsAdmin" title="cat" name="category" id="category" required>

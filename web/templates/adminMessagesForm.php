@@ -22,7 +22,7 @@
             <th><a href="/?page=sort-status">Status</a></th>
         </tr>
 
-    <?php foreach (($messagesStatement->fetchAll()) as $k=>$v) { ;?>
+    <?php foreach ($messagesArray as $k=>$v) { ;?>
 
         <tr><td>
                 <form action="/?page=messages" method="post" >

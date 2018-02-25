@@ -19,6 +19,7 @@ if(isset($_POST['ordersearch'])) {
         $ordersStatement->bindParam(9,$search);
         $ordersStatement->bindParam(10,$search);
         $ordersStatement->execute();
+        $ordersArray = $ordersStatement->fetchAll();
     } catch (PDOException $e) {
         echo $e->getMessage();
     }

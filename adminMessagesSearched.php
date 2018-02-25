@@ -17,6 +17,7 @@ if(isset($_POST['searchmessages'])) {
         $messagesStatement->bindParam(6,$search);
         $messagesStatement->bindParam(7,$search);
         $messagesStatement->execute();
+        $messagesArray = $messagesStatement->fetchAll();
     } catch (PDOException $e) {
         echo $e->getMessage();
     }
