@@ -17,6 +17,7 @@ if(isset($_POST['submit'])){
     $insertMessagesStatement->bindParam(1,$content);
     $insertMessagesStatement->bindParam(1,$date);
     $insertMessagesStatement->bindParam(1,$status);
+    $insertMessagesStatement->execute();
 
     if($insertMessagesStatement === false){
         throw new DatabaseException();
