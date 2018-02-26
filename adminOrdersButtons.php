@@ -20,6 +20,19 @@ if(isset($_POST['realized'])) {
     if($orderStatement->execute() === false){
         throw new DatabaseException();
     }
+    $mailStatement = $pdo->prepare("SELECT * FROM orders WHERE id = ? ");
+    $mailStatement->bindParam(1, $selectedItem);
+    if($mailStatement->execute() === false){
+        throw new DatabaseException();
+    }
+    $mail = $mailStatement->fetchAll();
+    foreach (($mail) as $key=>$value ){
+    $to = $value['email'];
+    }
+    $subject = 'Potwierdzenie zamówienia';
+    $txt = ('Zamówienie zostało wysłane. Pozdrawiamy, zespół papershop.com.pl! ');
+    $headers = "From: zamowienia@papershop.com.pl" . "\r\n";
+    mail($to, $subject, $txt, $headers);
     header('Location: /?page=orders');
     die();
 }
