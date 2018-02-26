@@ -63,6 +63,11 @@ if(isset($_POST['submit'])) {
     if($ordersStatement->execute() === false){
         throw new DatabaseException();
     }
+    $to = $_POST['email'];
+    $subject = 'Potwierdzenie zamówienia';
+    $txt = ('Zamówienie zostało przyjęte do realizacji. Suma złożoego zamówienia wynosi : '.$sum.'');
+    $headers = "From: zamowienia@papershop.com.pl" . "\r\n";
+    mail($to, $subject, $txt, $headers);
 
     $_SESSION['cart'] = [];
        header('Location: /?page=orderThanks');
