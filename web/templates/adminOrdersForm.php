@@ -24,8 +24,7 @@
   </tr>
 
 <?php
-foreach ($ordersArray as $k=>$v){ $un = unserialize($v['products']) ?>
-
+foreach ($ordersArray as $v){ ?>
     <tr><td>
             <form action="/?page=orders" method="post" >
                 <button class="fabutton" name="delIcon" type="submit" title="Usuń zamówienie" value="<?php echo htmlEscape($v['id']) ?>" onClick="return confirm('Czy na pewno chcesz usunąć to zamówienie?')"><span class="fa fa-close"></span></button>
@@ -42,7 +41,7 @@ foreach ($ordersArray as $k=>$v){ $un = unserialize($v['products']) ?>
             <?php echo htmlEscape($v['surname']) ?></td><td>
             <?php echo htmlEscape($v['email']) ?></td><td>
             <?php echo htmlEscape($v['city']) ?>,<?php echo htmlEscape($v['zipcode']) ?>,<?php echo htmlEscape($v['address']) ?></td><td>
-            <?php foreach($un as $product) { ?>
+            <?php foreach($v['products'] as $product) { ?>
                 <ul><li>Id produktu:<?php echo htmlEscape($product['id']) ?>, Ilość:<?php echo htmlEscape($product['quantity']) ?></li></ul>
             <?php } ?>
             </td><td>
