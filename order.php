@@ -30,7 +30,6 @@ if (isset($_SESSION['cart'])) {
     }
 } else {
     echo 'Brak produktów!';
-
 }
 
 require_once (__DIR__.'/web/templates/orderForm.php');
@@ -50,7 +49,7 @@ if(isset($_POST['submit'])) {
     $serialized = serialize($arrayProduct);
     $date = date("Y-m-d H:i:s");
 
-    require_once('connectDB.php');
+//    require_once('connectDB.php');
     $ordersStatement = $pdo->prepare("INSERT INTO orders VALUES(NULL,:name,:surname,:email,:city,:zipcode,:address,:sum,:products,:date,:status)");
     $ordersStatement->bindParam(':name', $_POST['name']);
     $ordersStatement->bindParam(':surname', $_POST['surname']);

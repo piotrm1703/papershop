@@ -24,6 +24,7 @@ if(isset($_POST['submit'])){
     $productStatement->bindParam(2,$content);
     $productStatement->bindParam(3,$img);
     $productStatement->bindParam(4,$price);
+    $productStatement->execute();
 
     echo "<script> alert('Produkt został dodany!')</script>";
 }
