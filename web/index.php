@@ -1,13 +1,56 @@
 <?php
 error_reporting(E_ALL);
 
-function myErrorHandler(){
-    ob_get_clean();
-    echo "Przepraszamy, wystąpił błąd";
+
+function handleError($exception, $message = null, $file = null, $line = null)
+{
+    function maybeSendErrorHeader()
+    {
+        if (!headers_sent()) {
+            // Send the headers if they have not already been sent:
+            header('HTTP/1.1 500 Internal Server Error');
+        }
+    }
+    try {
+        $isPhpError = 5 === func_num_args();
+        // Test to see if errors should be displayed
+        if ($isPhpError && 0 === (error_reporting() & $exception)) {
+            return;
+        }
+        if ($isPhpError) {
+            $type = 'PHP Error';
+        } else {
+            $type = get_class($exception);
+            $message = $exception->getMessage();
+            $file = $exception->getFile();
+            $line = $exception->getLine();
+        }
+        error_log(sprintf(
+            '%s: %s, Message: %s, FILE: %s, LINE: %s',
+            $type,
+            $exception,
+            $message,
+            $file,
+            $line
+        ));
+        // czyścimy wszystkie bufory,
+        // żeby na ekranie był tylko nasz komunikat błędu
+        while (ob_get_level() > 0) {
+            ob_end_clean();
+        }
+        maybeSendErrorHeader();
+        echo 'Przepraszamy! Wystąpił błąd :(';
+        // Turn off error reporting
+        error_reporting(0);
+        die();
+    } catch (\Exception $e) {
+        maybeSendErrorHeader();
+        die('Fatal Error');
+    }
 }
 if (!file_exists("debug.txt")) {
-    set_error_handler("myErrorHandler");
-    set_exception_handler("myErrorHandler");
+    set_error_handler("handleError");
+    set_exception_handler("handleError");
 }
 ob_start();
 session_start();
