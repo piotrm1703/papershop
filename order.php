@@ -49,7 +49,6 @@ if(isset($_POST['submit'])) {
     $serialized = serialize($arrayProduct);
     $date = date("Y-m-d H:i:s");
 
-//    require_once('connectDB.php');
     $ordersStatement = $pdo->prepare("INSERT INTO orders VALUES(NULL,:name,:surname,:email,:city,:zipcode,:address,:sum,:products,:date,:status)");
     $ordersStatement->bindParam(':name', $_POST['name']);
     $ordersStatement->bindParam(':surname', $_POST['surname']);
@@ -65,9 +64,7 @@ if(isset($_POST['submit'])) {
     if($ordersStatement->execute() === false){
         throw new DatabaseException();
     }
-    if($ordersStatement === false){
-        throw new DatabaseException();
-    }
+
     $_SESSION['cart'] = [];
        header('Location: /?page=orderThanks');
        die();

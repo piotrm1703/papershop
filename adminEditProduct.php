@@ -38,7 +38,6 @@ if(isset($_POST['edited'])) {
     if($productStatement->execute() === false){
         throw new DatabaseException();
     }
-
     header('Location: /?page='.$category.'');
     die();
 

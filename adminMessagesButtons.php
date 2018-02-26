@@ -9,6 +9,7 @@ if(isset($_POST['delMsg'])) {
     if($messageStatement->execute() === false){
         throw new DatabaseException();
     }
+    header('Location: /?page=messages');
 }
 
 if(isset($_POST['replied'])) {

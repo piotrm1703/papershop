@@ -22,6 +22,6 @@ if(isset($_POST['submit'])){
     if($insertMessagesStatement->execute() === false){
         throw new DatabaseException();
     }
-    echo "<script> alert('Wiadomość została wysłana. Dziękujemy za kontakt!')</script>";
-
+    header('Location: /');
+    die();
 }
