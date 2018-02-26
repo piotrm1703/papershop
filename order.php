@@ -14,20 +14,18 @@ if (isset($_SESSION['cart'])) {
 
         foreach ($cartProducts as $cartProduct) {
             $arraySum[] = $duplicate[$cartProduct->id] * htmlEscape($cartProduct->price);
+            $sum = array_sum($arraySum);
             $arrayProduct[] = [
                 'id'=> $cartProduct->id,
                 'quantity'=> $duplicate[$cartProduct->id],
                 'price'=> htmlEscape($cartProduct->price),
             ];
-            ?>
-            <div class="products"><b><?php echo htmlEscape($cartProduct->content) ?></b>
-               - Ilość: <?php echo htmlEscape($duplicate[$cartProduct->id]) ?> suma: <?php echo htmlEscape(($duplicate[$cartProduct->id]) * ($cartProduct->price)) ?> zł
-                </div>
+            require (__DIR__.'/web/templates/orderProductView.php');
 
-        <?php }
-        $sum = array_sum($arraySum); ?>
-        <div class ="sum"><b>Do zapłaty: <?php echo htmlEscape($sum) ?> zł</b></div>
-   <?php } else {
+         }
+         require (__DIR__ . '/web/templates/orderViewSum.php');
+
+    } else {
         echo 'Brak produktów!';
     }
 } else {

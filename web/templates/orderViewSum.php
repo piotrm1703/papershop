@@ -1,0 +1,1 @@
+<div class ="sum"><b>Do zapłaty: <?php echo htmlEscape($sum) ?> zł</b></div>
