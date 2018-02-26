@@ -11,12 +11,12 @@ if(isset($_POST['submit'])){
 
     $insertMessagesStatement = $pdo->prepare("INSERT INTO messages VALUES(NULL,?,?,?,?,?,?,?)");
     $insertMessagesStatement->bindParam(1,$firstname);
-    $insertMessagesStatement->bindParam(1,$surname);
-    $insertMessagesStatement->bindParam(1,$email);
-    $insertMessagesStatement->bindParam(1,$subject);
-    $insertMessagesStatement->bindParam(1,$content);
-    $insertMessagesStatement->bindParam(1,$date);
-    $insertMessagesStatement->bindParam(1,$status);
+    $insertMessagesStatement->bindParam(2,$surname);
+    $insertMessagesStatement->bindParam(3,$email);
+    $insertMessagesStatement->bindParam(4,$subject);
+    $insertMessagesStatement->bindParam(5,$content);
+    $insertMessagesStatement->bindParam(6,$date);
+    $insertMessagesStatement->bindParam(7,$status);
     $insertMessagesStatement->execute();
 
     if($insertMessagesStatement === false){
