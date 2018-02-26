@@ -115,10 +115,8 @@ require_once (__DIR__.'/../classes.php');
             if (!$isProductCategoryPage) {
                 $isProductMessagesPage = false;
 
-                $messagesStatement = $pdo->prepare('SELECT * FROM messages');
-                $messagesStatement->execute();
-
-                if ($messagesStatement->execute() === false) {
+                $messagesStatement = $pdo->query('SELECT * FROM messages');
+                if ($messagesStatement === false) {
                     throw new DatabaseException();
                 }
 
@@ -131,10 +129,8 @@ require_once (__DIR__.'/../classes.php');
                 }
                 if(!$isProductMessagesPage){
                     $isEditPage = false;
-                    $productsStatement = $pdo->prepare('SELECT * FROM products');
-                    $productsStatement->execute();
-
-                    if ($productsStatement->execute() === false) {
+                    $productsStatement = $pdo->query('SELECT * FROM products');
+                    if ($productsStatement === false) {
                         throw new DatabaseException();
                     }
 

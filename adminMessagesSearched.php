@@ -16,7 +16,6 @@ if(isset($_POST['searchmessages'])) {
     $messagesStatement->bindParam(5,$search);
     $messagesStatement->bindParam(6,$search);
     $messagesStatement->bindParam(7,$search);
-    $messagesStatement->execute();
     if($messagesStatement->execute() === false){
         throw new DatabaseException();
     }

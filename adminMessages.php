@@ -3,11 +3,11 @@ if(!isset($_SESSION['authenticatedUser'])) {
     header('Location: /');
     die();
 }
-$messagesStatement = $pdo->prepare("SELECT * FROM messages");
-$messagesStatement->execute();
-if($messagesStatement->execute() === false){
+$messagesStatement = $pdo->query("SELECT * FROM messages");
+if ($messagesStatement === false) {
     throw new DatabaseException();
 }
+
 $messagesArray = $messagesStatement->fetchAll();
 
 require_once(__DIR__.'/templates/adminMessagesForm.php');

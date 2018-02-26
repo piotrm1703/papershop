@@ -20,16 +20,14 @@ if(!in_array($sortType,$sortTypes)){
 }
 
 $messagesStatement = $pdo->prepare("SELECT * FROM messages ORDER BY $sortType");
-$messagesStatement->execute();
 if($messagesStatement->execute() === false){
     throw new DatabaseException();
 }
 $messagesArray = $messagesStatement->fetchAll();
 
-if($messagesStatement === false){
-    throw new DatabaseException();
-}
+
 
 require_once(__DIR__.'/templates/adminMessagesForm.php');
 
 require_once (__DIR__.'/adminMessagesButtons.php');
+

@@ -60,7 +60,6 @@ if(isset($_POST['submit'])) {
     $ordersStatement->bindParam(':products', $serialized);
     $ordersStatement->bindParam(':date', $date);
     $ordersStatement->bindParam(':status', $status);
-    $ordersStatement->execute();
     if($ordersStatement->execute() === false){
         throw new DatabaseException();
     }

@@ -1,7 +1,6 @@
 <?php
-$messagesStatement = $pdo->prepare("SELECT * FROM messages");
-$messagesStatement->execute();
-if($messagesStatement->execute() === false){
+$messagesStatement = $pdo->query("SELECT * FROM messages");
+if ($messagesStatement === false) {
     throw new DatabaseException();
 }
 

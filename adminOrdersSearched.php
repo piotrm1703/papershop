@@ -18,7 +18,6 @@ if(isset($_POST['ordersearch'])) {
     $ordersStatement->bindParam(8,$search);
     $ordersStatement->bindParam(9,$search);
     $ordersStatement->bindParam(10,$search);
-    $ordersStatement->execute();
     if($ordersStatement->execute() === false){
         throw new DatabaseException();
     }

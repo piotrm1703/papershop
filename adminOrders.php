@@ -4,11 +4,11 @@ if(!isset($_SESSION['authenticatedUser'])) {
     die();
 }
 
-$ordersStatement = $pdo->prepare("SELECT * FROM orders");
-$ordersStatement->execute();
-if($ordersStatement->execute() === false){
+$ordersStatement = $pdo->query("SELECT * FROM orders");
+if ($ordersStatement === false) {
     throw new DatabaseException();
 }
+
 $ordersArray = $ordersStatement->fetchAll();
 
 foreach ($ordersArray as $key=>$v)

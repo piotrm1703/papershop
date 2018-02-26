@@ -4,11 +4,11 @@ if(!isset($_SESSION['authenticatedUser'])) {
     die();
 }
 
-$imagesStatement = $pdo->prepare('SELECT DISTINCT url FROM images');
-$imagesStatement->execute();
-if($imagesStatement->execute() === false){
+$imagesStatement = $pdo->query('SELECT DISTINCT url FROM images');
+if ($imagesStatement === false) {
     throw new DatabaseException();
 }
+
 $data = $imagesStatement->fetchAll();
 
 require_once (__DIR__.'/templates/adminNewItemForm.php');
@@ -24,7 +24,6 @@ if(isset($_POST['submit'])){
     $productStatement->bindParam(2,$content);
     $productStatement->bindParam(3,$img);
     $productStatement->bindParam(4,$price);
-    $productStatement->execute();
     if($productStatement->execute() === false){
         throw new DatabaseException();
     }

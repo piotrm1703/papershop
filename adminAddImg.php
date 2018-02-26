@@ -27,7 +27,6 @@ if(isset($_POST['submit'])){
             $imagesStatement = $pdo->prepare("INSERT INTO images VALUES(NULL, ?)");
             $src = ("/images/".$_FILES['imgSelect']['name']);
             $imagesStatement->bindParam(1,$src);
-            $imagesStatement->execute();
             header('Location: /?page=file');
             if($imagesStatement->execute() === false){
                 throw new DatabaseException();
