@@ -28,11 +28,11 @@ if(isset($_POST['realized'])) {
     $mail = $mailStatement->fetchAll();
     foreach (($mail) as $key=>$value ){
     $to = $value['email'];
-    }
     $subject = 'Potwierdzenie zamówienia';
     $txt = ('Zamówienie zostało wysłane. Pozdrawiamy, zespół papershop.com.pl! ');
     $headers = "From: zamowienia@papershop.com.pl" . "\r\n";
     mail($to, $subject, $txt, $headers);
+    }
     header('Location: /?page=orders');
     die();
 }
