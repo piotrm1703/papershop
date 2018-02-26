@@ -57,7 +57,7 @@ if (isset($_SESSION['cart'])) {
             $count = $duplicate[$cartProduct->id];
             $productSum = $count * htmlEscape($cartProduct->price);
 
-            require (__DIR__.'/web/templates/cartProductView.php');
+            require (__DIR__.'/templates/cartProductView.php');
         }
     } else {
         echo 'Koszyk jest pusty!';
@@ -67,7 +67,7 @@ if (isset($_SESSION['cart'])) {
     echo 'Koszyk jest pusty!';
 }
 if(isset($_SESSION['cart']) && $_SESSION['cart'] !== []) {
-    require_once (__DIR__.'/web/templates/cartButtons.php');
+    require_once (__DIR__.'/templates/cartButtons.php');
 }
 
 

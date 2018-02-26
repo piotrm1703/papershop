@@ -12,7 +12,7 @@ try {
     echo $e->getMessage();
 }
 
-require_once (__DIR__.'/web/templates/adminDeleteItemForm.php');
+require_once (__DIR__.'/templates/adminDeleteItemForm.php');
 
 if(isset($_POST['delete'])) {
 

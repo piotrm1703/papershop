@@ -4,7 +4,7 @@ if(!isset($_SESSION['authenticatedUser'])) {
     die();
 }
 
-require_once (__DIR__.'/web/templates/adminAddImgForm.php');
+require_once (__DIR__.'/templates/adminAddImgForm.php');
 
 if(isset($_POST['submit'])){
     $imagesDir = __DIR__.'/web/images/';

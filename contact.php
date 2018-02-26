@@ -1,4 +1,4 @@
-<?php require_once (__DIR__.'/web/templates/contactform.php');
+<?php require_once (__DIR__.'/templates/contactform.php');
 
 if(isset($_POST['submit'])){
     $firstname = ($_POST['name']);

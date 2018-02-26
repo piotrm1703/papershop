@@ -21,6 +21,6 @@ if(isset($_POST['searchmessages'])) {
 
 }
 
-require_once(__DIR__.'/web/templates/adminMessagesForm.php');
+require_once(__DIR__.'/templates/adminMessagesForm.php');
 
 require_once (__DIR__.'/adminMessagesButtons.php');

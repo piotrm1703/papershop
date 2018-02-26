@@ -11,7 +11,7 @@ if($imagesStatement === false){
     throw new DatabaseException();
 }
 
-require_once (__DIR__.'/web/templates/adminNewItemForm.php');
+require_once (__DIR__.'/templates/adminNewItemForm.php');
 
 if(isset($_POST['submit'])){
     $category = ($_POST['category']);
@@ -28,6 +28,6 @@ if(isset($_POST['submit'])){
     if($productStatement === false){
         throw new DatabaseException();
     }
-
+    header('Location: /?page='.$category.'');
     echo "<script> alert('Produkt został dodany!')</script>";
 }

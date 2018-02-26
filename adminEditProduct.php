@@ -13,7 +13,7 @@ $imagesStatement = $pdo->prepare('SELECT DISTINCT url FROM images');
 $imagesStatement->execute();
 $data = $imagesStatement->fetchAll();
 
-require_once (__DIR__.'/web/templates/adminEditProductForm.php');
+require_once (__DIR__.'/templates/adminEditProductForm.php');
 
 if(isset($_POST['edited'])) {
 

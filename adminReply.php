@@ -5,7 +5,7 @@ $messagesStatement->execute();
 $currentPage = substr( $_GET['page'], 10);
 $messagesArray = $messagesStatement->fetchAll();
 
-require_once ('web/templates/adminReplyForm.php');
+require_once (__DIR__.'/templates/adminReplyForm.php');
 
 if(isset($_POST['submit'])){
     foreach (($messagesArray) as $k=> $v) {

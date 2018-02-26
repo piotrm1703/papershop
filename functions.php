@@ -10,18 +10,18 @@ function htmlEscape($text)
 }
 
 function siteInterface(){
-    require_once(__DIR__.'/web/templates/header.php');
-    require_once (__DIR__.'/web/templates/style.php');
+    require_once(__DIR__.'/templates/header.php');
+    require_once (__DIR__.'/templates/style.php');
     if(!isset($_SESSION['authenticatedUser'])){
         require_once (__DIR__.'/login.php');
     }else {
         require_once (__DIR__.'/logout.php');
     }
-    require_once (__DIR__.'/web/templates/navtop.php');
+    require_once (__DIR__.'/templates/navtop.php');
     if(isset($_SESSION['authenticatedUser'])){
-        require_once (__DIR__.'/web/templates/adminNavForm.php');
+        require_once (__DIR__.'/templates/adminNavForm.php');
     }
-    require_once(__DIR__.'/web/templates/sidemenu.php');
+    require_once(__DIR__.'/templates/sidemenu.php');
 }
 
 function sqlLikeEscape($value)

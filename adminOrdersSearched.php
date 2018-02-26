@@ -28,6 +28,6 @@ foreach ($ordersArray as $key=>$v)
     $ordersArray[$key]['products'] = unserialize($v['products']);
 }
 
-require_once(__DIR__.'/web/templates/adminOrdersForm.php');
+require_once(__DIR__.'/templates/adminOrdersForm.php');
 
 require_once (__DIR__.'/adminOrdersButtons.php');

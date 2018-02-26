@@ -20,10 +20,10 @@ if (isset($_SESSION['cart'])) {
                 'quantity'=> $duplicate[$cartProduct->id],
                 'price'=> htmlEscape($cartProduct->price),
             ];
-            require (__DIR__.'/web/templates/orderProductView.php');
+            require (__DIR__.'/templates/orderProductView.php');
 
          }
-         require (__DIR__ . '/web/templates/orderViewSum.php');
+         require (__DIR__ . '/templates/orderViewSum.php');
 
     } else {
         echo 'Brak produktów!';
@@ -32,7 +32,7 @@ if (isset($_SESSION['cart'])) {
     echo 'Brak produktów!';
 }
 
-require_once (__DIR__.'/web/templates/orderForm.php');
+require_once (__DIR__.'/templates/orderForm.php');
 
 if(isset($_POST['submit'])) {
     if (!(isset($_POST['name']) &&

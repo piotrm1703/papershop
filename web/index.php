@@ -63,7 +63,7 @@ require_once (__DIR__.'/../classes.php');
         $page = $_GET['page'];
         require_once(__DIR__ . '/../connectDB.php');
         $pages = [
-            'offer' => '/templates/offer.php',
+            'offer' => '/../templates/offer.php',
             'promotions' => '/../promotions.php',
             'contact' => '/../contact.php',
             'file' => '/../adminAddImg.php',
@@ -107,7 +107,7 @@ require_once (__DIR__.'/../classes.php');
 
             while ($row = $productsStatement->fetch(PDO::FETCH_OBJ)) {
                 if ($row->category === $page) {
-                    require(__DIR__ . '/templates/productViewForm.php');
+                    require(__DIR__ . '/../templates/productViewForm.php');
                     $isProductCategoryPage = true;
                 }
             }
@@ -153,11 +153,11 @@ require_once (__DIR__.'/../classes.php');
             }
         }
 } else {
-        require (__DIR__.'/templates/mainPage.php');
+        require (__DIR__.'/../templates/mainPage.php');
     }
 
     $pageContainer = ob_get_clean();
 
-require (__DIR__.'/templates/layout.php');
+require (__DIR__.'/../templates/layout.php');
 
 
