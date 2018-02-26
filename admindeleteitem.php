@@ -4,13 +4,13 @@ if(!isset($_SESSION['authenticatedUser'])) {
     die();
 }
 
-try {
-    $productsStatement = $pdo->prepare("SELECT * FROM products ORDER BY content");
-    $productsStatement->execute();
-    $data = $productsStatement->fetchAll();
-}catch(PDOException $e){
-    echo $e->getMessage();
+
+$productsStatement = $pdo->prepare("SELECT * FROM products ORDER BY content");
+$productsStatement->execute();
+if($productsStatement->execute() === false){
+    throw new DatabaseException();
 }
+$data = $productsStatement->fetchAll();
 
 require_once (__DIR__.'/templates/adminDeleteItemForm.php');
 
@@ -21,7 +21,7 @@ if(isset($_POST['delete'])) {
     $selectedItem = $_POST['item'];
     $productStatement->bindValue(':id', $selectedItem);
     $delete = $productStatement->execute();
-    if($productStatement === false){
+    if($productStatement->execute() === false){
         throw new DatabaseException();
     }
     header('Location: /?page=deleteitem');

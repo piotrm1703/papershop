@@ -6,10 +6,10 @@ if(!isset($_SESSION['authenticatedUser'])) {
 
 $imagesStatement = $pdo->prepare('SELECT DISTINCT url FROM images');
 $imagesStatement->execute();
-$data = $imagesStatement->fetchAll();
-if($imagesStatement === false){
+if($imagesStatement->execute() === false){
     throw new DatabaseException();
 }
+$data = $imagesStatement->fetchAll();
 
 require_once (__DIR__.'/templates/adminNewItemForm.php');
 
@@ -25,7 +25,7 @@ if(isset($_POST['submit'])){
     $productStatement->bindParam(3,$img);
     $productStatement->bindParam(4,$price);
     $productStatement->execute();
-    if($productStatement === false){
+    if($productStatement->execute() === false){
         throw new DatabaseException();
     }
     header('Location: /?page='.$category.'');

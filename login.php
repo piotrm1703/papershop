@@ -11,7 +11,7 @@ if(isset($_POST['login'])){
     $usersStatement->bindValue(':username', $username);
     $usersStatement->bindValue(':password', $password);
     $usersStatement->execute();
-    if($usersStatement === false){
+    if($usersStatement->execute() === false){
         throw new DatabaseException();
     }
     $row = $usersStatement->fetch(PDO::FETCH_OBJ);

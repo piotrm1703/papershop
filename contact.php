@@ -19,7 +19,7 @@ if(isset($_POST['submit'])){
     $insertMessagesStatement->bindParam(7,$status);
     $insertMessagesStatement->execute();
 
-    if($insertMessagesStatement === false){
+    if($insertMessagesStatement->execute() === false){
         throw new DatabaseException();
     }
     echo "<script> alert('Wiadomość została wysłana. Dziękujemy za kontakt!')</script>";

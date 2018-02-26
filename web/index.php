@@ -118,7 +118,7 @@ require_once (__DIR__.'/../classes.php');
                 $messagesStatement = $pdo->prepare('SELECT * FROM messages');
                 $messagesStatement->execute();
 
-                if ($messagesStatement === false) {
+                if ($messagesStatement->execute() === false) {
                     throw new DatabaseException();
                 }
 
@@ -134,7 +134,7 @@ require_once (__DIR__.'/../classes.php');
                     $productsStatement = $pdo->prepare('SELECT * FROM products');
                     $productsStatement->execute();
 
-                    if ($productsStatement === false) {
+                    if ($productsStatement->execute() === false) {
                         throw new DatabaseException();
                     }
 

@@ -6,10 +6,10 @@ if(!isset($_SESSION['authenticatedUser'])) {
 
 $ordersStatement = $pdo->prepare("SELECT * FROM orders");
 $ordersStatement->execute();
-$ordersArray = $ordersStatement->fetchAll();
-if($ordersStatement === false){
+if($ordersStatement->execute() === false){
     throw new DatabaseException();
 }
+$ordersArray = $ordersStatement->fetchAll();
 
 foreach ($ordersArray as $key=>$v)
 {

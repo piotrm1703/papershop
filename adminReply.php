@@ -1,6 +1,9 @@
 <?php
 $messagesStatement = $pdo->prepare("SELECT * FROM messages");
 $messagesStatement->execute();
+if($messagesStatement->execute() === false){
+    throw new DatabaseException();
+}
 
 $currentPage = substr( $_GET['page'], 10);
 $messagesArray = $messagesStatement->fetchAll();

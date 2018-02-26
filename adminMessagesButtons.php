@@ -5,7 +5,10 @@ if(isset($_POST['delMsg'])) {
     $messageStatement = $pdo->prepare("DELETE FROM messages WHERE id = ?");
     $selectedItem = $_POST['delMsg'];
     $messageStatement->bindParam(1, $selectedItem);
-    $delete = $messageStatement->execute();
+    $messageStatement->execute();
+    if($messageStatement->execute() === false){
+        throw new DatabaseException();
+    }
 }
 
 if(isset($_POST['replied'])) {
@@ -14,6 +17,9 @@ if(isset($_POST['replied'])) {
     $selectedItem = $_POST['replied'];
     $messageStatement->bindparam(1, $selectedItem);
     $delete = $messageStatement->execute();
+    if($messageStatement->execute() === false){
+        throw new DatabaseException();
+    }
     header('Location: /?page=messages');
     die();
 }
@@ -23,6 +29,9 @@ if(isset($_POST['expectant'])) {
     $selectedItem = $_POST['expectant'];
     $messageStatement->bindParam(1, $selectedItem);
     $delete = $messageStatement->execute();
+    if($messageStatement->execute() === false){
+        throw new DatabaseException();
+    }
     header('Location: /?page=messages');
     die();
 }

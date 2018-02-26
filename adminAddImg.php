@@ -28,7 +28,7 @@ if(isset($_POST['submit'])){
             $src = ("/images/".$_FILES['imgSelect']['name']);
             $imagesStatement->bindParam(1,$src);
             $imagesStatement->execute();
-            if($messagesStatement === false){
+            if($imagesStatement->execute() === false){
                 throw new DatabaseException();
             }
             header('Location: /?page=file');

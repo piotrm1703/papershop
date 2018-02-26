@@ -21,6 +21,9 @@ if(!in_array($sortType,$sortTypes)){
 
 $messagesStatement = $pdo->prepare("SELECT * FROM messages ORDER BY $sortType");
 $messagesStatement->execute();
+if($messagesStatement->execute() === false){
+    throw new DatabaseException();
+}
 $messagesArray = $messagesStatement->fetchAll();
 
 if($messagesStatement === false){

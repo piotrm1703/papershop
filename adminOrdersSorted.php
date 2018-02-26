@@ -22,11 +22,10 @@ if(!in_array($sortType,$sortTypes)){
 
 $ordersStatement = $pdo->prepare("SELECT * FROM orders ORDER BY $sortType");
 $ordersStatement->execute();
-$ordersArray = $ordersStatement->fetchAll();
-
-if($ordersStatement === false){
+if($ordersStatement->execute() === false){
     throw new DatabaseException();
 }
+$ordersArray = $ordersStatement->fetchAll();
 
 foreach ($ordersArray as $key=>$v)
 {

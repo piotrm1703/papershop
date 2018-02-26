@@ -5,10 +5,10 @@ if(!isset($_SESSION['authenticatedUser'])) {
 }
 $messagesStatement = $pdo->prepare("SELECT * FROM messages");
 $messagesStatement->execute();
-$messagesArray = $messagesStatement->fetchAll();
-if($messagesStatement === false){
+if($messagesStatement->execute() === false){
     throw new DatabaseException();
 }
+$messagesArray = $messagesStatement->fetchAll();
 
 require_once(__DIR__.'/templates/adminMessagesForm.php');
 
