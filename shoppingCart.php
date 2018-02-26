@@ -66,7 +66,7 @@ if (isset($_SESSION['cart'])) {
 } else {
     echo 'Koszyk jest pusty!';
 }
-if($_SESSION['cart'] !== []) {
+if(isset($_SESSION['cart']) && $_SESSION['cart'] !== []) {
     require_once (__DIR__.'/web/templates/cartButtons.php');
 }
 
