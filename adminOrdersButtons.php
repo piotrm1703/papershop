@@ -31,10 +31,8 @@ if(isset($_POST['realized'])) {
     $subject = 'Potwierdzenie zamówienia';
     $txt = ('Zamówienie zostało wysłane. Pozdrawiamy, zespół papershop.com.pl! ');
     $headers = "From: zamowienia@papershop.com.pl" . "\r\n";
-    var_dump($to, $subject, $txt, $headers);
     mail($to, $subject, $txt, $headers);
     }
-
     header('Location: /?page=orders');
     die();
 }

@@ -9,9 +9,9 @@
         if ($v['id'] === $currentPage) { ?>
 
         <label for="cat">Kategoria</label>
-        <select class="newItemFieldsAdmin" title="cat" name="category" id="category" required>
-            <option disabled selected value> --wybierz kategorie z listy-- </option>
-            <option value="papierypowlekane">Papiery powlekane</option>
+        <select class="newItemFieldsAdmin" style="color: red" title="cat" name="category" id="category" >
+            <option disabled selected value > --Do usunięcia lub edycji wybierz kategorie z listy-- </option>
+            <option  value="papierypowlekane">Papiery powlekane</option>
             <option value="kartonygraficzne">Kartony graficzne</option>
             <option value="kartonyopakowaniowe">Kartony opakowaniowe</option>
             <option value="papieryetykietowe">Papiery etykietowe</option>
@@ -23,7 +23,6 @@
 
         <label for="price">Cena</label>
         <input class="newItemFieldsAdmin" type="number" id="price" name="price" value="<?php echo htmlEscape($v['price']); ?>" min="0" step="0.01" required>
-        <label style="font-size: 10px; color: red"><b>Ważne!:</b> Wpisz kwotę wg. wzoru 1234,56 (w przypadku ceny ponizej 1zł - 00,12)</label><br>
         <?php }} ?>
 
         <label for="img"> Wybierz zdjęcie z listy: </label>
@@ -34,5 +33,6 @@
             <?php endforeach ?>
         </select>
         <input class="universalButton" type="submit" name="edited" value="Zaktualizuj" onClick="return confirm('Czy na pewno chcesz zaktualizować ten produkt?')">
+        <input class="deleteItemButton" type="submit" name="delete" value="Usuń produkt" onClick="return confirm('Czy na pewno chcesz usunąć ten produkt?')">
     </form>
 </div>

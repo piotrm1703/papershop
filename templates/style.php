@@ -450,7 +450,7 @@
     .fabutton:hover {
         background: none;
         opacity: 0.8;
-        color: orange;
+        color: darkslategrey;
     }
     .admin table, th, td {
         border: 1px solid black;
@@ -492,13 +492,25 @@
     .editButton:hover {
         background: none;
         opacity: 0.8;
-        color: orange;
+        color: darkslategrey;
     }
     .editItemForm {
         border-radius: 5px;
         background-color: gainsboro;
         padding: 20px;
         margin: 8px 8px 8px 210px;
+    }
+    .deleteItemButton{
+        background-color: red;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .deleteItemButton:hover {
+        opacity: 0.8;
+        background-color: darkred;
     }
 
     /*end of edit products icon style*/

@@ -67,7 +67,6 @@ require(__DIR__ . '/../connectDB.php');
             'contact' => '/../contact.php',
             'file' => '/../adminAddImg.php',
             'newitem' => '/../adminNewItem.php',
-            'deleteitem' => '/../admindeleteitem.php',
             'orders' => '/../adminOrders.php',
             'orders-search' => '/../adminOrdersSearched.php',
             'sortorders-id' => '/../adminOrdersSorted.php',

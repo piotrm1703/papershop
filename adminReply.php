@@ -30,4 +30,6 @@ if(isset($_POST['submit'])){
             mail($to, $subject, $txt, $headers);
         }
     }
+    header('Location: /?page=messages');
+    die();
 }
