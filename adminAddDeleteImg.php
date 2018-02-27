@@ -4,7 +4,14 @@ if(!isset($_SESSION['authenticatedUser'])) {
     die();
 }
 
+$imagesStatement = $pdo->query('SELECT DISTINCT url FROM images');
+if ($imagesStatement === false) {
+    throw new DatabaseException();
+}
+
+$data = $imagesStatement->fetchAll();
 require_once (__DIR__.'/templates/adminAddImgForm.php');
+require_once (__DIR__.'/templates/adminDeleteImgForm.php');
 
 if(isset($_POST['submit'])){
     $imagesDir = __DIR__.'/web/images/';
@@ -38,5 +45,21 @@ if(isset($_POST['submit'])){
         }
     } else {
         echo ('Błąd! Wybrany plik posiada nieprawidłowe rozszerzenie!');
+    }
+}
+
+if(isset($_POST['delete'])){
+
+    $url = $_POST['imgToDelete'];
+    $unlink = unlink(__DIR__.'/web/'.$url);
+    if($unlink){
+        $imageStatement = $pdo->prepare("DELETE FROM images WHERE url =  ?");
+        $imageStatement->bindParam(1,$url);
+
+        if($imageStatement->execute() === false){
+            throw new DatabaseException();
+        }
+        header('Location: /?page=file');
+        die();
     }
 }

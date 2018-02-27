@@ -62,14 +62,20 @@
     }
     /*end of contant form style*/
 
-    /*admin new img style*/
+    /*admin new img/delete img style*/
     .addImgForm {
         border-radius: 5px;
-        background-color: lightgreen;
+        background-color: greenyellow;
         padding: 20px;
         margin: 8px 8px 8px 210px;
     }
-    /*end of admin new img style*/
+    .deleteImgForm {
+        border-radius: 5px;
+        background-color: coral;
+        padding: 20px;
+        margin: 8px 8px 8px 210px;
+    }
+    /*end of admin new img/delete img style*/
 
     /*admin delete item style*/
     .selectDelete {
