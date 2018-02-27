@@ -14,7 +14,7 @@ require_once (__DIR__.'/templates/adminAddImgForm.php');
 require_once (__DIR__.'/templates/adminDeleteImgForm.php');
 
 if(isset($_POST['submit'])){
-    $imagesDir = __DIR__.'/web/images/';
+    $imagesDir = __DIR__.'/web/uploads/';
     $finfo = finfo_open(FILEINFO_MIME_TYPE);
     if (!$finfo) {
         die('Wystąpił błąd(finfo)!');
@@ -32,7 +32,7 @@ if(isset($_POST['submit'])){
             echo ($fileName.' zdjęcie dodane!');
 
             $imagesStatement = $pdo->prepare("INSERT INTO images VALUES(NULL, ?)");
-            $src = ("/images/".$_FILES['imgSelect']['name']);
+            $src = ("/uploads/".$_FILES['imgSelect']['name']);
             $imagesStatement->bindParam(1,$src);
             header('Location: /?page=file');
             if($imagesStatement->execute() === false){
