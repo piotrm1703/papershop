@@ -9,7 +9,7 @@
         if ($v['id'] === $currentPage) { ?>
 
         <label for="cat">Kategoria</label>
-        <select class="newItemFieldsAdmin" style="color: red" title="cat" name="category" id="category" >
+        <select class="newItemFieldsAdmin" style="color: red" title="cat" name="category" id="category" required >
             <option disabled selected value > -- Do usunięcia lub edycji wybierz kategorię produktu z listy -- </option>
             <option  value="papierypowlekane">Papiery powlekane</option>
             <option value="kartonygraficzne">Kartony graficzne</option>
