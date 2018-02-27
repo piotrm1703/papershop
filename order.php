@@ -65,7 +65,7 @@ if(isset($_POST['submit'])) {
     }
     $to = $_POST['email'];
     $subject = 'Potwierdzenie zamówienia';
-    $txt = ('Zamówienie zostało przyjęte do realizacji. Suma złożoego zamówienia wynosi : '.$sum.'');
+    $txt = ('Zamówienie zostało przyjęte do realizacji. Suma złożonego zamówienia wynosi : '.$sum.' zł');
     $headers = "From: zamowienia@papershop.com.pl" . "\r\n";
     mail($to, $subject, $txt, $headers);
 
