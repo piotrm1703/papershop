@@ -15,10 +15,9 @@ require_once (__DIR__.'/templates/adminDeleteItemForm.php');
 
 if(isset($_POST['delete'])) {
 
-    require_once('connectDB.php');
-    $productStatement = $pdo->prepare("DELETE FROM products WHERE id = :id ");
+    $productStatement = $pdo->prepare("DELETE FROM products WHERE id = ? ");
     $selectedItem = $_POST['item'];
-    $productStatement->bindValue(':id', $selectedItem);
+    $productStatement->bindParam(1, $selectedItem);
     if($productStatement->execute() === false){
         throw new DatabaseException();
     }

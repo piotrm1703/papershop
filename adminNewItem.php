@@ -18,7 +18,6 @@ if(isset($_POST['submit'])){
     $content = ($_POST['content']);
     $price = ($_POST['price']);
     $img = ($_POST['img']);
-    require_once ('connectDB.php');
     $productStatement = $pdo->prepare("INSERT INTO products VALUES(NULL,?,?,?,?)");
     $productStatement->bindParam(1, $category);
     $productStatement->bindParam(2,$content);

@@ -13,7 +13,7 @@ $productArray = $productsStatement->fetchAll();
 $currentPage = substr( $_GET['page'], 11);
 
 $imagesStatement = $pdo->query('SELECT DISTINCT url FROM images');
-if ($imagessStatement === false) {
+if ($imagesStatement === false) {
     throw new DatabaseException();
 }
 

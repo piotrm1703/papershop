@@ -57,11 +57,10 @@ session_start();
 
 require_once (__DIR__.'/../functions.php');
 require_once (__DIR__.'/../classes.php');
-
+require(__DIR__ . '/../connectDB.php');
     siteInterface();
     if(isset($_GET['page'])) {
         $page = $_GET['page'];
-        require_once(__DIR__ . '/../connectDB.php');
         $pages = [
             'offer' => '/../templates/offer.php',
             'promotions' => '/../promotions.php',

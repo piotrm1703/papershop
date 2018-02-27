@@ -10,7 +10,17 @@ $messagesArray = $messagesStatement->fetchAll();
 require_once (__DIR__.'/templates/adminReplyForm.php');
 
 if(isset($_POST['submit'])){
-    foreach (($messagesArray) as $k=> $v) {
+    foreach (($messagesArray) as $k=>$v) {
+        $status = 'odpowiedziano';
+        $productId = $v['id'];
+        if($productId === $currentPage){
+            $messageStatement = $pdo->prepare("UPDATE messages SET status = ? WHERE id = ?");
+            $messageStatement->bindParam(1, $status);
+            $messageStatement->bindParam(2, $productId);
+            if($messageStatement->execute() === false){
+                throw new DatabaseException();
+            }
+        }
 
         if ($v['id'] === $currentPage) {
             $to = $v['email'];

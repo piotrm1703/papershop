@@ -23,7 +23,7 @@
 
         <label for="price">Cena</label>
         <input class="newItemFieldsAdmin" type="number" id="price" name="price" value="<?php echo htmlEscape($v['price']); ?>" min="0" step="0.01" required>
-
+        <label style="font-size: 10px; color: red"><b>Ważne!:</b> Wpisz kwotę wg. wzoru 1234,56 (w przypadku ceny ponizej 1zł - 00,12)</label><br>
         <?php }} ?>
 
         <label for="img"> Wybierz zdjęcie z listy: </label>
