@@ -30,7 +30,7 @@ foreach ($ordersArray as $v){ ?>
                 <button class="fabutton" name="delIcon" type="submit" title="Usuń zamówienie" value="<?php echo htmlEscape($v['id']) ?>" onClick="return confirm('Czy na pewno chcesz usunąć to zamówienie?')"><span class="fa fa-close"></span></button>
             </form>
             <form action="/?page=orders" method="post" >
-                <button class="fabutton" name="realized" type="submit" title="Zmień status na zrealizowany" value="<?php echo htmlEscape($v['id']) ?>" onClick="return confirm('Czy na pewno chcesz zmienić status tego zamówienia na zrealizowany? Spowoduje to wysłanie emaila do klienta z potwierdzeniem!')"><span class="fa fa-check-square"></span></button>
+                <button class="fabutton" name="realized" type="submit" title="Zmień status na zrealizowany i wyślij wiadomość z potwierdzeniem" value="<?php echo htmlEscape($v['id']) ?>" onClick="return confirm('Czy na pewno chcesz zmienić status tego zamówienia na zrealizowany? Spowoduje to wysłanie emaila do klienta z potwierdzeniem!')"><span class="fa fa-check-square"></span></button>
             </form>
             <form action="/?page=orders" method="post" >
                 <button class="fabutton" name="expectant" type="submit" title="Zmień status na oczekujący" value="<?php echo htmlEscape($v['id']) ?>"><span class="fa fa-minus-square"></span></button>

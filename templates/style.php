@@ -416,6 +416,9 @@
         color: white;
         opacity: 0.8;
     }
+    .li-sidemenu:first-child{
+        border-top: 1px solid black;
+    }
     .li-sidemenu:last-child {
         border-bottom: 1px solid black;
     }
