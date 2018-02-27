@@ -10,7 +10,7 @@
 
         <label for="cat">Kategoria</label>
         <select class="newItemFieldsAdmin" style="color: red" title="cat" name="category" id="category" >
-            <option disabled selected value > --Do usunięcia lub edycji wybierz kategorie z listy-- </option>
+            <option disabled selected value > -- Do usunięcia lub edycji wybierz kategorię produktu z listy -- </option>
             <option  value="papierypowlekane">Papiery powlekane</option>
             <option value="kartonygraficzne">Kartony graficzne</option>
             <option value="kartonyopakowaniowe">Kartony opakowaniowe</option>
