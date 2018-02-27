@@ -49,7 +49,7 @@
             <label for="content">Treść</label>
             <textarea class="contactformFields" id="content" name="content" placeholder="Napisz treść wiadomości..." style="height: 150px" required></textarea>
 
-            <input class="universalButton" type="submit" name="submit" value="Wyślij">
+            <input class="universalButton" type="submit" name="submit" value="Wyślij" onClick="return confirm('Czy na pewno chcesz wysłać tę wiadomość?')">
         </form>
     </div>
 </article>
