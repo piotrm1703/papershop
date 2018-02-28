@@ -256,7 +256,7 @@
         margin-left: 300px;
     }
     .logoutlabel {
-        margin-left: 660px;
+        margin-left: 610px;
     }
     .loginNamePasswordStyle {
         width: 20%;
