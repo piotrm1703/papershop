@@ -16,6 +16,7 @@
 <div class="productcontainer">
     <form action="/?page=shoppingCart" method="post">
         <button class="addToCart" name="addToCart" type="submit" value="<?php echo htmlEscape($row->id) ?>">Dodaj do koszyka</button>
+        <input class="quantityField" type="number" name="quantity" placeholder="Ilość..." required min="0">
     </form>
 </div>
 <hr class="horizontalLine">

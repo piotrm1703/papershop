@@ -2,28 +2,32 @@
 
 if (isset($_SESSION['cart'])) {
     if ($_SESSION['cart'] !== []) {
-        $orderArray = $_SESSION['cart'];
-        $productIds = array_map('intval', $orderArray);
-        $productsStatement = $pdo->query('SELECT * FROM products WHERE id IN ('.implode(',', $productIds).')');
+        $productIds = array_map('intval',array_keys($_SESSION['cart']));
+
+        $productsStatement = $pdo->query('SELECT * FROM products WHERE id IN ('.implode(',', $productIds).') ORDER BY content');
         if ($productsStatement === false) {
             throw new DatabaseException();
         }
-
         $cartProducts = $productsStatement->fetchAll(PDO::FETCH_OBJ);
-        $duplicate = array_count_values($_SESSION['cart']);
 
         foreach ($cartProducts as $cartProduct) {
-            $arraySum[] = $duplicate[$cartProduct->id] * htmlEscape($cartProduct->price);
+            foreach ($productIds as $productId) {
+                if ($cartProduct->id == $productId) {
+                    $productQuantity = $_SESSION['cart'][$productId];
+                    $productSum = $productQuantity * ($cartProduct->price);
+                    $arrayProduct[] = [
+                        'id'=> $cartProduct->id,
+                        'quantity'=> $productQuantity,
+                        'price'=> ($cartProduct->price),
+                    ];
+                }
+            }
+            $arraySum[] = $productQuantity  * ($cartProduct->price);
             $sum = array_sum($arraySum);
-            $arrayProduct[] = [
-                'id'=> $cartProduct->id,
-                'quantity'=> $duplicate[$cartProduct->id],
-                'price'=> htmlEscape($cartProduct->price),
-            ];
-            require (__DIR__.'/templates/orderProductView.php');
 
+            require (__DIR__.'/templates/orderProductView.php');
          }
-         require (__DIR__ . '/templates/orderViewSum.php');
+         require (__DIR__ .'/templates/orderViewSum.php');
 
     } else {
         echo 'Brak produktów!';

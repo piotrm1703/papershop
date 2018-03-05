@@ -297,7 +297,7 @@
 
     /*product view style*/
     .price {
-        text-align: left;
+        /*text-align: left;*/
     }
     .imgView {
         float:left;
@@ -329,30 +329,60 @@
         position: relative;
         bottom: 10px;
     }
+    .quantityField {
+        width: 55px;
+        height: 19px;
+        font-size: 13px;
+        background-color: aliceblue;
+    }
     /*end of product view style*/
 
     /*shopping cart style*/
     .deleteFromCart {
-        background-color: red;
-        color: white;
+        background: none;
+        padding: 0;
         border: none;
-        border-radius: 15px;
-        cursor: pointer;
+        color: firebrick;
+        position: relative;
+        left: 640px;
+        bottom: 100px;
+        font-size: 17px;
     }
     .deleteFromCart:hover {
+        background: none;
         opacity: 0.8;
-        background-color:darkred;
+        color: darkslategrey;
     }
     .addOne {
-        background-color: darkslategrey;
-        color: white;
+        color: darkslategrey;
+        background: none;
+        padding: 0;
         border: none;
-        border-radius: 15px;
         cursor: pointer;
+        position: relative;
+        bottom: 60px;
+        left: 110px;
+        font-size: 18px;
     }
     .addOne:hover {
         opacity: 0.8;
-        background-color:darkred;
+        color:darkred;
+    }
+    .minusOne {
+        color: darkslategrey;
+        background: none;
+        padding: 0;
+        border: none;
+        cursor: pointer;
+        position: relative;
+        bottom: 60px;
+        left: 115px;
+        font-size: 18px;
+    }
+    }
+    .minusOne:hover {
+        opacity: 0.8;
+        color:darkred;
     }
     .summaryButton {
         background-color: darkslategrey;

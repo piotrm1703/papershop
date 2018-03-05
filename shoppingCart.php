@@ -3,34 +3,47 @@
 </article>
 
 <?php
+
 if (isset($_POST['addToCart'])) {
     if (isset($_SESSION['cart'])) {
-        $sessionArray = $_SESSION['cart'];
+        $_SESSION['cart'];
     } else {
-        $sessionArray = [];
+        $_SESSION['cart'] = [];
     }
-    $sessionArray[] = $_POST['addToCart'];
-    $_SESSION['cart'] = $sessionArray;
+
+    $productId = $_POST['addToCart'];
+    $quantity = $_POST['quantity'];
+    $_SESSION['cart'][$productId] = $quantity;
+
     header('Location: /?page=shoppingCart');
     die();
 }
 
 if (isset($_POST['addOne'])) {
-    if (isset($_SESSION['cart'])) {
-        $sessionArray = $_SESSION['cart'];
-    } else {
-        $sessionArray = [];
+    foreach (array_keys($_SESSION['cart']) as $productId){
+        if($productId == $_POST['addOne']) {
+            $_SESSION['cart'][$productId]++;
+        }
     }
-    $sessionArray[] = $_POST['addOne'];
-    $_SESSION['cart'] = $sessionArray;
+    header('Location: /?page=shoppingCart');
+    die();
+}
+if (isset($_POST['minusOne'])) {
+    foreach (array_keys($_SESSION['cart']) as $productId){
+        if($productId == $_POST['minusOne']) {
+            $_SESSION['cart'][$productId]--;
+        }
+    }
+    header('Location: /?page=shoppingCart');
+    die();
 }
 
 if (isset($_POST['deleteFromCart'])) {
-    $sessionArray = $_SESSION['cart'];
-    if (($key = array_search($_POST['deleteFromCart'], $sessionArray)) !== false) {
-        unset($sessionArray[$key]);
+    foreach (array_keys($_SESSION['cart']) as $productId){
+        if($productId == $_POST['deleteFromCart']) {
+            unset($_SESSION['cart'][$productId]);
+        }
     }
-    $_SESSION['cart'] = $sessionArray;
     header('Location: /?page=shoppingCart');
     die();
 }
@@ -43,22 +56,25 @@ if (isset($_POST['deleteAll'])){
 
 if (isset($_SESSION['cart'])) {
     if ($_SESSION['cart'] !== []) {
-        $cartArray = $_SESSION['cart'];
-        $productIds = array_map('intval', $cartArray);
+        $productIds = array_map('intval',array_keys($_SESSION['cart']));
 
-        $productsStatement = $pdo->query('SELECT * FROM products WHERE id IN ('.implode(',', $productIds).')');
+        $productsStatement = $pdo->query('SELECT * FROM products WHERE id IN ('.implode(',', $productIds).') ORDER BY content');
         if ($productsStatement === false) {
             throw new DatabaseException();
         }
         $cartProducts = $productsStatement->fetchAll(PDO::FETCH_OBJ);
-        $duplicate = array_count_values($_SESSION['cart']);
 
         foreach ($cartProducts as $cartProduct) {
-            $count = $duplicate[$cartProduct->id];
-            $productSum = $count * htmlEscape($cartProduct->price);
-
-            require (__DIR__.'/templates/cartProductView.php');
+            foreach ($productIds as $productId) {
+//                $a = $key;
+                if ($cartProduct->id == $productId) {
+                    $productQuantity = $_SESSION['cart'][$productId];
+                }
+            }
+            $productSum = $productQuantity  * ($cartProduct->price);
+            require (__DIR__.'/templates/cartView.php');
         }
+
     } else {
         echo 'Koszyk jest pusty!';
     }
@@ -69,5 +85,19 @@ if (isset($_SESSION['cart'])) {
 if(isset($_SESSION['cart']) && $_SESSION['cart'] !== []) {
     require_once (__DIR__.'/templates/cartButtons.php');
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
