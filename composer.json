@@ -1,0 +1,14 @@
+{
+    "name": "marcel/papershop",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marcel",
+            "email": "pjotr.marcel@gmail.com"
+        }
+    ],
+    "require": {
+        "imagine/imagine": "^0.7.1"
+    }
+}

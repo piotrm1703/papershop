@@ -55,6 +55,7 @@ if (!file_exists("debug.txt")) {
 ob_start();
 session_start();
 
+require_once (__DIR__.'/../vendor/autoload.php');
 require_once (__DIR__.'/../functions.php');
 require_once (__DIR__.'/../classes.php');
 require(__DIR__ . '/../connectDB.php');
