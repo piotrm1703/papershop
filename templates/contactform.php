@@ -27,19 +27,19 @@
 
     <div class="contactForm">
         <h1>Skontaktuj się z nami!</h1>
-        <form action="" method="post">
+        <form action="/?page=contact" method="post">
 
             <label for="name">Imię</label>
-            <input class="contactformFields" id="name" name="name" placeholder="Podaj imię..." required>
+            <input class="contact_form_field" id="contact-firstname" name="contact-firstname" placeholder="Podaj imię..." required>
 
             <label for="surname">Nazwisko</label>
-            <input class="contactformFields" id="surname" name="surname" placeholder="Podaj nazwisko..." required>
+            <input class="contact_form_field" id="contact-surname" name="contact-surname" placeholder="Podaj nazwisko..." required>
 
             <label for="email">E-mail</label>
-            <input class="contactformFields" type="email" id="email" name="email" placeholder="Podaj email..." required>
+            <input class="contact_form_field" type="email" id="contact-email" name="contact-email" placeholder="Podaj email..." required>
 
             <label for="subject">Temat</label>
-            <select class="contactformFields" title="sub" name="subject" id="subject" required>
+            <select class="contact_form_field" title="sub" name="contact-subject" id="contact-subject" required>
                 <option disabled selected value> -- Wybierz temat -- </option>
                 <option value="products">Produkty w sprzedaży</option>
                 <option value="delivery">Dostawa</option>
@@ -47,7 +47,7 @@
             </select>
 
             <label for="content">Treść</label>
-            <textarea class="contactformFields" id="content" name="content" placeholder="Napisz treść wiadomości..." style="height: 150px" required></textarea>
+            <textarea class="contact_form_field" id="contact-content" name="contact-content" placeholder="Napisz treść wiadomości..." style="height: 150px" required></textarea>
 
             <input class="universalButton" type="submit" name="submit" value="Wyślij" onClick="return confirm('Czy na pewno chcesz wysłać tę wiadomość?')">
         </form>

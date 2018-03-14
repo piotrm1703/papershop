@@ -41,7 +41,7 @@
     /*end of search style*/
 
     /*contact form style*/
-    .contactformFields{
+    .contact_form_field{
         width: 100%;
         padding: 10px;
         border: 1px solid black;

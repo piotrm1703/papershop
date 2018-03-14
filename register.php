@@ -3,12 +3,15 @@
 require_once (__DIR__.'/templates/registerForm.php');
 
 if(isset($_POST['register'])) {
-    if (!(isset($_POST['firstname']) &&
-        isset($_POST['surname']) &&
-        isset($_POST['username']) &&
+    if (!(isset($_POST['register-firstname']) &&
+        isset($_POST['register-surname']) &&
+        isset($_POST['register-username']) &&
         isset($_POST['password']) &&
         isset($_POST['password_repeated']) &&
-        isset($_POST['email'])
+        isset($_POST['register-email']) &&
+        isset($_POST['register-city']) &&
+        isset($_POST['register-zipcode']) &&
+        isset($_POST['register-address'])
     )) {
         throw new Exception('Jakiś gamoń kombinuje z polami');
     }
@@ -24,9 +27,9 @@ if(isset($_POST['register'])) {
         $email[] = $data->email;
     }
 
-    if (!preg_match("/^[a-zA-Z]*$/",$_POST["firstname"])) {
+    if (!preg_match("/^[a-zA-Z]*$/",$_POST["register-firstname"])) {
         echo "W imieniu dozwolone są tylko litery!";
-    }elseif(!preg_match("/^[a-zA-Z]*$/",$_POST["surname"])) {
+    }elseif(!preg_match("/^[a-zA-Z]*$/",$_POST["register-surname"])) {
         echo "W nazwisku dozwolone są tylko litery!";
     }elseif($_POST['password'] !== $_POST['password_repeated']) {
         echo "Hasła różnią się!";
@@ -36,23 +39,23 @@ if(isset($_POST['register'])) {
         echo "Twoje hasło musi zawierać conajmniej 1 wielką literę!";
     }elseif (!preg_match("#[a-z]+#", $_POST['password'])) {
         echo "Twoje hasło musi zawierać conajmniej 1 małą literę!";
-    }elseif (in_array($_POST['username'],$username)) {
+    }elseif (in_array($_POST['register-username'],$username)) {
         echo 'Wybrana nazwa użytkownika już istnieje!';
-    }elseif (in_array($_POST['email'],$email)) {
+    }elseif (in_array($_POST['register-email'],$email)) {
         echo 'Użytkownik o podanym emailu już istnieje!';
     }else {
 
         $verifyKey = generateRandomString();
 
         $userStatement = $pdo->prepare("INSERT INTO users VALUES(NULL,:firstname,:surname,:username,:password,:email,:city,:zipcode,:address,:verifyKey)");
-        $userStatement->bindParam(':firstname', $_POST['firstname']);
-        $userStatement->bindParam(':surname', $_POST['surname']);
-        $userStatement->bindParam(':username', $_POST['username']);
+        $userStatement->bindParam(':firstname', $_POST['register-firstname']);
+        $userStatement->bindParam(':surname', $_POST['register-surname']);
+        $userStatement->bindParam(':username', $_POST['register-username']);
         $userStatement->bindParam(':password', $_POST['password']);
-        $userStatement->bindParam(':email', $_POST['email']);
-        $userStatement->bindParam(':city', $_POST['city']);
-        $userStatement->bindParam(':zipcode', $_POST['zipcode']);
-        $userStatement->bindParam(':address', $_POST['address']);
+        $userStatement->bindParam(':email', $_POST['register-email']);
+        $userStatement->bindParam(':city', $_POST['register-city']);
+        $userStatement->bindParam(':zipcode', $_POST['register-zipcode']);
+        $userStatement->bindParam(':address', $_POST['register-address']);
         $userStatement->bindParam(':verifyKey', $verifyKey);
         if ($userStatement->execute() === false) {
             throw new DatabaseException();

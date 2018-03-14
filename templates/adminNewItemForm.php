@@ -6,7 +6,7 @@
 
         <label for="cat">Kategoria</label>
 
-        <select class="newItemFieldsAdmin" title="cat" name="category" id="category" required>
+        <select class="newItemFieldsAdmin" title="category" name="new-item-category" id="new-item-category" required>
             <option disabled selected value> -- wybierz kategorie -- </option>
             <option value="Papiery-powlekane">Papiery powlekane</option>
             <option value="Kartony-graficzne">Kartony graficzne</option>
@@ -17,13 +17,13 @@
         </select>
 
         <label for="cont">Nazwa i opis</label>
-        <textarea class="newItemFieldsAdmin" id="content" name="content" placeholder="Wstaw nazwę i opis produktu..." style="height: 150px" required></textarea>
+        <textarea class="newItemFieldsAdmin" id="new-item-content" name="new-item-content" placeholder="Wstaw nazwę i opis produktu..." style="height: 150px" required></textarea>
 
         <label for="price">Cena</label>
-        <input class="newItemFieldsAdmin" type="number" id="price" name="price" title="price" value="any" min="0" step="0.01" required>
+        <input class="newItemFieldsAdmin" type="number" id="new-item-price" name="new-item-price" title="price" value="any" min="0" step="0.01" required>
 
         <label for="img"> Wybierz zdjęcie z listy: </label>
-        <select name="img" id="img">
+        <select name="new-item-img" id="new-item-img">
             <?php foreach ($data as $img): ?>
                 <option value="<?php echo htmlEscape($img["id"]); ?>"><?php echo htmlEscape($img["url"]); ?></option>
             <?php endforeach ?>

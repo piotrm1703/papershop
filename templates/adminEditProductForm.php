@@ -9,7 +9,7 @@
         if ($v['id'] === $currentPage) { ?>
 
         <label for="cat">Kategoria</label>
-        <select class="newItemFieldsAdmin" title="cat" name="category" id="category">
+        <select class="newItemFieldsAdmin" title="cat" name="edit-category" id="edit-category">
             <option selected value="<?php echo htmlEscape($products->category); ?>" style="color: red; font-weight: bold"><?php echo htmlEscape($products->category); ?></option>
             <option disabled="disabled">---------------------------------------------------------------------------------------------------------------------------------------------</option>
             <option value="Papiery-powlekane">Papiery powlekane</option>
@@ -20,15 +20,15 @@
             <option value="Papier-offsetowy">Papier offsetowy</option>
         </select>
         <label for="content">Nazwa i opis</label>
-        <textarea id="content" class="newItemFieldsAdmin" name="content" style="height: 150px" required><?php echo htmlEscape($v['content']); ?></textarea>
+        <textarea id="edit-content" class="newItemFieldsAdmin" name="edit-content" style="height: 150px" required><?php echo htmlEscape($v['content']); ?></textarea>
 
         <label for="price">Cena</label>
-        <input class="newItemFieldsAdmin" type="number" id="price" name="price" value="<?php echo htmlEscape($v['price']); ?>" min="0" step="0.01" required>
+        <input class="newItemFieldsAdmin" type="number" id="edit-price" name="edit-price" value="<?php echo htmlEscape($v['price']); ?>" min="0" step="0.01" required>
         <?php }} ?>
 
         <label for="img"> Wybierz zdjęcie z listy: </label>
 
-        <select name="img" id="img">
+        <select name="edit-img" id="edit-img">
             <?php foreach ($data as $img): ?>
                 <option value="<?php echo htmlEscape($img['id']); ?>"><?php echo htmlEscape($img["url"]); ?></option>
             <?php endforeach ?>

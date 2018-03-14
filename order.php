@@ -56,12 +56,12 @@ foreach ($usersStatement as $userData ){
 require_once (__DIR__.'/templates/orderForm.php');
 
 if(isset($_POST['submit'])) {
-    if (!(isset($_POST['name']) &&
-        isset($_POST['surname']) &&
-        isset($_POST['email']) &&
-        isset($_POST['city']) &&
-        isset($_POST['zipcode']) &&
-        isset($_POST['address'])
+    if (!(isset($_POST['order-firstname']) &&
+        isset($_POST['order-surname']) &&
+        isset($_POST['order-email']) &&
+        isset($_POST['order-city']) &&
+        isset($_POST['order-zipcode']) &&
+        isset($_POST['order-address'])
     )) {
         throw new Exception('Jakiś gamoń kombinuje z polami');
     }
