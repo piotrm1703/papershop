@@ -8,12 +8,12 @@
 
         <select class="newItemFieldsAdmin" title="cat" name="category" id="category" required>
             <option disabled selected value> -- wybierz kategorie -- </option>
-            <option value="papierypowlekane">Papiery powlekane</option>
-            <option value="kartonygraficzne">Kartony graficzne</option>
-            <option value="kartonyopakowaniowe">Kartony opakowaniowe</option>
-            <option value="papieryetykietowe">Papiery etykietowe</option>
-            <option value="papierysamokopiujace">Papiery samokopiujące</option>
-            <option value="papieroffsetowy">Papier offsetowy</option>
+            <option value="Papiery-powlekane">Papiery powlekane</option>
+            <option value="Kartony-graficzne">Kartony graficzne</option>
+            <option value="Kartony-opakowaniowe">Kartony opakowaniowe</option>
+            <option value="Papiery-etykietowe">Papiery etykietowe</option>
+            <option value="Papiery-samokopiujace">Papiery samokopiujace</option>
+            <option value="Papier-offsetowy">Papier offsetowy</option>
         </select>
 
         <label for="cont">Nazwa i opis</label>
@@ -24,8 +24,8 @@
 
         <label for="img"> Wybierz zdjęcie z listy: </label>
         <select name="img" id="img">
-            <?php foreach ($data as $row): ?>
-                <option><?php echo htmlEscape($row["url"]) ?></option>
+            <?php foreach ($data as $img): ?>
+                <option value="<?php echo htmlEscape($img["id"]) ?>"><?php echo htmlEscape($img["url"]) ?></option>
             <?php endforeach ?>
         </select>
 

@@ -59,99 +59,115 @@ require_once (__DIR__.'/../functions.php');
 require_once (__DIR__.'/../classes.php');
 require(__DIR__ . '/../connectDB.php');
     siteInterface();
-    if(isset($_GET['page'])) {
-        $page = $_GET['page'];
-        $pages = [
-            'offer' => '/../templates/offer.php',
-            'promotions' => '/../promotions.php',
-            'contact' => '/../contact.php',
-            'file' => '/../adminAddDeleteImg.php',
-            'newitem' => '/../adminNewItem.php',
-            'orders' => '/../adminOrders.php',
-            'orders-search' => '/../adminOrdersSearched.php',
-            'sortorders-id' => '/../adminOrdersSorted.php',
-            'sortorders-firstname' => '/../adminOrdersSorted.php',
-            'sortorders-surname' => '/../adminOrdersSorted.php',
-            'sortorders-email' => '/../adminOrdersSorted.php',
-            'sortorders-city' => '/../adminOrdersSorted.php',
-            'sortorders-sum' => '/../adminOrdersSorted.php',
-            'sortorders-date' => '/../adminOrdersSorted.php',
-            'sortorders-status' => '/../adminOrdersSorted.php',
-            'messages' => '/../adminMessages.php',
-            'messages-search' => '/../adminMessagesSearched.php',
-            'sort-id' => '/../adminMessagesSorted.php',
-            'sort-firstname' => '/../adminMessagesSorted.php',
-            'sort-surname' => '/../adminMessagesSorted.php',
-            'sort-email' => '/../adminMessagesSorted.php',
-            'sort-subject' => '/../adminMessagesSorted.php',
-            'sort-content' => '/../adminMessagesSorted.php',
-            'sort-date' => '/../adminMessagesSorted.php',
-            'sort-status' => '/../adminMessagesSorted.php',
-            'shoppingCart' => '/../shoppingCart.php',
-            'order' => '/../order.php',
-            'orderThanks' => '/../orderThanks.php',
-        ];
 
-        if (isset($pages[$page])){
-            require __DIR__.$pages[$page];
-        } else {
-            $isProductCategoryPage = false;
+if(isset($_GET['page'])) {
+    $pages = [
+        'offer' => '/../templates/offer.php',
+        'promotions' => '/../promotions.php',
+        'contact' => '/../contact.php',
+        'file' => '/../adminAddDeleteImg.php',
+        'newitem' => '/../adminNewItem.php',
+        'orders' => '/../adminOrders.php',
+        'orders-search' => '/../adminOrdersSearched.php',
+        'sortorders-id' => '/../adminOrdersSorted.php',
+        'sortorders-clientID' => '/../adminOrdersSorted.php',
+        'sortorders-sum' => '/../adminOrdersSorted.php',
+        'sortorders-date' => '/../adminOrdersSorted.php',
+        'sortorders-status' => '/../adminOrdersSorted.php',
+        'messages' => '/../adminMessages.php',
+        'messages-search' => '/../adminMessagesSearched.php',
+        'sort-id' => '/../adminMessagesSorted.php',
+        'sort-firstname' => '/../adminMessagesSorted.php',
+        'sort-surname' => '/../adminMessagesSorted.php',
+        'sort-email' => '/../adminMessagesSorted.php',
+        'sort-subject' => '/../adminMessagesSorted.php',
+        'sort-content' => '/../adminMessagesSorted.php',
+        'sort-date' => '/../adminMessagesSorted.php',
+        'sort-status' => '/../adminMessagesSorted.php',
+        'shoppingCart' => '/../shoppingCart.php',
+        'order' => '/../order.php',
+        'orderThanks' => '/../orderThanks.php',
+        'registerThanks' => '/../registerThanks.php',
+        'registerVerifyThanks' => '/../registerVerifyThanks.php',
+        'register' => '/../register.php',
+    ];
 
-            $productsStatement = $pdo->query('SELECT * FROM products');
+    if (isset($pages[$_GET['page']])) {
+        require __DIR__.$pages[$_GET['page']];
+    } else {
+        $isProductCategoryPage = false;
+        $productsStatement = $pdo->query('SELECT products.id, products.category, products.content, uploads.url , products.price FROM products INNER JOIN uploads ON products.uploadID = uploads.id ORDER BY products.id');
 
-            if ($productsStatement === false) {
+        if ($productsStatement === false) {
+            throw new DatabaseException();
+        }
+
+        while ($products = $productsStatement->fetch(PDO::FETCH_OBJ)) {
+            if ($products->category === $_GET['page']) {
+                require(__DIR__ . '/../templates/productViewForm.php');
+                $isProductCategoryPage = true;
+            }
+        }
+
+        if (!$isProductCategoryPage) {
+            $isProductMessagesPage = false;
+            $messagesStatement = $pdo->query('SELECT * FROM messages');
+
+            if ($messagesStatement === false) {
                 throw new DatabaseException();
             }
 
-            while ($row = $productsStatement->fetch(PDO::FETCH_OBJ)) {
-                if ($row->category === $page) {
-                    require(__DIR__ . '/../templates/productViewForm.php');
-                    $isProductCategoryPage = true;
+            while ($messages = $messagesStatement->fetch(PDO::FETCH_OBJ)) {
+                if ($_GET['page'] === 'adminReply' . $messages->id) {
+                    require(__DIR__ . '/../adminReply.php');
+                    $isProductMessagesPage = true;
+                    break;
                 }
             }
+            if (!$isProductMessagesPage) {
+                $isEditPage = false;
+                $productsStatement = $pdo->query('SELECT * FROM products');
 
-            if (!$isProductCategoryPage) {
-                $isProductMessagesPage = false;
-
-                $messagesStatement = $pdo->query('SELECT * FROM messages');
-                if ($messagesStatement === false) {
+                if ($productsStatement === false) {
                     throw new DatabaseException();
                 }
 
-                while ($row2 = $messagesStatement->fetch(PDO::FETCH_OBJ)) {
-                    if ($page === 'adminReply' . $row2->id) {
-                        require(__DIR__ . '/../adminReply.php');
-                        $isProductMessagesPage = true;
+                while ($products = $productsStatement->fetch(PDO::FETCH_OBJ)) {
+                    if ($_GET['page'] === 'editProduct' . $products->id) {
+                        require(__DIR__ . '/../adminEditProduct.php');
+                        $isEditPage = true;
                         break;
                     }
                 }
-                if(!$isProductMessagesPage){
-                    $isEditPage = false;
-                    $productsStatement = $pdo->query('SELECT * FROM products');
-                    if ($productsStatement === false) {
-                        throw new DatabaseException();
-                    }
-
-                    $arrayQuantity2 = $productsStatement->rowCount();
-                    while ($row3 = $productsStatement->fetch(PDO::FETCH_OBJ)) {
-                        if ($page === 'editProduct' . $row3->id) {
-                            require(__DIR__ . '/../adminEditProduct.php');
-                            $isEditPage = true;
-                            break;
-                        }
-                    }
-                    if(!$isEditPage){
-                        echo "Nieprawidłowy adres strony!";
-                    }
+                if (!$isEditPage) {
+                    echo "Nieprawidłowy adres strony!";
                 }
             }
         }
-} else {
-        require (__DIR__.'/../templates/mainPage.php');
     }
+} else {
+    require (__DIR__.'/../templates/mainPage.php');
+}
 
-    $pageContainer = ob_get_clean();
+$verifyUserStatement = $pdo->query('SELECT verifyKey FROM users');
+while ($verifyKeys = $verifyUserStatement->fetch(PDO::FETCH_OBJ)) {
+    if (isset($_GET['verify_email']) && $_GET['verify_email'] === $verifyKeys->verifyKey) {
+
+        $deleteVerifyKeyStatement = $pdo->prepare('UPDATE users SET verifyKey = ?  WHERE verifyKey = ?');
+        $key = $verifyKeys->verifyKey;
+        $newKey = '';
+
+        $deleteVerifyKeyStatement->bindParam(1,$newKey);
+        $deleteVerifyKeyStatement->bindParam(2,$key);
+        if($deleteVerifyKeyStatement->execute() === false){
+            throw new DatabaseException();
+        }
+        header('Location: /?page=registerVerifyThanks');
+        $isVerifyPage = true;
+        break;
+    }
+}
+
+$pageContainer = ob_get_clean();
 
 require (__DIR__.'/../templates/layout.php');
-
-

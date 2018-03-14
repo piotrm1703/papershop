@@ -7,7 +7,6 @@
         height: 100%;
         min-height:100%;
     }
-
     /*end of site container style*/
 
     /* main button style*/
@@ -243,7 +242,7 @@
     /*footer style*/
     footer {
         position: relative;
-        margin-top: -5px;
+        margin-top: 0;
         height: 18px;
         clear: both;
         text-align: right;
@@ -253,10 +252,7 @@
 
     /*login form style*/
     .loginlabel {
-        margin-left: 300px;
-    }
-    .logoutlabel {
-        margin-left: 610px;
+        /*margin-left: 170px;*/
     }
     .loginNamePasswordStyle {
         width: 20%;
@@ -281,6 +277,53 @@
         background-color: darkred;
     }
     /*end of login form style*/
+
+    /* register form style*/
+    .registerButton {
+        background-color: darkslategrey;
+        color: white;
+        border-radius: 4px;
+        padding: 3px 10px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 15%;
+        float: right;
+        margin-right: 170px;
+    }
+    .registerButton:hover {
+        opacity: 0.8;
+        background-color:darkred;
+    }
+    .registerFields{
+        width: 80%;
+        padding: 5px;
+        border: 1px solid black;
+        border-radius: 5px;
+        box-sizing: border-box;
+        margin-top: 0;
+        margin-bottom: 5px;
+        resize: vertical;
+    }
+    .registerForm {
+        border-radius: 5px;
+        background-color: aliceblue;
+        padding: 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+    .passwordField {
+        width: 49%;
+        padding: 5px;
+        border: 1px solid black;
+        border-radius: 5px;
+        box-sizing: border-box;
+        margin-top: 0;
+        margin-bottom: 5px;
+        resize: vertical;
+    }
+    /*end of register form style*/
 
     /*link style*/
     .offer a {
@@ -330,8 +373,7 @@
         bottom: 10px;
     }
     .quantityField {
-        width: 55px;
-        height: 19px;
+        width: 55px;width: 65px;        height: 19px;
         font-size: 13px;
         background-color: aliceblue;
     }

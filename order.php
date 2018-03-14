@@ -1,5 +1,10 @@
 <?php
 
+if(!isset($_SESSION['authenticatedUser'])) {
+    header('Location: /');
+    die();
+}
+
 if (isset($_SESSION['cart'])) {
     if ($_SESSION['cart'] !== []) {
         $productIds = array_map('intval',array_keys($_SESSION['cart']));
@@ -36,6 +41,18 @@ if (isset($_SESSION['cart'])) {
     echo 'Brak produktów!';
 }
 
+$currentUser = $_SESSION['authenticatedUser'];
+$usersStatement = $pdo->prepare('SELECT * FROM users WHERE username = ?');
+$usersStatement->bindParam(1,$currentUser);
+if($usersStatement->execute() === false){
+    throw new DatabaseException();
+}
+$usersStatement = $usersStatement->fetchAll();
+
+foreach ($usersStatement as $userData ){
+    $data = $userData;
+}
+
 require_once (__DIR__.'/templates/orderForm.php');
 
 if(isset($_POST['submit'])) {
@@ -50,20 +67,16 @@ if(isset($_POST['submit'])) {
     }
 
     $status='oczekujący';
-    $serialized = serialize($arrayProduct);
+    $serializedProducts = serialize($arrayProduct);
     $date = date("Y-m-d H:i:s");
+    $userId = $data['id'];
 
-    $ordersStatement = $pdo->prepare("INSERT INTO orders VALUES(NULL,:name,:surname,:email,:city,:zipcode,:address,:sum,:products,:date,:status)");
-    $ordersStatement->bindParam(':name', $_POST['name']);
-    $ordersStatement->bindParam(':surname', $_POST['surname']);
-    $ordersStatement->bindParam(':email', $_POST['email']);
-    $ordersStatement->bindParam(':city', $_POST['city']);
-    $ordersStatement->bindParam(':zipcode', $_POST['zipcode']);
-    $ordersStatement->bindParam(':address', $_POST['address']);
-    $ordersStatement->bindParam(':sum', $sum);
-    $ordersStatement->bindParam(':products', $serialized);
-    $ordersStatement->bindParam(':date', $date);
-    $ordersStatement->bindParam(':status', $status);
+    $ordersStatement = $pdo->prepare("INSERT INTO orders VALUES(NULL,?,?,?,?,?)");
+    $ordersStatement->bindParam(1, $userId);
+    $ordersStatement->bindParam(2, $sum);
+    $ordersStatement->bindParam(3, $serializedProducts);
+    $ordersStatement->bindParam(4, $date);
+    $ordersStatement->bindParam(5, $status);
     if($ordersStatement->execute() === false){
         throw new DatabaseException();
     }

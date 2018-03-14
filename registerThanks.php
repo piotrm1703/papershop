@@ -1,0 +1,2 @@
+<h2 style="text-align: center"> Dziękujemy za rejestrację!</h2>
+<p style="text-align: center">Na twój email wysłaliśmy link potwierdzający - kliknij w niego jeśli nadal wyrażasz chęć rejestracji. Jeśli nie widzisz go w głownej skrzynce - sprawdź <b>spam</b>!</p>

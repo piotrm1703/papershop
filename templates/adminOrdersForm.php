@@ -12,15 +12,12 @@
 <table>
   <tr>
       <th class="adminTh"></th>
-      <th class="adminTh" width="30px"><a href="/?page=sortorders-id">ID</a></th>
-      <th class="adminTh" width="80px"><a href="/?page=sortorders-firstname">Imię</th>
-      <th class="adminTh" width="80px"><a href="/?page=sortorders-surname">Nazwisko</th>
-      <th class="adminTh" width="140px"><a href="/?page=sortorders-email">Email</th>
-      <th class="adminTh" width="250px"><a href="/?page=sortorders-city">Dane do wysyłki</th>
-      <th class="adminTh" width="250x">Produkty</th>
-      <th class="adminTh" width="50px"><a href="/?page=sortorders-sum">Suma</th>
+      <th class="adminTh" width="90px"><a href="/?page=sortorders-id">ID zamówienia</a></th>
+      <th class="adminTh" width="90px"><a href="/?page=sortorders-clientID">ID klienta</a></th>
+      <th class="adminTh" width="300px">Produkty</th>
+      <th class="adminTh" width="220px"><a href="/?page=sortorders-sum">Suma</th>
       <th class="adminTh" width="80px"><a href="/?page=sortorders-date">Data złożenia</th>
-      <th class="adminTh" width="50px"><a href="/?page=sortorders-status">Status</th>
+      <th class="adminTh" width="90px"><a href="/?page=sortorders-status">Status</th>
   </tr>
 
 <?php
@@ -37,10 +34,7 @@ foreach ($ordersArray as $v){ ?>
             </form>
             </td><td>
             <?php echo htmlEscape($v['id']) ?></td><td>
-            <?php echo htmlEscape($v['firstname']) ?></td><td>
-            <?php echo htmlEscape($v['surname']) ?></td><td>
-            <?php echo htmlEscape($v['email']) ?></td><td>
-            <?php echo htmlEscape($v['city']) ?>,<?php echo htmlEscape($v['zipcode']) ?>,<?php echo htmlEscape($v['address']) ?></td><td>
+            <?php echo htmlEscape($v['clientID']) ?></td><td>
             <?php foreach($v['products'] as $product) { ?>
                 <ul><li>Id produktu:<?php echo htmlEscape($product['id']) ?>, Ilość:<?php echo htmlEscape($product['quantity']) ?></li></ul>
             <?php } ?>

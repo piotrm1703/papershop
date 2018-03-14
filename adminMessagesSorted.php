@@ -1,8 +1,7 @@
 <?php
-if(!isset($_SESSION['authenticatedUser'])) {
-    header('Location: /');
-    die();
-}
+
+require (__DIR__.'/userVerification.php');
+
 $sortType = substr($_GET['page'],5);
 $sortTypes = [
     'id',
@@ -25,9 +24,6 @@ if($messagesStatement->execute() === false){
 }
 $messagesArray = $messagesStatement->fetchAll();
 
-
-
 require_once(__DIR__.'/templates/adminMessagesForm.php');
 
 require_once (__DIR__.'/adminMessagesButtons.php');
-

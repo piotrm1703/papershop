@@ -1,28 +1,20 @@
 <?php
-if(!isset($_SESSION['authenticatedUser'])) {
-    header('Location: /');
-    die();
-}
+
+require (__DIR__.'/userVerification.php');
 
 if(isset($_POST['ordersearch'])) {
 
-    $ordersStatement = $pdo->prepare("SELECT * FROM orders WHERE id LIKE ? OR firstname LIKE ? OR surname LIKE ? OR email LIKE ? OR city LIKE ? OR zipcode LIKE ? OR address LIKE ? OR sum LIKE ? OR products LIKE ? OR status LIKE ? ");
+    $ordersStatement = $pdo->prepare("SELECT * FROM orders WHERE id LIKE ? OR clientID LIKE ? OR sum LIKE ? OR products LIKE ? OR status LIKE ? ");
     $search = '%'.sqlLikeEscape($_POST['searchboxorders']).'%';
     $ordersStatement->bindParam(1,$search);
     $ordersStatement->bindParam(2,$search);
     $ordersStatement->bindParam(3,$search);
     $ordersStatement->bindParam(4,$search);
     $ordersStatement->bindParam(5,$search);
-    $ordersStatement->bindParam(6,$search);
-    $ordersStatement->bindParam(7,$search);
-    $ordersStatement->bindParam(8,$search);
-    $ordersStatement->bindParam(9,$search);
-    $ordersStatement->bindParam(10,$search);
     if($ordersStatement->execute() === false){
         throw new DatabaseException();
     }
     $ordersArray = $ordersStatement->fetchAll();
-
 }
 
 foreach ($ordersArray as $key=>$v)

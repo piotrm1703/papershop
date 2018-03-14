@@ -76,11 +76,11 @@ if (isset($_SESSION['cart'])) {
         }
 
     } else {
-        echo 'Koszyk jest pusty!';
+        echo 'Koszyk jest pusty!Pamiętaj, aby '.'<b>'.'zalogować się'.'</b>'.' przed dokonaniem zakupów :)';
     }
 
 } else {
-    echo 'Koszyk jest pusty!';
+    echo 'Koszyk jest pusty!Pamiętaj, aby '.'<b>'.'zalogować się'.'</b>'.' przed dokonaniem zakupów :)';
 }
 if(isset($_SESSION['cart']) && $_SESSION['cart'] !== []) {
     require_once (__DIR__.'/templates/cartButtons.php');

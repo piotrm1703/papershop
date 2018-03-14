@@ -1,10 +1,8 @@
 <?php
-if(!isset($_SESSION['authenticatedUser'])) {
-    header('Location: /');
-    die();
-}
 
-$imagesStatement = $pdo->query('SELECT DISTINCT url FROM images');
+require (__DIR__.'/userVerification.php');
+
+$imagesStatement = $pdo->query('SELECT * FROM uploads');
 if ($imagesStatement === false) {
     throw new DatabaseException();
 }
@@ -17,15 +15,14 @@ if(isset($_POST['submit'])){
     $category = ($_POST['category']);
     $content = ($_POST['content']);
     $price = ($_POST['price']);
-    $img = ($_POST['img']);
+    $imgId = ($_POST['img']);
     $productStatement = $pdo->prepare("INSERT INTO products VALUES(NULL,?,?,?,?)");
     $productStatement->bindParam(1, $category);
     $productStatement->bindParam(2,$content);
-    $productStatement->bindParam(3,$img);
+    $productStatement->bindParam(3,$imgId);
     $productStatement->bindParam(4,$price);
     if($productStatement->execute() === false){
         throw new DatabaseException();
     }
     header('Location: /?page='.$category.'');
-    echo "<script> alert('Produkt został dodany!')</script>";
 }

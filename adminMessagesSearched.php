@@ -1,8 +1,6 @@
 <?php
-if(!isset($_SESSION['authenticatedUser'])) {
-    header('Location: /');
-    die();
-}
+
+require (__DIR__.'/userVerification.php');
 
 if(isset($_POST['searchmessages'])) {
 

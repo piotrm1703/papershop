@@ -1,8 +1,6 @@
 <?php
-if(!isset($_SESSION['authenticatedUser'])) {
-    header('Location: /');
-    die();
-}
+
+require (__DIR__.'/userVerification.php');
 
 $messagesStatement = $pdo->query("SELECT * FROM messages");
 if ($messagesStatement === false) {

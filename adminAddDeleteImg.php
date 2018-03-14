@@ -1,10 +1,8 @@
 <?php
-if(!isset($_SESSION['authenticatedUser'])) {
-    header('Location: /');
-    die();
-}
 
-$imagesStatement = $pdo->query('SELECT DISTINCT url FROM images');
+require (__DIR__.'/userVerification.php');
+
+$imagesStatement = $pdo->query('SELECT DISTINCT url FROM uploads');
 if ($imagesStatement === false) {
     throw new DatabaseException();
 }
@@ -31,7 +29,7 @@ if(isset($_POST['submit'])){
         elseif (move_uploaded_file($_FILES['imgSelect']['tmp_name'],$imagesDir.$fileName)){
             echo ($fileName.' zdjęcie dodane!');
 
-            $imagesStatement = $pdo->prepare("INSERT INTO images VALUES(NULL, ?)");
+            $imagesStatement = $pdo->prepare("INSERT INTO uploads VALUES(NULL, ?)");
             $src = ("/uploads/".$_FILES['imgSelect']['name']);
             $imagesStatement->bindParam(1,$src);
             header('Location: /?page=file');
@@ -53,7 +51,7 @@ if(isset($_POST['delete'])){
     $url = $_POST['imgToDelete'];
     $unlink = unlink(__DIR__.'/web/'.$url);
     if($unlink){
-        $imageStatement = $pdo->prepare("DELETE FROM images WHERE url =  ?");
+        $imageStatement = $pdo->prepare("DELETE FROM uploads WHERE url = ?");
         $imageStatement->bindParam(1,$url);
 
         if($imageStatement->execute() === false){

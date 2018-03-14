@@ -1,0 +1,2 @@
+<h2 style="text-align: center"> Dziękujemy za zweryfikowanie twojego emaila!</h2>
+<p style="text-align: center">Od teraz twoje konto zostało zarejestrowane i jest gotowe do użycia. Użyj <b>loginu</b> i <b>hasła</b> aby się zalogować :)</p>

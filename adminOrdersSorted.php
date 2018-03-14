@@ -1,16 +1,11 @@
 <?php
-if(!isset($_SESSION['authenticatedUser'])) {
-    header('Location: /');
-    die();
-}
+
+require (__DIR__.'/userVerification.php');
 
 $sortType = substr($_GET['page'],11);
 $sortTypes = [
     'id',
-    'firstname',
-    'surname',
-    'email',
-    'city',
+    'clientID',
     'sum',
     'date',
     'status',
