@@ -23,10 +23,19 @@ if(isset($_POST['submit'])){
     }
     if ($mimeType === 'image/jpeg' || $mimeType === 'image/gif' || $mimeType === 'image/png'){
         $fileName = $_FILES['imgSelect']['name'];
+
+        try {
+            $imagine = new \Imagine\Imagick\Imagine();
+            $imagine->open($_FILES['imgSelect']['tmp_name'])
+                ->save($_FILES['imgSelect']['tmp_name']);
+        } catch (Exception $exception) {
+            die('Wystąpił problem z obsługą obrazka!');
+        }
+
+
         if (is_file($imagesDir.$fileName)){
             echo ($fileName.' wybrana nazwa już istnieje!');
-        }
-        elseif (move_uploaded_file($_FILES['imgSelect']['tmp_name'],$imagesDir.$fileName)){
+        } elseif (move_uploaded_file($_FILES['imgSelect']['tmp_name'],$imagesDir.$fileName)){
             echo ($fileName.' zdjęcie dodane!');
 
             $imagesStatement = $pdo->prepare("INSERT INTO uploads VALUES(NULL, ?)");
