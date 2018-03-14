@@ -302,7 +302,7 @@
         border-radius: 5px;
         box-sizing: border-box;
         margin-top: 0;
-        margin-bottom: 0px;
+        margin-bottom: 0;
         resize: vertical;
     }
     .registerForm {
@@ -323,7 +323,7 @@
         margin-bottom: 5px;
         resize: vertical;
     }
-    .register_title_p {
+    .register_title {
         margin-bottom: 3px;
     }
     .final_register_button {
