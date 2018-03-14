@@ -26,8 +26,7 @@ if(isset($_POST['submit'])){
         $fileName = $_FILES['imgSelect']['name'];
         if (is_file($imagesDir.$fileName)){
             echo ($fileName.' wybrana nazwa już istnieje!');
-        }
-        elseif (move_uploaded_file($_FILES['imgSelect']['tmp_name'],$imagesDir.$fileName)){
+        } elseif (move_uploaded_file($_FILES['imgSelect']['tmp_name'],$imagesDir.$fileName)){
             echo ($fileName.' zdjęcie dodane!');
 
             $imagesStatement = $pdo->prepare("INSERT INTO uploads (id, url) VALUES(NULL, :url)");
