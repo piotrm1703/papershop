@@ -96,7 +96,12 @@ if(isset($_GET['page'])) {
         require __DIR__.$pages[$_GET['page']];
     } else {
         $isProductCategoryPage = false;
-        $productsStatement = $pdo->query('SELECT products.id, products.category, products.content, uploads.url , products.price FROM products INNER JOIN uploads ON products.uploadID = uploads.id ORDER BY products.id');
+        $productsStatement = $pdo->query('
+            SELECT products.id, products.category, products.content, uploads.url , products.price 
+            FROM products 
+            INNER JOIN uploads ON products.uploadID = uploads.id 
+            ORDER BY products.id
+        ');
 
         if ($productsStatement === false) {
             throw new DatabaseException();
