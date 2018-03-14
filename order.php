@@ -43,7 +43,7 @@ if (isset($_SESSION['cart'])) {
 
 $currentUser = $_SESSION['authenticatedUser'];
 $usersStatement = $pdo->prepare('SELECT * FROM users WHERE username = :username');
-$usersStatement->bindParam(':username',$currentUser);
+$usersStatement->bindParam(':username', $currentUser);
 if($usersStatement->execute() === false){
     throw new DatabaseException();
 }
@@ -71,7 +71,7 @@ if(isset($_POST['submit'])) {
     $date = date("Y-m-d H:i:s");
     $userId = $data['id'];
 
-    $ordersStatement = $pdo->prepare("INSERT INTO orders VALUES(NULL,:userId,:sum,:serializedProducts,:date,:status)");
+    $ordersStatement = $pdo->prepare("INSERT INTO orders VALUES(NULL, :userId, :sum, :serializedProducts, :date, :status)");
     $ordersStatement->bindParam(':userId', $userId);
     $ordersStatement->bindParam(':sum', $sum);
     $ordersStatement->bindParam(':serializedProducts', $serializedProducts);

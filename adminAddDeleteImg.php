@@ -29,9 +29,9 @@ if(isset($_POST['submit'])){
         elseif (move_uploaded_file($_FILES['imgSelect']['tmp_name'],$imagesDir.$fileName)){
             echo ($fileName.' zdjęcie dodane!');
 
-            $imagesStatement = $pdo->prepare("INSERT INTO uploads (id,url) VALUES(NULL, :url)");
+            $imagesStatement = $pdo->prepare("INSERT INTO uploads (id, url) VALUES(NULL, :url)");
             $url = ("/uploads/".$_FILES['imgSelect']['name']);
-            $imagesStatement->bindParam(':url',$url);
+            $imagesStatement->bindParam(':url', $url);
             header('Location: /?page=file');
             if($imagesStatement->execute() === false){
                 throw new DatabaseException();
@@ -52,7 +52,7 @@ if(isset($_POST['delete'])){
     $unlink = unlink(__DIR__.'/web/'.$url);
     if($unlink){
         $imageStatement = $pdo->prepare("DELETE FROM uploads WHERE url = :url");
-        $imageStatement->bindParam(':url',$url);
+        $imageStatement->bindParam(':url', $url);
 
         if($imageStatement->execute() === false){
             throw new DatabaseException();

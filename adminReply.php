@@ -27,7 +27,7 @@ if(isset($_POST['submit'])){
 
         if ($v['id'] === $currentPage) {
             $to = $v['email'];
-            $subject = 'Odpowiedz na pytanie dotyczące: ' . $v['subject'];
+            $subject = 'Odpowiedz na pytanie dotyczące: '.$v['subject'];
             $txt = ($_POST['replymsg']);
             $headers = "From: administracja@papershop.com.pl" . "\r\n";
             mail($to, $subject, $txt, $headers);
