@@ -302,7 +302,7 @@
         border-radius: 5px;
         box-sizing: border-box;
         margin-top: 0;
-        margin-bottom: 5px;
+        margin-bottom: 0px;
         resize: vertical;
     }
     .registerForm {
@@ -322,6 +322,24 @@
         margin-top: 0;
         margin-bottom: 5px;
         resize: vertical;
+    }
+    .register_title_p {
+        margin-bottom: 3px;
+    }
+    .final_register_button {
+        background-color: darkslategray;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        float: right;
+        position: relative;
+        bottom: 5px;
+    }
+    .final_register_button:hover {
+        opacity: 0.8;
+        background-color: darkred;
     }
     /*end of register form style*/
 
