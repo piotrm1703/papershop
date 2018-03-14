@@ -7,7 +7,7 @@ if ($imagesStatement === false) {
     throw new DatabaseException();
 }
 
-$data = $imagesStatement->fetchAll();
+$user = $imagesStatement->fetchAll();
 
 require_once (__DIR__.'/templates/adminNewItemForm.php');
 

@@ -1,5 +1,5 @@
 <article>
-    <h1 style="color:darkslategray">Kontakt</h1>
+    <h2 >Kontakt</h2>
     <pre>
     Wsparcie klienta               - przedsiebiorstwopoligraficzne@poczta.pl
     Dział sprzedaży (Adam Lisicki) - a.lisicki@poczta.pl
@@ -7,7 +7,7 @@
     Webmaster (Krzysztof Kot)      - k.kot@poczta.pl
     </pre>
 
-    <h2 style="color:darkslategray">Przedsiębiorstwo poligraficzne Sp. z o.o.</h2>
+    <h2 >Przedsiębiorstwo poligraficzne Sp. z o.o.</h2>
     <pre>
         ul. Przesiębiorcza 5
         26-800 Polia
@@ -15,7 +15,7 @@
         tel.  11 234 56 78
     </pre>
 
-    <h2 style="color:darkslategray">Oddział II</h2>
+    <h2 >Oddział II</h2>
     <pre>
         ul. Poligraficzna 6
         12-123 Myszów

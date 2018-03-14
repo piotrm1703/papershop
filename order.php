@@ -50,34 +50,27 @@ if($usersStatement->execute() === false){
 $usersStatement = $usersStatement->fetchAll();
 
 foreach ($usersStatement as $userData ){
-    $data = $userData;
+    $user = $userData;
 }
+
+var_dump($user['id']);
 
 require_once (__DIR__.'/templates/orderForm.php');
 
 if(isset($_POST['submit'])) {
-    if (!(isset($_POST['order-firstname']) &&
-        isset($_POST['order-surname']) &&
-        isset($_POST['order-email']) &&
-        isset($_POST['order-city']) &&
-        isset($_POST['order-zipcode']) &&
-        isset($_POST['order-address'])
-    )) {
-        throw new Exception('Jakiś gamoń kombinuje z polami');
-    }
 
-    $status='oczekujący';
+    $userId = $user['id'];
     $serializedProducts = serialize($arrayProduct);
     $date = date("Y-m-d H:i:s");
-    $userId = $data['id'];
+    $status='oczekujący';
 
-    $ordersStatement = $pdo->prepare("INSERT INTO orders VALUES(NULL, :userId, :sum, :serializedProducts, :date, :status)");
-    $ordersStatement->bindParam(':userId', $userId);
-    $ordersStatement->bindParam(':sum', $sum);
-    $ordersStatement->bindParam(':serializedProducts', $serializedProducts);
-    $ordersStatement->bindParam(':date', $date);
-    $ordersStatement->bindParam(':status', $status);
-    if($ordersStatement->execute() === false){
+    $orderStatement = $pdo->prepare('INSERT INTO orders VALUES(NULL, :userId, :sum, :serializedProducts, :date, :status)');
+    $orderStatement->bindParam(':userId', $userId);
+    $orderStatement->bindParam(':sum', $sum);
+    $orderStatement->bindParam(':serializedProducts', $serializedProducts);
+    $orderStatement->bindParam(':date', $date);
+    $orderStatement->bindParam(':status', $status);
+    if($orderStatement->execute() === false){
         throw new DatabaseException();
     }
     $to = $_POST['email'];

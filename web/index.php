@@ -90,6 +90,7 @@ if(isset($_GET['page'])) {
         'registerThanks' => '/../registerThanks.php',
         'registerVerifyThanks' => '/../registerVerifyThanks.php',
         'register' => '/../register.php',
+        'edit_user' => '/../editUser.php',
     ];
 
     if (isset($pages[$_GET['page']])) {

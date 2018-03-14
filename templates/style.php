@@ -9,6 +9,15 @@
     }
     /*end of site container style*/
 
+    /*header sty;e*/
+    h1 {
+    text-align: center;
+    }
+    h2 {
+    color: darkslategrey;
+    }
+    /*end of header style*/
+
     /* main button style*/
     .universalButton {
         background-color: darkslategray;
@@ -251,9 +260,6 @@
     /*end of footer style*/
 
     /*login form style*/
-    .loginlabel {
-        /*margin-left: 170px;*/
-    }
     .loginNamePasswordStyle {
         width: 20%;
         padding: 3px 20px;
@@ -273,6 +279,23 @@
         width: 15%;
     }
     .loginOutButton:hover {
+        opacity: 0.8;
+        background-color: darkred;
+    }
+    .edit_user_button {
+        background-color: darkgreen;
+        color: white;
+        border-radius: 4px;
+        padding: 3px 10px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 25%;
+        position: relative;
+        bottom: 37px;
+        left: 670px;
+    }
+    .edit_user_button:hover {
         opacity: 0.8;
         background-color: darkred;
     }
@@ -307,7 +330,7 @@
     }
     .registerForm {
         border-radius: 5px;
-        background-color: aliceblue;
+        background-color: lightblue;
         padding: 10px;
         margin-right: 10px;
         margin-bottom: 10px;
@@ -335,13 +358,60 @@
         cursor: pointer;
         float: right;
         position: relative;
-        bottom: 5px;
+        bottom: 10px;
     }
     .final_register_button:hover {
         opacity: 0.8;
         background-color: darkred;
     }
     /*end of register form style*/
+
+    /*edit user account style*/
+    .edit_user_form {
+        border-radius: 5px;
+        background-color: gainsboro;
+        padding: 10px;
+        margin-right: 10px;
+        margin-bottom: 10px;
+        margin-top: 10px;
+    }
+    .edit_user_field{
+        width: 80%;
+        padding: 5px;
+        border: 1px solid black;
+        border-radius: 5px;
+        box-sizing: border-box;
+        margin-top: 0;
+        margin-bottom: 0;
+        resize: vertical;
+    }
+    .edit_user_lastfield{
+        width: 80%;
+        padding: 5px;
+        border: 1px solid black;
+        border-radius: 5px;
+        box-sizing: border-box;
+        margin-top: 0;
+        margin-bottom: 10px;
+        resize: vertical;
+    }
+    .edit_submit_button {
+        background-color: darkslategray;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        float: right;
+        position: relative;
+        bottom: 5px;
+        right: 5px;
+    }
+    .edit_submit_button:hover {
+        opacity: 0.8;
+        background-color: darkred;
+    }
+    /*end of edit user account style*/
 
     /*link style*/
     .offer a {

@@ -29,7 +29,7 @@
         <label for="img"> Wybierz zdjęcie z listy: </label>
 
         <select name="edit-img" id="edit-img">
-            <?php foreach ($data as $img): ?>
+            <?php foreach ($user as $img): ?>
                 <option value="<?php echo htmlEscape($img['id']); ?>"><?php echo htmlEscape($img["url"]); ?></option>
             <?php endforeach ?>
         </select>
