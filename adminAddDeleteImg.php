@@ -7,7 +7,8 @@ if ($imagesStatement === false) {
     throw new DatabaseException();
 }
 
-$data = $imagesStatement->fetchAll();
+$imgUrl = $imagesStatement->fetchAll();
+
 require_once (__DIR__.'/templates/adminAddImgForm.php');
 require_once (__DIR__.'/templates/adminDeleteImgForm.php');
 
