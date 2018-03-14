@@ -102,8 +102,8 @@ if(isset($_GET['page'])) {
             throw new DatabaseException();
         }
 
-        while ($products = $productsStatement->fetch(PDO::FETCH_OBJ)) {
-            if ($products->category === $_GET['page']) {
+        while ($product = $productsStatement->fetch(PDO::FETCH_OBJ)) {
+            if ($product->category === $_GET['page']) {
                 require(__DIR__ . '/../templates/productViewForm.php');
                 $isProductCategoryPage = true;
             }

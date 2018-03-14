@@ -10,7 +10,7 @@
 
         <label for="cat">Kategoria</label>
         <select class="newItemFieldsAdmin" title="cat" name="category" id="category">
-            <option selected value="<?php echo htmlEscape($products->category) ?>" style="color: red; font-weight: bold"><?php echo htmlEscape($products->category) ?></option>
+            <option selected value="<?php echo htmlEscape($products->category); ?>" style="color: red; font-weight: bold"><?php echo htmlEscape($products->category); ?></option>
             <option disabled="disabled">---------------------------------------------------------------------------------------------------------------------------------------------</option>
             <option value="Papiery-powlekane">Papiery powlekane</option>
             <option value="Kartony-graficzne">Kartony graficzne</option>
@@ -30,7 +30,7 @@
 
         <select name="img" id="img">
             <?php foreach ($data as $img): ?>
-                <option value="<?php echo htmlEscape($img['id'])?>"><?php echo htmlEscape($img["url"])?></option>
+                <option value="<?php echo htmlEscape($img['id']); ?>"><?php echo htmlEscape($img["url"]); ?></option>
             <?php endforeach ?>
         </select>
         <input class="universalButton" type="submit" name="edited" value="Zaktualizuj" onClick="return confirm('Czy na pewno chcesz zaktualizować ten produkt?')">

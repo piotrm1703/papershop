@@ -295,7 +295,7 @@
         opacity: 0.8;
         background-color:darkred;
     }
-    .registerFields{
+    .register_field{
         width: 80%;
         padding: 5px;
         border: 1px solid black;
@@ -313,7 +313,7 @@
         margin-bottom: 10px;
         margin-top: 10px;
     }
-    .passwordField {
+    .password_field {
         width: 49%;
         padding: 5px;
         border: 1px solid black;

@@ -30,10 +30,10 @@
         <form action="" method="post">
 
             <label for="name">Imię</label>
-            <input class="contactformFields" type="text" id="name" name="name" placeholder="Podaj imię..." required>
+            <input class="contactformFields" id="name" name="name" placeholder="Podaj imię..." required>
 
             <label for="surname">Nazwisko</label>
-            <input class="contactformFields" type="text" id="surname" name="surname" placeholder="Podaj nazwisko..." required>
+            <input class="contactformFields" id="surname" name="surname" placeholder="Podaj nazwisko..." required>
 
             <label for="email">E-mail</label>
             <input class="contactformFields" type="email" id="email" name="email" placeholder="Podaj email..." required>

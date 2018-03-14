@@ -7,7 +7,7 @@ if(isset($_POST['register'])) {
         isset($_POST['surname']) &&
         isset($_POST['username']) &&
         isset($_POST['password']) &&
-        isset($_POST['password2']) &&
+        isset($_POST['password_repeated']) &&
         isset($_POST['email'])
     )) {
         throw new Exception('Jakiś gamoń kombinuje z polami');
@@ -28,7 +28,7 @@ if(isset($_POST['register'])) {
         echo "W imieniu dozwolone są tylko litery!";
     }elseif(!preg_match("/^[a-zA-Z]*$/",$_POST["surname"])) {
         echo "W nazwisku dozwolone są tylko litery!";
-    }elseif($_POST['password'] !== $_POST['password2']) {
+    }elseif($_POST['password'] !== $_POST['password_repeated']) {
         echo "Hasła różnią się!";
     }elseif (!preg_match("#[0-9]+#", $_POST['password'])) {
         echo "Twoje hasło musi zawierać conajmniej 1 cyfrę!";
@@ -44,16 +44,16 @@ if(isset($_POST['register'])) {
 
         $verifyKey = generateRandomString();
 
-        $userStatement = $pdo->prepare("INSERT INTO users VALUES(NULL,?,?,?,?,?,?,?,?,?)");
-        $userStatement->bindParam(1, $_POST['firstname']);
-        $userStatement->bindParam(2, $_POST['surname']);
-        $userStatement->bindParam(3, $_POST['username']);
-        $userStatement->bindParam(4, $_POST['password']);
-        $userStatement->bindParam(5, $_POST['email']);
-        $userStatement->bindParam(6, $_POST['city']);
-        $userStatement->bindParam(7, $_POST['zipcode']);
-        $userStatement->bindParam(8, $_POST['address']);
-        $userStatement->bindParam(9, $verifyKey);
+        $userStatement = $pdo->prepare("INSERT INTO users VALUES(NULL,:firstname,:surname,:username,:password,:email,:city,:zipcode,:address,:verifyKey)");
+        $userStatement->bindParam(':firstname', $_POST['firstname']);
+        $userStatement->bindParam(':surname', $_POST['surname']);
+        $userStatement->bindParam(':username', $_POST['username']);
+        $userStatement->bindParam(':password', $_POST['password']);
+        $userStatement->bindParam(':email', $_POST['email']);
+        $userStatement->bindParam(':city', $_POST['city']);
+        $userStatement->bindParam(':zipcode', $_POST['zipcode']);
+        $userStatement->bindParam(':address', $_POST['address']);
+        $userStatement->bindParam(':verifyKey', $verifyKey);
         if ($userStatement->execute() === false) {
             throw new DatabaseException();
         }

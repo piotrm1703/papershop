@@ -26,12 +26,12 @@ if(isset($_POST['edited'])) {
     $price = ($_POST['price']);
     $imgId = ($_POST['img']);
     $id = substr($_GET['page'], 11);
-    $productStatement = $pdo->prepare("UPDATE products SET category = ? , content = ?, uploadID = ? , price = ? WHERE id = ?");
-    $productStatement->bindParam(1, $category);
-    $productStatement->bindParam(2, $content);
-    $productStatement->bindParam(3, $imgId);
-    $productStatement->bindParam(4, $price);
-    $productStatement->bindParam(5, $id);
+    $productStatement = $pdo->prepare("UPDATE products SET category = :category , content = :content, uploadID = :uploadID , price = :price WHERE id = :id");
+    $productStatement->bindParam(':category', $category);
+    $productStatement->bindParam(':content', $content);
+    $productStatement->bindParam(':uploadID', $imgId);
+    $productStatement->bindParam(':price', $price);
+    $productStatement->bindParam(':id', $id);
     if($productStatement->execute() === false){
         throw new DatabaseException();
     }
@@ -43,8 +43,8 @@ if(isset($_POST['delete']) && isset($_POST['category'])) {
 
     $id = substr($_GET['page'], 11);
     $category = ($_POST['category']);
-    $productStatement = $pdo->prepare("DELETE FROM products WHERE id = ? ");
-    $productStatement->bindParam(1, $id);
+    $productStatement = $pdo->prepare("DELETE FROM products WHERE id = :id ");
+    $productStatement->bindParam(':id', $id);
     if($productStatement->execute() === false){
         throw new DatabaseException();
     }

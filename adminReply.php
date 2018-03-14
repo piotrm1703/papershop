@@ -17,9 +17,9 @@ if(isset($_POST['submit'])){
         $status = 'odpowiedziano';
         $productId = $v['id'];
         if($productId === $currentPage){
-            $messageStatement = $pdo->prepare("UPDATE messages SET status = ? WHERE id = ?");
-            $messageStatement->bindParam(1, $status);
-            $messageStatement->bindParam(2, $productId);
+            $messageStatement = $pdo->prepare("UPDATE messages SET status = :status WHERE id = :id");
+            $messageStatement->bindParam(':status', $status);
+            $messageStatement->bindParam(':id', $productId);
             if($messageStatement->execute() === false){
                 throw new DatabaseException();
             }

@@ -4,13 +4,13 @@ require (__DIR__.'/userVerification.php');
 
 if(isset($_POST['ordersearch'])) {
 
-    $ordersStatement = $pdo->prepare("SELECT * FROM orders WHERE id LIKE ? OR clientID LIKE ? OR sum LIKE ? OR products LIKE ? OR status LIKE ? ");
+    $ordersStatement = $pdo->prepare("SELECT * FROM orders WHERE id LIKE :id OR clientID LIKE :clientID OR sum LIKE :sum OR products LIKE :products OR status LIKE :status ");
     $search = '%'.sqlLikeEscape($_POST['searchboxorders']).'%';
-    $ordersStatement->bindParam(1,$search);
-    $ordersStatement->bindParam(2,$search);
-    $ordersStatement->bindParam(3,$search);
-    $ordersStatement->bindParam(4,$search);
-    $ordersStatement->bindParam(5,$search);
+    $ordersStatement->bindParam(':id',$search);
+    $ordersStatement->bindParam(':clientID',$search);
+    $ordersStatement->bindParam(':sum',$search);
+    $ordersStatement->bindParam(':products',$search);
+    $ordersStatement->bindParam(':status',$search);
     if($ordersStatement->execute() === false){
         throw new DatabaseException();
     }

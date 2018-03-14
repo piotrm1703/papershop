@@ -16,11 +16,11 @@ if(isset($_POST['submit'])){
     $content = ($_POST['content']);
     $price = ($_POST['price']);
     $imgId = ($_POST['img']);
-    $productStatement = $pdo->prepare("INSERT INTO products VALUES(NULL,?,?,?,?)");
-    $productStatement->bindParam(1, $category);
-    $productStatement->bindParam(2,$content);
-    $productStatement->bindParam(3,$imgId);
-    $productStatement->bindParam(4,$price);
+    $productStatement = $pdo->prepare("INSERT INTO products VALUES(NULL,:category,:content,:imgId,:price)");
+    $productStatement->bindParam(':category', $category);
+    $productStatement->bindParam(':content',$content);
+    $productStatement->bindParam(':imgId',$imgId);
+    $productStatement->bindParam(':price',$price);
     if($productStatement->execute() === false){
         throw new DatabaseException();
     }

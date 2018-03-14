@@ -58,7 +58,12 @@ if (isset($_SESSION['cart'])) {
     if ($_SESSION['cart'] !== []) {
         $productIds = array_map('intval',array_keys($_SESSION['cart']));
 
-        $productsStatement = $pdo->query('SELECT * FROM products WHERE id IN ('.implode(',', $productIds).') ORDER BY content');
+        $productsStatement = $pdo->query
+        ('SELECT products.id, products.category, products.content, uploads.url , products.price FROM products 
+                            INNER JOIN uploads ON products.uploadID = uploads.id 
+                            WHERE products.id IN ('.implode(',', $productIds).')
+                            ORDER BY products.content');
+
         if ($productsStatement === false) {
             throw new DatabaseException();
         }
@@ -66,7 +71,6 @@ if (isset($_SESSION['cart'])) {
 
         foreach ($cartProducts as $cartProduct) {
             foreach ($productIds as $productId) {
-//                $a = $key;
                 if ($cartProduct->id == $productId) {
                     $productQuantity = $_SESSION['cart'][$productId];
                 }

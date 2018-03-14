@@ -2,9 +2,9 @@
 
 if(isset($_POST['delMsg'])) {
 
-    $messageStatement = $pdo->prepare("DELETE FROM messages WHERE id = ?");
+    $messageStatement = $pdo->prepare("DELETE FROM messages WHERE id = :id");
     $selectedItem = $_POST['delMsg'];
-    $messageStatement->bindParam(1, $selectedItem);
+    $messageStatement->bindParam(':id', $selectedItem);
     if($messageStatement->execute() === false){
         throw new DatabaseException();
     }
@@ -13,9 +13,9 @@ if(isset($_POST['delMsg'])) {
 
 if(isset($_POST['replied'])) {
 
-    $messageStatement = $pdo->prepare("UPDATE messages SET status='odpowiedziano' WHERE id = ?");
+    $messageStatement = $pdo->prepare("UPDATE messages SET status='odpowiedziano' WHERE id = :id");
     $selectedItem = $_POST['replied'];
-    $messageStatement->bindparam(1, $selectedItem);
+    $messageStatement->bindparam(':id', $selectedItem);
     if($messageStatement->execute() === false){
         throw new DatabaseException();
     }
@@ -24,9 +24,9 @@ if(isset($_POST['replied'])) {
 }
 
 if(isset($_POST['expectant'])) {
-    $messageStatement = $pdo->prepare("UPDATE messages SET status='oczekujący' WHERE id = ?");
+    $messageStatement = $pdo->prepare("UPDATE messages SET status='oczekujący' WHERE id = :id");
     $selectedItem = $_POST['expectant'];
-    $messageStatement->bindParam(1, $selectedItem);
+    $messageStatement->bindParam(':id', $selectedItem);
     if($messageStatement->execute() === false){
         throw new DatabaseException();
     }
