@@ -9,7 +9,7 @@
             </form>
         </div>
     <?php } ?>
-    <p class="price">Cena: <?php echo htmlEscape(number_format($product->price,2,',','.')); ?> zł</p>
+    <p class="price">Cena: <?php echo htmlEscape(polish_number_format($product->price)); ?> zł</p>
 
 </article>
 <br>

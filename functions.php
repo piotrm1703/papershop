@@ -38,3 +38,6 @@ function generateRandomString($length = 15) {
     }
     return $randomString;
 }
+function polish_number_format($number){
+    return number_format($number,2,',','.');
+}

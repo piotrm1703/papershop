@@ -1,1 +1,1 @@
-<div class ="sum"><b>Do zapłaty: <?php echo htmlEscape(number_format($sum,2,',','.')); ?> zł</b></div>
+<div class ="sum"><b>Do zapłaty: <?php echo htmlEscape(polish_number_format($sum)); ?> zł</b></div>
