@@ -339,9 +339,6 @@
     /*end of link style*/
 
     /*product view style*/
-    .price {
-        /*text-align: left;*/
-    }
     .imgView {
         float:left;
         width: 119px;
@@ -373,7 +370,8 @@
         bottom: 10px;
     }
     .quantityField {
-        width: 55px;width: 65px;        height: 19px;
+        width: 65px;
+        height: 19px;
         font-size: 13px;
         background-color: aliceblue;
     }
