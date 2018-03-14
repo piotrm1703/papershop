@@ -9,8 +9,8 @@
         if ($v['id'] === $currentPage) { ?>
 
         <label for="cat">Kategoria</label>
-        <select class="newItemFieldsAdmin" title="cat" name="edit-category" id="edit-category">
-            <option selected value="<?php echo htmlEscape($products->category); ?>" style="color: red; font-weight: bold"><?php echo htmlEscape($products->category); ?></option>
+        <select class="edit_item_field" title="cat" name="edit-category" id="edit-category">
+            <option class="selected_category" selected value="<?php echo htmlEscape($products->category); ?>"><?php echo htmlEscape($products->category); ?></option>
             <option disabled="disabled">---------------------------------------------------------------------------------------------------------------------------------------------</option>
             <option value="Papiery-powlekane">Papiery powlekane</option>
             <option value="Kartony-graficzne">Kartony graficzne</option>
@@ -20,10 +20,10 @@
             <option value="Papier-offsetowy">Papier offsetowy</option>
         </select>
         <label for="content">Nazwa i opis</label>
-        <textarea id="edit-content" class="newItemFieldsAdmin" name="edit-content" style="height: 150px" required><?php echo htmlEscape($v['content']); ?></textarea>
+        <textarea id="edit-content" class="edit_item_content_field" name="edit-content" required><?php echo htmlEscape($v['content']); ?></textarea>
 
         <label for="price">Cena</label>
-        <input class="newItemFieldsAdmin" type="number" id="edit-price" name="edit-price" value="<?php echo htmlEscape($v['price']); ?>" min="0" step="0.01" required>
+        <input class="edit_item_field" type="number" id="edit-price" name="edit-price" value="<?php echo htmlEscape($v['price']); ?>" min="0" step="0.01" required>
         <?php }} ?>
 
         <label for="img"> Wybierz zdjęcie z listy: </label>

@@ -577,6 +577,33 @@
     /*end of admin tables style*/
 
     /*edit products icon style*/
+    .editItemForm {
+        border-radius: 5px;
+        background-color: gainsboro;
+        padding: 20px;
+        margin: 8px 8px 8px 210px;
+    }
+    .edit_item_field {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid black;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+    .edit_item_content_field {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid black;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+        height: 150px
+    }
     .editButton {
         background: none;
         border: none;
@@ -591,12 +618,6 @@
         opacity: 0.8;
         color: darkslategrey;
     }
-    .editItemForm {
-        border-radius: 5px;
-        background-color: gainsboro;
-        padding: 20px;
-        margin: 8px 8px 8px 210px;
-    }
     .deleteItemButton{
         background-color: red;
         color: white;
@@ -608,6 +629,10 @@
     .deleteItemButton:hover {
         opacity: 0.8;
         background-color: darkred;
+    }
+    .selected_category{
+        color: red;
+        font-weight: bold
     }
 
     /*end of edit products icon style*/
