@@ -47,7 +47,7 @@ if(isset($_POST['register'])) {
 
         $verifyKey = generateRandomString();
 
-        $userStatement = $pdo->prepare("INSERT INTO users VALUES(NULL,:firstname,:surname,:username,:password,:email,:city,:zipcode,:address,:verifyKey)");
+        $userStatement = $pdo->prepare("INSERT INTO users(id,firstname, surname, username, password, email, city, zipcode, address, verifyKey) VALUES(NULL,:firstname,:surname,:username,:password,:email,:city,:zipcode,:address,:verifyKey)");
         $userStatement->bindParam(':firstname', $_POST['register-firstname']);
         $userStatement->bindParam(':surname', $_POST['register-surname']);
         $userStatement->bindParam(':username', $_POST['register-username']);

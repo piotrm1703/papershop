@@ -29,7 +29,7 @@ if(isset($_POST['submit'])){
         elseif (move_uploaded_file($_FILES['imgSelect']['tmp_name'],$imagesDir.$fileName)){
             echo ($fileName.' zdjęcie dodane!');
 
-            $imagesStatement = $pdo->prepare("INSERT INTO uploads VALUES(NULL, :url)");
+            $imagesStatement = $pdo->prepare("INSERT INTO uploads (id,url) VALUES(NULL, :url)");
             $url = ("/uploads/".$_FILES['imgSelect']['name']);
             $imagesStatement->bindParam(':url',$url);
             header('Location: /?page=file');
