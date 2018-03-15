@@ -46,18 +46,31 @@ if(isset($_POST['submit'])){
     }
 }
 
-if(isset($_POST['delete'])){
+$defaultImgUrl = '/uploads/no-image.jpg';
 
-    $url = $_POST['imgToDelete'];
-    $unlink = unlink(__DIR__.'/web/'.$url);
-    if($unlink){
-        $imageStatement = $pdo->prepare("DELETE FROM uploads WHERE url = :url");
-        $imageStatement->bindParam(':url', $url);
+if(isset($_POST['delete'])) {
+    if ($_POST['imgToDelete'] !== $defaultImgUrl) {
 
-        if($imageStatement->execute() === false){
-            throw new DatabaseException();
+        $url = $_POST['imgToDelete'];
+        $newUrl = '1';
+        $unlink = unlink(__DIR__ . '/web/' . $url);
+        if ($unlink) {
+            $imageStatement = $pdo->prepare("DELETE FROM uploads WHERE url = :url");
+            $imageStatement->bindParam(':url', $url);
+
+            if ($imageStatement->execute() === false) {
+                throw new DatabaseException();
+            }
+
+            $productStatement = $pdo->prepare("UPDATE products SET uploadID = :uploadID WHERE uploadID IS NULL");
+            $productStatement->bindParam(':uploadID', $newUrl);
+
+            if ($productStatement->execute() === false) {
+                throw new DatabaseException();
+            }
+
+            header('Location: /?page=file');
+            die();
         }
-        header('Location: /?page=file');
-        die();
     }
 }

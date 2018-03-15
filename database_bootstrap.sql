@@ -18,7 +18,7 @@ CREATE TABLE uploads (
     url VARCHAR(256)
 );
 
-CREATE TABLE messages (
+    CREATE TABLE messages (
     id        INT PRIMARY KEY AUTO_INCREMENT,
     firstname TEXT,
     surname   TEXT,
@@ -36,7 +36,7 @@ CREATE TABLE orders (
     products  TEXT,
     date      DATE,
     status    TEXT,
-    FOREIGN KEY (clientID) REFERENCES users(id)
+    FOREIGN KEY (clientID) REFERENCES users(id) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
 CREATE TABLE products (
@@ -45,10 +45,11 @@ CREATE TABLE products (
     content  TEXT,
     uploadID INT,
     price    FLOAT(10, 2),
-    FOREIGN KEY (uploadID) REFERENCES uploads(id)
+    FOREIGN KEY (uploadID) REFERENCES uploads(id) ON DELETE SET NULL ON UPDATE NO ACTION
 );
 
 INSERT INTO uploads VALUES
+    (NULL, '/uploads/no-image.jpg'),
     (NULL, '/uploads/grafikaproduktu.jpg'),
     (NULL, '/uploads/kartonygraficzne.png'),
     (NULL, '/uploads/kartonyopakowaniowe.png'),
