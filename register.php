@@ -61,7 +61,7 @@ if(isset($_POST['register'])) {
             throw new DatabaseException();
         }
 
-        $to = $_POST['email'];
+        $to = $_POST['register-email'];
         $subject = 'Link potwierdzający rejestrację';
         $txt = ('Aby potwierdzić chęc rejestracji kliknij w następujący link: www.papershop.com.pl/?verify_mail='.$verifyKey.' . Jeśli to nie ty chciałeś dokonać rejestracji, zignoruj ten link lub usuń wiadomość.');
         $headers = "From: rejestracja@papershop.com.pl" . "\r\n";

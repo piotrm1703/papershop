@@ -511,7 +511,7 @@
         color: firebrick;
         position: relative;
         left: 640px;
-        bottom: 100px;
+        bottom: 85px;
         font-size: 17px;
     }
     .deleteFromCart:hover {

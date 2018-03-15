@@ -71,7 +71,7 @@ if(isset($_POST['submit'])) {
     if($orderStatement->execute() === false){
         throw new DatabaseException();
     }
-    $to = $_POST['email'];
+    $to = $user['email'];
     $subject = 'Potwierdzenie zamówienia';
     $txt = ('Zamówienie zostało przyjęte do realizacji. Suma złożonego zamówienia wynosi : '.$sum.' zł');
     $headers = "From: zamowienia@papershop.com.pl" . "\r\n";
