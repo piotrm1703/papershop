@@ -53,7 +53,7 @@ if(isset($_POST['delete'])) {
 
         $url = $_POST['imgToDelete'];
         $newUrl = '1';
-        $unlink = unlink(__DIR__ . '/web/' . $url);
+        $unlink = unlink(__DIR__.'/web/'.$url);
         if ($unlink) {
             $imageStatement = $pdo->prepare("DELETE FROM uploads WHERE url = :url");
             $imageStatement->bindParam(':url', $url);

@@ -18,7 +18,7 @@ CREATE TABLE uploads (
     url VARCHAR(256)
 );
 
-    CREATE TABLE messages (
+CREATE TABLE messages (
     id        INT PRIMARY KEY AUTO_INCREMENT,
     firstname TEXT,
     surname   TEXT,
