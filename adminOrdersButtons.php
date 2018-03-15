@@ -26,22 +26,22 @@ if(isset($_POST['realized'])) {
         throw new DatabaseException();
     }
 
-    $userStatement = $pdo->prepare("
+    $usersStatement = $pdo->prepare("
         SELECT orders.id, users.email
         FROM orders
         INNER JOIN users ON orders.clientID = users.id
         WHERE orders.id = :id
         ORDER BY orders.id
     ");
-    $userStatement->bindParam(':id', $selectedItem);
+    $usersStatement->bindParam(':id', $selectedItem);
 
-    if($userStatement->execute() === false){
+    if($usersStatement->execute() === false){
         throw new DatabaseException();
     }
 
-    $currentUser = $userStatement->fetchAll();
-    foreach ($currentUser as $email ){
-    $to = $email['email'];
+    $users = $usersStatement->fetchAll();
+    foreach ($users as $user ){
+    $to = $user['email'];
     $subject = 'Potwierdzenie zamówienia';
     $txt = ('Zamówienie zostało wysłane. Pozdrawiamy, zespół papershop.com.pl! ');
     $headers = "From: zamowienia@papershop.com.pl" . "\r\n";
