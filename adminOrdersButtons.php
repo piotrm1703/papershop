@@ -17,17 +17,27 @@ if(isset($_POST['realized'])) {
     $orderStatement = $pdo->prepare("UPDATE orders SET status='zrealizowano' WHERE id = :id");
     $selectedItem = $_POST['realized'];
     $orderStatement->bindParam(':id', $selectedItem);
+
     if($orderStatement->execute() === false){
         throw new DatabaseException();
     }
-    $mailStatement = $pdo->prepare("SELECT * FROM orders WHERE id = :id ");
-    $mailStatement->bindParam(':id', $selectedItem);
-    if($mailStatement->execute() === false){
+
+    $userStatement = $pdo->prepare("
+        SELECT orders.id, users.email
+        FROM orders
+        INNER JOIN users ON orders.clientID = users.id
+        WHERE orders.id = :id
+        ORDER BY orders.id
+    ");
+    $userStatement->bindParam(':id', $selectedItem);
+
+    if($userStatement->execute() === false){
         throw new DatabaseException();
     }
-    $mail = $mailStatement->fetchAll();
-    foreach (($mail) as $key=>$value ){
-    $to = $value['email'];
+
+    $currentUser = $userStatement->fetchAll();
+    foreach ($currentUser as $email ){
+    $to = $email['email'];
     $subject = 'Potwierdzenie zamówienia';
     $txt = ('Zamówienie zostało wysłane. Pozdrawiamy, zespół papershop.com.pl! ');
     $headers = "From: zamowienia@papershop.com.pl" . "\r\n";

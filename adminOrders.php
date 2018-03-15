@@ -17,4 +17,3 @@ foreach ($ordersArray as $key=>$v)
 require_once(__DIR__.'/templates/adminOrdersForm.php');
 
 require_once (__DIR__.'/adminOrdersButtons.php');
-

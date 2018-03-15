@@ -150,12 +150,12 @@
         border-radius: 50px;
         background-color: aliceblue;
         padding: 20px;
-        margin: -5px 15px 5px -5px;
+        margin: 10px 15px 5px -5px;
     }
     .products {
         border-radius: 30px;
-        background-color: aliceblue;
-        padding: 5px;
+        background-color: lightblue;
+        padding: 12px;
         margin: 7px 15px -5px 215px;
     }
     .sum {
@@ -166,6 +166,22 @@
         margin: 10px 15px 10px 215px;
         color: black;
         text-align: center;
+    }
+    .edit_user_order_button {
+        background-color: darkgreen;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        float: left;
+        position: relative;
+        left: 142px;
+        bottom: 39px;
+    }
+    .edit_user__orderbutton:hover {
+        opacity: 0.8;
+        background-color: darkred;
     }
     /*end of order form and summary*/
 

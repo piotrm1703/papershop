@@ -1,5 +1,5 @@
 <article>
-    <h1 style="color:darkslategray">Oferta</h1>
+    <h2>Oferta</h2>
 </article>
 
 <div class="offer">
