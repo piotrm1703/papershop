@@ -26,7 +26,7 @@ if(isset($_POST['register'])) {
         $username[] = $data->username;
         $email[] = $data->email;
     }
-    $email = $_POST['register-email'];
+    $emailTest = $_POST['register-email'];
 
     if (!preg_match("/^[A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ ]*$/iu",$_POST["register-firstname"])) {
         echo 'W imieniu dozwolone są tylko wielkie i małe litery!';
@@ -40,7 +40,7 @@ if(isset($_POST['register'])) {
         echo 'Twoje hasło musi zawierać conajmniej 1 wielką literę!';
     } elseif (!preg_match("#[a-z]+#", $_POST['password'])) {
         echo 'Twoje hasło musi zawierać conajmniej 1 małą literę!';
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    } elseif (!filter_var($emailTest, FILTER_VALIDATE_EMAIL)) {
         echo 'Nieprawidłowy format email';
     } elseif (!preg_match("/^[- A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ ]*$/iu", $_POST['register-city'])) {
         echo 'Miasto może zawierać wyłącznie wielkie i małe litery!';
@@ -75,8 +75,8 @@ if(isset($_POST['register'])) {
         mail($to, $subject, $txt, $headers);
 
 
-        header('Location: /?page=registerThanks');
-        die();
+//        header('Location: /?page=registerThanks');
+//        die();
     }
 }
 
