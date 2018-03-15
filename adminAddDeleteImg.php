@@ -53,8 +53,7 @@ if(isset($_POST['delete'])) {
 
         $url = $_POST['imgToDelete'];
         $newUrl = '1';
-        $unlink = unlink(__DIR__.'/web/'.$url);
-        if ($unlink) {
+        if (unlink(__DIR__.'/web/'.$url)) {
             $imageStatement = $pdo->prepare("DELETE FROM uploads WHERE url = :url");
             $imageStatement->bindParam(':url', $url);
 
@@ -71,6 +70,8 @@ if(isset($_POST['delete'])) {
 
             header('Location: /?page=file');
             die();
+        } else {
+            echo "Przepraszamy wystąpił błąd";
         }
     }
 }
