@@ -12,6 +12,10 @@ if(isset($_POST['delIcon'])) {
     die();
 }
 
+if(isset($_POST['check-user-data'])) {
+
+}
+
 if(isset($_POST['realized'])) {
 
     $orderStatement = $pdo->prepare("UPDATE orders SET status='zrealizowano' WHERE id = :id");

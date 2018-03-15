@@ -130,23 +130,41 @@ if(isset($_GET['page'])) {
                     break;
                 }
             }
-            if (!$isProductMessagesPage) {
-                $isEditPage = false;
-                $productsStatement = $pdo->query('SELECT * FROM products');
 
-                if ($productsStatement === false) {
+            if (!$isProductMessagesPage) {
+                $isCheckUserDataPage = false;
+
+                $clientStatement = $pdo->prepare('SELECT id FROM orders');
+                if ($clientStatement->execute() === false) {
                     throw new DatabaseException();
                 }
 
-                while ($products = $productsStatement->fetch(PDO::FETCH_OBJ)) {
-                    if ($_GET['page'] === 'editProduct' . $products->id) {
-                        require(__DIR__ . '/../adminEditProduct.php');
-                        $isEditPage = true;
+                while ($client = $clientStatement->fetch(PDO::FETCH_OBJ)) {
+                    if ($_GET['page'] === 'client_from_order-'.$client->id) {
+                        require(__DIR__ . '/../adminCheckClient.php');
+                        $isCheckUserDataPage = true;
                         break;
                     }
                 }
-                if (!$isEditPage) {
-                    echo "Nieprawidłowy adres strony!";
+
+                if (!$isCheckUserDataPage) {
+                    $isEditPage = false;
+                    $productsStatement = $pdo->query('SELECT * FROM products');
+
+                    if ($productsStatement === false) {
+                        throw new DatabaseException();
+                    }
+
+                    while ($products = $productsStatement->fetch(PDO::FETCH_OBJ)) {
+                        if ($_GET['page'] === 'editProduct' . $products->id) {
+                            require(__DIR__ . '/../adminEditProduct.php');
+                            $isEditPage = true;
+                            break;
+                        }
+                    }
+                    if (!$isEditPage) {
+                        echo "Nieprawidłowy adres strony!";
+                    }
                 }
             }
         }

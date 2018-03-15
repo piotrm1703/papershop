@@ -32,7 +32,7 @@ CREATE TABLE messages (
 CREATE TABLE orders (
     id        INT PRIMARY KEY AUTO_INCREMENT,
     clientID  INT ,
-    sum       FLOAT(6, 2),
+    sum       FLOAT(10, 2),
     products  TEXT,
     date      DATE,
     status    TEXT,
@@ -44,7 +44,7 @@ CREATE TABLE products (
     category TEXT,
     content  TEXT,
     uploadID INT,
-    price    FLOAT(6, 2),
+    price    FLOAT(10, 2),
     FOREIGN KEY (uploadID) REFERENCES uploads(id)
 );
 

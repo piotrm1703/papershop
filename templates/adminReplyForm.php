@@ -2,7 +2,7 @@
     <p><b>Odpowiedź do wiadomości:</b></p>
     <form action="" method="post">
 
-        <?php foreach (($messagesArray) as $k=> $v) {
+        <?php foreach ($messagesArray as $k=> $v) {
 
             if ($v['id'] === $currentPage) { ?>
                 <label>Nadawca:</label> <?php echo htmlEscape($v['firstname']); echo $v['surname']; ?>

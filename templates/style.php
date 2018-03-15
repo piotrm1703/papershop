@@ -185,6 +185,28 @@
     }
     /*end of order form and summary*/
 
+    /*check user data in order style*/
+
+    .check_user__data_form{
+        border-radius: 5px;
+        background-color: aliceblue;
+        padding: 10px;
+        margin: 15px 10px 10px 215px;
+    }
+    .check_user_button {
+        background-color: darkslategray;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .check_user_button:hover {
+        opacity: 0.8;
+        background-color: darkred;
+    }
+    /*end of check user data in order style*/
+
     /*top navigation panel style*/
     .topnav {
         overflow: hidden;
