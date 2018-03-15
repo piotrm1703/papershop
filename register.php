@@ -28,17 +28,17 @@ if(isset($_POST['register'])) {
     }
 
     if (!preg_match("/^[a-zA-Z]*$/",$_POST["register-firstname"])) {
-        echo "W imieniu dozwolone są tylko wielkie i małe litery!";
+        echo 'W imieniu dozwolone są tylko wielkie i małe litery!';
     } elseif (!preg_match("/^[a-zA-Z]*$/",$_POST["register-surname"])) {
-        echo "W nazwisku dozwolone są tylko wielkie i małe litery!";
+        echo 'W nazwisku dozwolone są tylko wielkie i małe litery!';
     } elseif ($_POST['password'] !== $_POST['password_repeated']) {
-        echo "Hasła różnią się!";
+        echo 'Hasła różnią się!';
     } elseif (!preg_match("#[0-9]+#", $_POST['password'])) {
-        echo "Twoje hasło musi zawierać conajmniej 1 cyfrę!";
+        echo 'Twoje hasło musi zawierać conajmniej 1 cyfrę!';
     } elseif (!preg_match("#[A-Z]+#", $_POST['password'])) {
-        echo "Twoje hasło musi zawierać conajmniej 1 wielką literę!";
+        echo 'Twoje hasło musi zawierać conajmniej 1 wielką literę!';
     } elseif (!preg_match("#[a-z]+#", $_POST['password'])) {
-        echo "Twoje hasło musi zawierać conajmniej 1 małą literę!";
+        echo 'Twoje hasło musi zawierać conajmniej 1 małą literę!';
     } elseif (in_array($_POST['register-username'],$username)) {
         echo 'Wybrana nazwa użytkownika już istnieje!';
     } elseif (in_array($_POST['register-email'],$email)) {

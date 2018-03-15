@@ -163,7 +163,7 @@ if(isset($_GET['page'])) {
                         }
                     }
                     if (!$isEditPage) {
-                        echo "Nieprawidłowy adres strony!";
+                        echo 'Nieprawidłowy adres strony!';
                     }
                 }
             }

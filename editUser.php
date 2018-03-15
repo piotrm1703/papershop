@@ -17,9 +17,9 @@ require_once (__DIR__.'/templates/editUserForm.php');
 if(isset($_POST['edit_user'])){
 
     if (!preg_match("/^[a-zA-Z]*$/",$_POST["edit-firstname"])) {
-        echo "W imieniu dozwolone są tylko wielkie i małe litery!";
+        echo 'W imieniu dozwolone są tylko wielkie i małe litery!';
     } elseif (!preg_match("/^[a-zA-Z]*$/",$_POST["edit-surname"])) {
-        echo "W nazwisku dozwolone są tylko wielkie i małe litery!";
+        echo 'W nazwisku dozwolone są tylko wielkie i małe litery!';
     } else {
 
         $firstname = ($_POST['edit-firstname']);

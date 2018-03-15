@@ -25,9 +25,9 @@ if(isset($_POST['submit'])){
     if ($mimeType === 'image/jpeg' || $mimeType === 'image/gif' || $mimeType === 'image/png'){
         $fileName = $_FILES['imgSelect']['name'];
         if (is_file($imagesDir.$fileName)){
-            echo ($fileName.' wybrana nazwa już istnieje!');
+            echo $fileName.' wybrana nazwa już istnieje!';
         } elseif (move_uploaded_file($_FILES['imgSelect']['tmp_name'],$imagesDir.$fileName)){
-            echo ($fileName.' zdjęcie dodane!');
+            echo $fileName.' zdjęcie dodane!';
 
             $imagesStatement = $pdo->prepare("INSERT INTO uploads (id, url) VALUES(NULL, :url)");
             $url = ("/uploads/".$_FILES['imgSelect']['name']);
@@ -39,10 +39,10 @@ if(isset($_POST['submit'])){
             header('Location: /?page=file');
             die();
         } else {
-            echo ($fileName.' nie został dodany!');
+            echo $fileName.' nie został dodany!';
         }
     } else {
-        echo ('Błąd! Wybrany plik posiada nieprawidłowe rozszerzenie!');
+        echo 'Błąd! Wybrany plik posiada nieprawidłowe rozszerzenie!';
     }
 }
 
@@ -71,7 +71,7 @@ if(isset($_POST['delete'])) {
             header('Location: /?page=file');
             die();
         } else {
-            echo "Przepraszamy wystąpił błąd";
+            echo 'Przepraszamy wystąpił błąd';
         }
     }
 }
