@@ -26,8 +26,9 @@ if(isset($_POST['register'])) {
         $username[] = $data->username;
         $email[] = $data->email;
     }
+    $email = $_POST['register-email'];
 
-    if (!preg_match("/^[A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ]*$/iu",$_POST["register-firstname"])) {
+    if (!preg_match("/^[A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ ]*$/iu",$_POST["register-firstname"])) {
         echo 'W imieniu dozwolone są tylko wielkie i małe litery!';
     } elseif (!preg_match("/^[- A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ]*$/iu",$_POST["register-surname"])) {
         echo 'W nazwisku dozwolone są tylko wielkie, małe litery oraz myślnik!';
@@ -39,6 +40,12 @@ if(isset($_POST['register'])) {
         echo 'Twoje hasło musi zawierać conajmniej 1 wielką literę!';
     } elseif (!preg_match("#[a-z]+#", $_POST['password'])) {
         echo 'Twoje hasło musi zawierać conajmniej 1 małą literę!';
+    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo 'Nieprawidłowy format email';
+    } elseif (!preg_match("/^[- A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ ]*$/iu", $_POST['register-city'])) {
+        echo 'Miasto może zawierać wyłącznie wielkie i małe litery!';
+    } elseif (!preg_match("/^[- 0-9]*$/iu", $_POST['register-zipcode'])) {
+        echo 'Kod pocztowy może zawierać wyłącznie cyfry oraz myślnik!';
     } elseif (in_array($_POST['register-username'],$username)) {
         echo 'Wybrana nazwa użytkownika już istnieje!';
     } elseif (in_array($_POST['register-email'],$email)) {
@@ -47,7 +54,7 @@ if(isset($_POST['register'])) {
 
         $verifyKey = generateRandomString();
 
-        $userStatement = $pdo->prepare("INSERT INTO users(id,firstname, surname, username, password, email, city, zipcode, address, verifyKey) VALUES(NULL, :firstname, :surname, :username, :password, :email, :city, :zipcode, :address, :verifyKey)");
+        $userStatement = $pdo->prepare("INSERT INTO users(id, firstname, surname, username, password, email, city, zipcode, address, verifyKey) VALUES(NULL, :firstname, :surname, :username, :password, :email, :city, :zipcode, :address, :verifyKey)");
         $userStatement->bindParam(':firstname', $_POST['register-firstname']);
         $userStatement->bindParam(':surname', $_POST['register-surname']);
         $userStatement->bindParam(':username', $_POST['register-username']);

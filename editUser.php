@@ -24,11 +24,14 @@ if(isset($_POST['edit_user'])){
         throw new Exception('Jakiś gamoń kombinuje z polami');
     }
 
-
-    if (!preg_match("/^[a-zA-Z]*$/",$_POST["edit-firstname"])) {
+    if (!preg_match("/^[A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ ]*$/iu",$_POST["edit-firstname"])) {
         echo 'W imieniu dozwolone są tylko wielkie i małe litery!';
-    } elseif (!preg_match("/^[a-zA-Z]*$/",$_POST["edit-surname"])) {
-        echo 'W nazwisku dozwolone są tylko wielkie i małe litery!';
+    } elseif (!preg_match("/^[- A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ]*$/iu",$_POST["edit-surname"])) {
+        echo 'W nazwisku dozwolone są tylko wielkie, małe litery oraz myślnik!';
+    } elseif (!preg_match("/^[- A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ ]*$/iu", $_POST['register-city'])) {
+        echo 'Miasto może zawierać wyłącznie wielkie i małe litery!';
+    } elseif (!preg_match("/^[- 0-9]*$/iu", $_POST['register-zipcode'])) {
+        echo 'Kod pocztowy może zawierać wyłącznie cyfry oraz myślnik!';
     } else {
 
         $firstname = ($_POST['edit-firstname']);
