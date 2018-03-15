@@ -15,6 +15,15 @@ foreach ($usersStatement as $userData ){
 require_once (__DIR__.'/templates/editUserForm.php');
 
 if(isset($_POST['edit_user'])){
+    if (!(isset($_POST['register-firstname']) &&
+        isset($_POST['register-surname']) &&
+        isset($_POST['register-city']) &&
+        isset($_POST['register-zipcode']) &&
+        isset($_POST['register-address'])
+    )) {
+        throw new Exception('Jakiś gamoń kombinuje z polami');
+    }
+
 
     if (!preg_match("/^[a-zA-Z]*$/",$_POST["edit-firstname"])) {
         echo 'W imieniu dozwolone są tylko wielkie i małe litery!';
