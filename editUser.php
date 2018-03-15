@@ -29,12 +29,13 @@ if(isset($_POST['edit_user'])){
         $address = ($_POST['edit-address']);
 
 
-        $userStatement = $pdo->prepare('UPDATE users SET firstname = :firstname, surname = :surname, city = :city, zipcode = :zipcode, address = :address');
+        $userStatement = $pdo->prepare('UPDATE users SET firstname = :firstname, surname = :surname, city = :city, zipcode = :zipcode, address = :address WHERE username = :username');
         $userStatement->bindParam(':firstname', $firstname);
         $userStatement->bindParam(':surname', $surname);
         $userStatement->bindParam(':city', $city);
         $userStatement->bindParam(':zipcode', $zipcode);
         $userStatement->bindParam(':address', $address);
+        $userStatement->bindParam(':username', $currentUser);
         if ($userStatement->execute() === false) {
             throw new DatabaseException();
         }
