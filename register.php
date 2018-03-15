@@ -27,10 +27,10 @@ if(isset($_POST['register'])) {
         $email[] = $data->email;
     }
 
-    if (!preg_match("/^[a-zA-Z]*$/",$_POST["register-firstname"])) {
+    if (!preg_match("/^[A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ]*$/iu",$_POST["register-firstname"])) {
         echo 'W imieniu dozwolone są tylko wielkie i małe litery!';
-    } elseif (!preg_match("/^[a-zA-Z]*$/",$_POST["register-surname"])) {
-        echo 'W nazwisku dozwolone są tylko wielkie i małe litery!';
+    } elseif (!preg_match("/^[- A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ]*$/iu",$_POST["register-surname"])) {
+        echo 'W nazwisku dozwolone są tylko wielkie, małe litery oraz myślnik!';
     } elseif ($_POST['password'] !== $_POST['password_repeated']) {
         echo 'Hasła różnią się!';
     } elseif (!preg_match("#[0-9]+#", $_POST['password'])) {
