@@ -16,7 +16,7 @@ if ($productsStatement->execute() === false) {
 $products = $productsStatement->fetch(PDO::FETCH_OBJ);
 
 $commentsStatement = $pdo->prepare('
-    SELECT comments.content, users.firstname
+    SELECT comments.id, comments.content, users.firstname
     FROM comments
     INNER JOIN users ON comments.clientID = users.id
     WHERE comments.productID = :id 
@@ -59,6 +59,17 @@ if(isset($_POST['add_comment']) && !empty($_POST['comment'])){
     header('Location: /?page=comments_product-'.$currentProduct);
     die();
 
+}
+
+if(isset($_POST['delete_comment'])){
+    $commentStatement = $pdo->prepare('DELETE FROM comments WHERE id = :id');
+    $id = $_POST['delete_comment'];
+    $commentStatement->bindParam(':id', $id);
+    if($commentStatement->execute() === false){
+        throw new DatabaseException();
+    }
+    header('Location: /?page=comments_product-'.$currentProduct);
+    die();
 }
 
 require (__DIR__.'/templates/productCommentsForm.php');

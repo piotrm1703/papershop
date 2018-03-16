@@ -547,6 +547,21 @@
         margin: -5px 10px 10px 0;
         word-break: break-all;
     }
+    .comment_button_div {
+    margin-bottom: -20px;
+    }
+    .delete_comment_button{
+        background: none;
+        padding: 0;
+        border: none;
+        color: firebrick;
+        position: relative;
+        right: 15px;
+    }
+    .delete_comment_button:hover {
+        opacity: 0.8;
+        background-color: darkred;
+    }
     /*end of product view style*/
 
     /*shopping cart style*/
