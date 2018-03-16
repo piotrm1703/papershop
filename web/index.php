@@ -162,8 +162,25 @@ if(isset($_GET['page'])) {
                             break;
                         }
                     }
+
                     if (!$isEditPage) {
-                        echo 'Nieprawidłowy adres strony!';
+                        $isProductCommentsPage = false;
+                        $productsStatement = $pdo->query('SELECT * FROM products');
+
+                        if ($productsStatement === false) {
+                            throw new DatabaseException();
+                        }
+
+                        while ($products = $productsStatement->fetch(PDO::FETCH_OBJ)) {
+                            if ($_GET['page'] === 'comments_product-' . $products->id) {
+                                require(__DIR__ . '/../productComments.php');
+                                $isProductCommentsPage = true;
+                                break;
+                            }
+                        }
+                        if (!$isProductCommentsPage) {
+                            echo 'Nieprawidłowy adres strony!';
+                        }
                     }
                 }
             }

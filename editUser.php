@@ -15,33 +15,33 @@ foreach ($usersStatement as $userData ){
 require_once (__DIR__.'/templates/editUserForm.php');
 
 if(isset($_POST['edit_user'])){
-    if (!(isset($_POST['register-firstname']) &&
-        isset($_POST['register-surname']) &&
-        isset($_POST['register-city']) &&
-        isset($_POST['register-zipcode']) &&
-        isset($_POST['register-address'])
+    if (!(isset($_POST['edit-firstname']) &&
+        isset($_POST['edit-surname']) &&
+        isset($_POST['edit-city']) &&
+        isset($_POST['edit-zipcode']) &&
+        isset($_POST['edit-address'])
     )) {
         throw new Exception('Jakiś gamoń kombinuje z polami');
     }
 
     if (!preg_match("/^[A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ ]*$/iu",$_POST["edit-firstname"])) {
         echo 'W imieniu dozwolone są tylko wielkie i małe litery!';
-    } elseif (empty($_POST["register-firstname"])) {
+    } elseif (empty($_POST["edit-firstname"])) {
         echo 'Podanie imienia jest wymagane!';
     } elseif (!preg_match("/^[- A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ]*$/iu",$_POST["edit-surname"])) {
         echo 'W nazwisku dozwolone są tylko wielkie, małe litery oraz myślnik!';
-    } elseif (empty($_POST["register-nazwisko"])) {
-        echo 'Podanie kodu pocztowego jest wymagane!';
-    } elseif (!preg_match("/^[- A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ ]*$/iu", $_POST['register-city'])) {
+    } elseif (empty($_POST["edit-surname"])) {
+        echo 'Podanie nazwiska jest wymagane!';
+    } elseif (!preg_match("/^[- A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ ]*$/iu", $_POST['edit-city'])) {
         echo 'Miasto może zawierać wyłącznie wielkie i małe litery!';
-    } elseif (empty($_POST["register-city"])) {
-        echo 'Podanie kodu pocztowego jest wymagane!';
-    } elseif (!preg_match("/^[0-9]{2}[-]{1}[0-9]{3}*$/ui", $_POST['register-zipcode'])) {
-        echo 'Kod pocztowy może zawierać wyłącznie cyfry oraz myślnik!';
-    } elseif (empty($_POST["register-zipcode"])) {
-        echo 'Podanie kodu pocztowego jest wymagane!';
-    } elseif (empty($_POST["register-address"])) {
+    } elseif (empty($_POST["edit-city"])) {
         echo 'Podanie miasta jest wymagane!';
+    } elseif (!preg_match("/^[0-9]{2}-[0-9]{3}$/", $_POST['edit-zipcode'])) {
+        echo 'Kod pocztowy może zawierać wyłącznie cyfry oraz myślnik!';
+    } elseif (empty($_POST["edit-zipcode"])) {
+        echo 'Podanie kodu pocztowego jest wymagane!';
+    } elseif (empty($_POST["edit-address"])) {
+        echo 'Podanie adresu jest wymagane!';
     } else {
 
         $firstname = ($_POST['edit-firstname']);

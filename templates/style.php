@@ -169,7 +169,7 @@
         text-align: center;
     }
     .edit_user_order_button {
-        background-color: darkgreen;
+        background-color: darkolivegreen;
         color: white;
         padding: 12px 20px;
         border: none;
@@ -322,7 +322,7 @@
         background-color: darkred;
     }
     .edit_user_button {
-        background-color: darkgreen;
+        background-color: darkolivegreen;
         color: white;
         border-radius: 4px;
         padding: 3px 10px;
@@ -501,6 +501,51 @@
         height: 19px;
         font-size: 13px;
         background-color: aliceblue;
+    }
+    .comment_button {
+        background-color: darkolivegreen;
+        color: white;
+        border-radius: 4px;
+        padding: 5px;
+        border: none;
+        cursor: pointer;
+        width: 15%;
+        margin-top: 12px;
+        position: relative;
+        bottom: 37px;
+        left: 557px;
+    }
+    .comment_button:hover {
+        opacity: 0.8;
+        background-color: darkred;
+    }
+    .add_comment_button {
+        background-color: darkslategray;
+        color: white;
+        padding: 5px 8px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 10px;
+    }
+    .add_comment_button:hover {
+        opacity: 0.8;
+        background-color: darkred;
+    }
+    .comment_name_div {
+        border-radius: 5px;
+        background-color: darkgrey;
+        margin: -10px 400px 10px 0;
+        text-align: center;
+        color: white;
+        font-size: 15px;
+    }
+    .comment_content_div {
+        border-radius: 5px;
+        background-color: aliceblue;
+        padding: 5px;
+        margin: -5px 10px 10px 0;
+        word-break: break-all;
     }
     /*end of product view style*/
 
