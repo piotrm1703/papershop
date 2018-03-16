@@ -39,7 +39,7 @@ foreach ($ordersArray as $order){ ?>
             <?php echo htmlEscape($order['id']); ?></td><td>
             <?php echo htmlEscape($order['clientID']); ?></td><td>
             <?php foreach($order['products'] as $product) { ?>
-                <ul><li>Id produktu:<?php echo htmlEscape($product['id']); ?>, Ilość:<?php echo htmlEscape($product['quantity']); ?></li></ul>
+                <ul><li>Id produktu:<?php echo htmlEscape($product['id']); ?>, Liczba:<?php echo htmlEscape($product['quantity']); ?></li></ul>
             <?php } ?>
             </td><td>
             <?php echo htmlEscape($order['sum']); ?> zł</td><td>
