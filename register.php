@@ -30,8 +30,12 @@ if(isset($_POST['register'])) {
 
     if (!preg_match("/^[A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ ]*$/iu",$_POST["register-firstname"])) {
         echo 'W imieniu dozwolone są tylko wielkie i małe litery!';
+    } elseif (empty($_POST["register-surname"])) {
+        echo 'Podanie imienia jest wymagane!';
     } elseif (!preg_match("/^[- A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ]*$/iu",$_POST["register-surname"])) {
         echo 'W nazwisku dozwolone są tylko wielkie, małe litery oraz myślnik!';
+    } elseif (empty($_POST["register-surname"])) {
+        echo 'Podanie nazwiska jest wymagane!';
     } elseif ($_POST['password'] !== $_POST['password_repeated']) {
         echo 'Hasła różnią się!';
     } elseif (!preg_match("#[0-9]+#", $_POST['password'])) {
@@ -42,10 +46,16 @@ if(isset($_POST['register'])) {
         echo 'Twoje hasło musi zawierać conajmniej 1 małą literę!';
     } elseif (!filter_var($emailTest, FILTER_VALIDATE_EMAIL)) {
         echo 'Nieprawidłowy format email';
+    } elseif (empty($_POST["register-city"])) {
+        echo 'Podanie miasta jest wymagane!';
     } elseif (!preg_match("/^[- A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ ]*$/iu", $_POST['register-city'])) {
         echo 'Miasto może zawierać wyłącznie wielkie i małe litery!';
+    } elseif (empty($_POST["register-zipcode"])) {
+        echo 'Podanie kodu pocztowego jest wymagane!';
     } elseif (!preg_match("/^[- 0-9]*$/iu", $_POST['register-zipcode'])) {
         echo 'Kod pocztowy może zawierać wyłącznie cyfry oraz myślnik!';
+    } elseif (empty($_POST["register-address"])) {
+        echo 'Podanie miasta pocztowego jest wymagane!';
     } elseif (in_array($_POST['register-username'],$username)) {
         echo 'Wybrana nazwa użytkownika już istnieje!';
     } elseif (in_array($_POST['register-email'],$email)) {
@@ -73,7 +83,7 @@ if(isset($_POST['register'])) {
         $txt = ('Aby potwierdzić chęc rejestracji kliknij w następujący link: www.papershop.com.pl/?verify_email='.$verifyKey.' . Jeśli to nie ty chciałeś dokonać rejestracji, zignoruj ten link lub usuń wiadomość.');
         $headers = "From: rejestracja@papershop.com.pl" . "\r\n";
         mail($to, $subject, $txt, $headers);
-        
+
         header('Location: /?page=registerThanks');
         die();
     }

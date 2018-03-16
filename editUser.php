@@ -26,12 +26,22 @@ if(isset($_POST['edit_user'])){
 
     if (!preg_match("/^[A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ ]*$/iu",$_POST["edit-firstname"])) {
         echo 'W imieniu dozwolone są tylko wielkie i małe litery!';
+    } elseif (empty($_POST["register-firstname"])) {
+        echo 'Podanie imienia jest wymagane!';
     } elseif (!preg_match("/^[- A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ]*$/iu",$_POST["edit-surname"])) {
         echo 'W nazwisku dozwolone są tylko wielkie, małe litery oraz myślnik!';
+    } elseif (empty($_POST["register-nazwisko"])) {
+        echo 'Podanie kodu pocztowego jest wymagane!';
     } elseif (!preg_match("/^[- A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ ]*$/iu", $_POST['register-city'])) {
         echo 'Miasto może zawierać wyłącznie wielkie i małe litery!';
+    } elseif (empty($_POST["register-city"])) {
+        echo 'Podanie kodu pocztowego jest wymagane!';
     } elseif (!preg_match("/^[- 0-9]*$/iu", $_POST['register-zipcode'])) {
         echo 'Kod pocztowy może zawierać wyłącznie cyfry oraz myślnik!';
+    } elseif (empty($_POST["register-zipcode"])) {
+        echo 'Podanie kodu pocztowego jest wymagane!';
+    } elseif (empty($_POST["register-address"])) {
+        echo 'Podanie miasta jest wymagane!';
     } else {
 
         $firstname = ($_POST['edit-firstname']);
