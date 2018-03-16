@@ -36,7 +36,7 @@ if(isset($_POST['edit_user'])){
         echo 'Miasto może zawierać wyłącznie wielkie i małe litery!';
     } elseif (empty($_POST["register-city"])) {
         echo 'Podanie kodu pocztowego jest wymagane!';
-    } elseif (!preg_match("/^[- 0-9]*$/iu", $_POST['register-zipcode'])) {
+    } elseif (!preg_match("/^[0-9]{2}[-]{1}[0-9]{3}*$/ui", $_POST['register-zipcode'])) {
         echo 'Kod pocztowy może zawierać wyłącznie cyfry oraz myślnik!';
     } elseif (empty($_POST["register-zipcode"])) {
         echo 'Podanie kodu pocztowego jest wymagane!';
