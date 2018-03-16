@@ -52,10 +52,10 @@ if(isset($_POST['register'])) {
         echo 'Miasto może zawierać wyłącznie wielkie i małe litery!';
     } elseif (empty($_POST["register-zipcode"])) {
         echo 'Podanie kodu pocztowego jest wymagane!';
-    } elseif (!preg_match("/^[0-9]{2}[-]{1}[0-9]{3}*$/ui", $_POST['register-zipcode'])) {
-        echo 'Kod pocztowy może zawierać wyłącznie cyfry oraz myślnik!';
+    } elseif (!preg_match("/^[0-9]{2}-[0-9]{3}$/", $_POST['register-zipcode'])) {
+        echo 'Nieprawidłowy kod pocztowy!';
     } elseif (empty($_POST["register-address"])) {
-        echo 'Podanie miasta pocztowego jest wymagane!';
+        echo 'Podanie miasta jest wymagane!';
     } elseif (in_array($_POST['register-username'],$username)) {
         echo 'Wybrana nazwa użytkownika już istnieje!';
     } elseif (in_array($_POST['register-email'],$email)) {

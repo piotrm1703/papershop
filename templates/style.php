@@ -12,6 +12,7 @@
     /*header sty;e*/
     h1 {
     text-align: center;
+    margin-bottom: -20px;
     }
     h2 {
     color: darkslategrey;
