@@ -80,7 +80,8 @@ if(isset($_POST['register'])) {
 
         $to = $_POST['register-email'];
         $subject = 'Link potwierdzający rejestrację';
-        $txt = ('Aby potwierdzić chęc rejestracji kliknij w następujący link: www.papershop.com.pl/?verify_email='.$verifyKey.' . Jeśli to nie ty chciałeś dokonać rejestracji, zignoruj ten link lub usuń wiadomość.');
+        $txt = ('Aby potwierdzić chęc rejestracji kliknij w następujący link: www.papershop.com.pl/?verify_email='.$verifyKey.' . Jeśli to nie ty chciałeś dokonać rejestracji, zignoruj ten link lub usuń wiadomość.
+        Ps. Wiadomość została wygenerowana automatycznie - NIE ODPOWIADAJ na nią!');
         $headers = "From: rejestracja@papershop.com.pl" . "\r\n";
         mail($to, $subject, $txt, $headers);
 
