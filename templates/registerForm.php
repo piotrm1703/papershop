@@ -13,8 +13,8 @@
             <input class="register_field" id="register-username" name="register-username" placeholder="Podaj login..." minlength="8" maxlength="254" required>
 
             <p class="register_title">Hasło</p>
-            <input class="password_field" type="password" id="password" name="password" placeholder="Podaj hasło..." title="Conajmniej: 6 znaków,1 wielka litera,1 mała litera oraz 1 cyfra!" minlength="6" maxlength="20" required>
-            <input class="password_field" type="password" id="password_repeated" name="password_repeated" placeholder="Podaj ponownie hasło..." minlength="6" maxlength="20" required>
+            <input class="password_field" type="password" id="password" name="password" placeholder="Podaj hasło..." title="Conajmniej: 8 znaków,1 wielka litera,1 mała litera oraz 1 cyfra!" minlength="8" maxlength="20" required>
+            <input class="password_field" type="password" id="password_repeated" name="password_repeated" placeholder="Podaj ponownie hasło..." minlength="8" maxlength="20" required>
 
             <p class="register_title">Email</p>
             <input class="register_field" type="email" id="register-email" name="register-email" placeholder="Podaj email..." maxlength="100" required>
