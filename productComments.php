@@ -1,5 +1,10 @@
 <?php
 
+if(!isset($_SESSION['authenticatedUser'])) {
+    header('Location: /');
+    die();
+}
+
 $currentProduct = substr( $_GET['page'], 17);
 
 $productsStatement = $pdo->prepare('
@@ -10,6 +15,7 @@ $productsStatement = $pdo->prepare('
     ORDER BY products.id
 ');
 $productsStatement->bindParam(':id',$currentProduct);
+
 if ($productsStatement->execute() === false) {
     throw new DatabaseException();
 }
@@ -22,6 +28,7 @@ $commentsStatement = $pdo->prepare('
     WHERE comments.productID = :id 
     ORDER BY comments.id 
 ');
+
 $commentsStatement->bindParam(':id',$currentProduct);
 
 if ($commentsStatement->execute() === false) {

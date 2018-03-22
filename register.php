@@ -23,47 +23,18 @@ if(isset($_POST['register'])) {
     $userData = $usersStatement->fetchAll(PDO::FETCH_OBJ);
 
     foreach ($userData as $data) {
-        $username[] = $data->username;
+        $usernameArray[] = $data->username;
         $emailArray[] = $data->email;
     }
-    $email = $_POST['register-email'];
 
-    if (!preg_match("/^[A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ ]*$/iu",$_POST["register-firstname"])) {
-        echo 'W imieniu dozwolone są tylko wielkie i małe litery!';
-    } elseif (empty($_POST["register-surname"])) {
-        echo 'Podanie imienia jest wymagane!';
-    } elseif (!preg_match("/^[- A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ]*$/iu",$_POST["register-surname"])) {
-        echo 'W nazwisku dozwolone są tylko wielkie, małe litery oraz myślnik!';
-    } elseif (empty($_POST["register-surname"])) {
-        echo 'Podanie nazwiska jest wymagane!';
-    } elseif ($_POST['password'] !== $_POST['password_repeated']) {
-        echo 'Hasła różnią się!';
-    } elseif (strlen( $_POST['password']) < 8 || strlen( $_POST['password_repeated']) < 8) {
-        echo 'Twoje hasło musi zawierać conajmniej 8 znaków!';
-    } elseif (strlen( $_POST['password']) > 20 || strlen( $_POST['password_repeated']) > 20) {
-        echo 'Twoje hasło może zawierać maksymalnie 20 znaków!';
-    } elseif (!preg_match("#[0-9]+#", $_POST['password'])) {
-        echo 'Twoje hasło musi zawierać conajmniej 1 cyfrę!';
-    } elseif (!preg_match("#[A-Z]+#", $_POST['password'])) {
-        echo 'Twoje hasło musi zawierać conajmniej 1 wielką literę!';
-    } elseif (!preg_match("#[a-z]+#", $_POST['password'])) {
-        echo 'Twoje hasło musi zawierać conajmniej 1 małą literę!';
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        echo 'Nieprawidłowy format email';
-    } elseif (empty($_POST["register-city"])) {
-        echo 'Podanie miasta jest wymagane!';
-    } elseif (!preg_match("/^[- A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ ]*$/iu", $_POST['register-city'])) {
-        echo 'Miasto może zawierać wyłącznie wielkie i małe litery!';
-    } elseif (empty($_POST["register-zipcode"])) {
-        echo 'Podanie kodu pocztowego jest wymagane!';
-    } elseif (!preg_match("/^[0-9]{2}-[0-9]{3}$/", $_POST['register-zipcode'])) {
-        echo 'Nieprawidłowy kod pocztowy!';
-    } elseif (empty($_POST["register-address"])) {
-        echo 'Podanie miasta jest wymagane!';
-    } elseif (in_array($_POST['register-username'],$username)) {
-        echo 'Wybrana nazwa użytkownika już istnieje!';
-    } elseif (in_array($_POST['register-email'],$emailArray)) {
-        echo 'Użytkownik o podanym emailu już istnieje!';
+    $checkUserInput = new RegistryValidation();
+
+    if($checkUserInput->firstnameCheck($_POST['register-firstname']) == true || $checkUserInput->surnameCheck($_POST['register-surname']) == true
+        || $checkUserInput->usernameCheck($_POST['register-username'],$usernameArray) == true || $checkUserInput->passwordCheck($_POST['password'],$_POST['password_repeated']) == true
+        || $checkUserInput->emailCheck($_POST['register-email'],$emailArray) == true || $checkUserInput->cityCheck($_POST['register-city']) == true
+        || $checkUserInput->zipcodeCheck($_POST['zipcode-city']) == true || $checkUserInput->addressCheck($_POST['address-city']) == true){
+        echo ' Popraw błędy!';
+
     } else {
 
         $verifyKey = generateRandomString();
@@ -94,4 +65,23 @@ if(isset($_POST['register'])) {
     }
 }
 
+//$checkData = new RegistryValidation();
+//$asd = '1';
 
+//$checkData->firstnameCheck();
+//$checkData->surnameCheck();
+//$checkData->usernameCheck();
+//$checkData->passwordCheck();
+//$checkData->emailCheck();
+//$checkData->cityCheck();
+//$checkData->zipcodeCheck();
+//$checkData->addressCheck($asd);
+//    if($checkData->firstnameCheck($_POST['register-firstname']) === ){
+//        echo 'asd';
+//
+
+//if($checkData->firstnameCheck($_POST['register-firstname']) == true || $checkData->surnameCheck($_POST['register-surname']) == true
+//    || $checkData->usernameCheck($_POST['register-username'],$usernameArray) == true || $checkData->passwordCheck($_POST['password'],$_POST['password_repeated']) == true
+//    || $checkData->emailCheck($_POST['register-email'],$emailArray) == true || $checkData->cityCheck($_POST['register-city']) == true
+//    || $checkData->zipcodeCheck($_POST['zipcode-city']) == true || $checkData->addressCheck($_POST['address-city']) == true){
+//    echo ' Popraw błędy!';

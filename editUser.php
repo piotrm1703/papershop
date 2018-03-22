@@ -1,5 +1,10 @@
 <?php
 
+if(!isset($_SESSION['authenticatedUser'])) {
+    header('Location: /');
+    die();
+}
+
 $currentUser = $_SESSION['authenticatedUser'];
 $usersStatement = $pdo->prepare('SELECT firstname, surname, city, zipcode, address FROM users WHERE username = :username');
 $usersStatement->bindParam(':username', $currentUser);
@@ -24,24 +29,13 @@ if(isset($_POST['edit_user'])){
         throw new Exception('Jakiś gamoń kombinuje z polami');
     }
 
-    if (!preg_match("/^[A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ ]*$/iu",$_POST["edit-firstname"])) {
-        echo 'W imieniu dozwolone są tylko wielkie i małe litery!';
-    } elseif (empty($_POST["edit-firstname"])) {
-        echo 'Podanie imienia jest wymagane!';
-    } elseif (!preg_match("/^[- A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ]*$/iu",$_POST["edit-surname"])) {
-        echo 'W nazwisku dozwolone są tylko wielkie, małe litery oraz myślnik!';
-    } elseif (empty($_POST["edit-surname"])) {
-        echo 'Podanie nazwiska jest wymagane!';
-    } elseif (!preg_match("/^[- A-PR-UWY-ZĄĆĘŁŃÓŚŹŻ ]*$/iu", $_POST['edit-city'])) {
-        echo 'Miasto może zawierać wyłącznie wielkie i małe litery!';
-    } elseif (empty($_POST["edit-city"])) {
-        echo 'Podanie miasta jest wymagane!';
-    } elseif (!preg_match("/^[0-9]{2}-[0-9]{3}$/", $_POST['edit-zipcode'])) {
-        echo 'Kod pocztowy może zawierać wyłącznie cyfry oraz myślnik!';
-    } elseif (empty($_POST["edit-zipcode"])) {
-        echo 'Podanie kodu pocztowego jest wymagane!';
-    } elseif (empty($_POST["edit-address"])) {
-        echo 'Podanie adresu jest wymagane!';
+    $checkUserInput = new RegistryValidation();
+
+    if($checkUserInput->firstnameCheck($_POST['edit-firstname']) == true || $checkUserInput->surnameCheck($_POST['edit-surname']) == true
+        || $checkUserInput->cityCheck($_POST['edit-city']) == true || $checkUserInput->zipcodeCheck($_POST['edit-city']) == true
+        || $checkUserInput->addressCheck($_POST['edit-city']) == true){
+        echo ' Popraw błędy!';
+
     } else {
 
         $firstname = ($_POST['edit-firstname']);
