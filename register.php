@@ -64,24 +64,3 @@ if(isset($_POST['register'])) {
         die();
     }
 }
-
-//$checkData = new RegistryValidation();
-//$asd = '1';
-
-//$checkData->firstnameCheck();
-//$checkData->surnameCheck();
-//$checkData->usernameCheck();
-//$checkData->passwordCheck();
-//$checkData->emailCheck();
-//$checkData->cityCheck();
-//$checkData->zipcodeCheck();
-//$checkData->addressCheck($asd);
-//    if($checkData->firstnameCheck($_POST['register-firstname']) === ){
-//        echo 'asd';
-//
-
-//if($checkData->firstnameCheck($_POST['register-firstname']) == true || $checkData->surnameCheck($_POST['register-surname']) == true
-//    || $checkData->usernameCheck($_POST['register-username'],$usernameArray) == true || $checkData->passwordCheck($_POST['password'],$_POST['password_repeated']) == true
-//    || $checkData->emailCheck($_POST['register-email'],$emailArray) == true || $checkData->cityCheck($_POST['register-city']) == true
-//    || $checkData->zipcodeCheck($_POST['zipcode-city']) == true || $checkData->addressCheck($_POST['address-city']) == true){
-//    echo ' Popraw błędy!';
