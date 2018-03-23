@@ -547,7 +547,7 @@
         margin: -5px 10px 10px 0;
         word-break: break-all;
     }
-    .comment_button_div {
+    .comment_button_form {
     margin-bottom: -20px;
     }
     .delete_comment_button{

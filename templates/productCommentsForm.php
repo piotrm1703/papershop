@@ -9,7 +9,7 @@
 <hr class="horizontalLine">
 
 <article>
-    <form action="" method="post">
+    <form action="/?page=comments_product-<?php echo htmlEscape($currentProduct); ?>" method="post">
         <label>Wiadomość:</label>
         <textarea class="contact_form_field" id="comment" name="comment" placeholder="Co chciałbyś powiedzieć o tym produkcie?" style="height: 75px;" required></textarea>
         <input class="add_comment_button" type="submit" name="add_comment" id="add_comment" value="Dodaj komentarz" onclick="return confirm('Czy na pewno chcesz dodać ten komentarz?')">
@@ -26,8 +26,8 @@ foreach($comments as $comment){
         </div>
 
     <?php if(isset($_SESSION['authenticatedUser']) && ($_SESSION['authenticatedUser'] === 'administracja' || $_SESSION['authenticatedUser'] === 'admin' )) { ?>
-        <form class="comment_button_div" action="" method="post">
-            <button class="delete_comment_button" type="submit" name="delete_comment" id="delete_comment" value="<?php echo $comment->id ?>" onclick="return confirm('Czy na pewno chcesz usunąć ten komentarz?')"><span class="fa fa-close"></span></button>
+        <form class="comment_button_form" action="/?page=comments_product-<?php echo htmlEscape($currentProduct); ?>" method="post">
+            <button class="delete_comment_button" type="submit" name="delete_comment" value="<?php echo $comment->id ?>" onclick="return confirm('Czy na pewno chcesz usunąć ten komentarz?')"><span class="fa fa-close"></span></button>
         </form>
     <?php } ?>
 
@@ -35,4 +35,4 @@ foreach($comments as $comment){
             <?php echo $comment->content; ?>
         </div>
     </article>
-<?php } ?>
+<?php }

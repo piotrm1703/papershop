@@ -39,10 +39,8 @@ $comments = $commentsStatement->fetchAll(PDO::FETCH_OBJ);
 
 if(isset($_POST['add_comment']) && !empty($_POST['comment'])){
 
-    $username = $_SESSION['authenticatedUser'];
-
     $usersStatement = $pdo->prepare('SELECT id FROM users WHERE username = :username');
-    $usersStatement->bindParam(':username',$username);
+    $usersStatement->bindParam(':username',$_SESSION['authenticatedUser']);
 
     if($usersStatement->execute() === false){
         throw new DatabaseException();
@@ -50,32 +48,29 @@ if(isset($_POST['add_comment']) && !empty($_POST['comment'])){
 
     $users = $usersStatement->fetch(PDO::FETCH_OBJ);
 
-    $productID = $products->id;
-    $userID = $users->id;
-    $newComment = $_POST['comment'];
-
     $commentStatement = $pdo->prepare('INSERT INTO comments VALUES (NULL, :productID, :userID, :comment)');
-    $commentStatement->bindParam(':productID', $productID);
-    $commentStatement->bindParam(':userID',$userID);
-    $commentStatement->bindParam(':comment',$newComment);
+    $commentStatement->bindParam(':productID', $products->id);
+    $commentStatement->bindParam(':userID',$users->id);
+    $commentStatement->bindParam(':comment',$_POST['comment']);
 
     if($commentStatement->execute() === false){
         throw new DatabaseException();
     }
 
-    header('Location: /?page=comments_product-'.$currentProduct);
+    header('Location: /?page=comments_product-'.htmlEscape($currentProduct));
     die();
 
 }
 
 if(isset($_POST['delete_comment'])){
+
     $commentStatement = $pdo->prepare('DELETE FROM comments WHERE id = :id');
-    $id = $_POST['delete_comment'];
-    $commentStatement->bindParam(':id', $id);
+    $commentStatement->bindParam(':id', $_POST['delete_comment']);
+
     if($commentStatement->execute() === false){
         throw new DatabaseException();
     }
-    header('Location: /?page=comments_product-'.$currentProduct);
+    header('Location: /?page=comments_product-'.htmlEscape($currentProduct));
     die();
 }
 

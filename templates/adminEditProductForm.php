@@ -2,7 +2,7 @@
     <label><b>Edytuj produkt:</b></label>
     <br>
     <br>
-    <form method="post" >
+    <form action="/?page=editProduct<?php echo htmlEscape($currentPage); ?>" method="post" >
 
         <?php foreach ($productArray as $k=>$v) {
 
