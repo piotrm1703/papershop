@@ -3,8 +3,8 @@
 if(isset($_POST['delIcon'])) {
 
     $orderStatement = $pdo->prepare("DELETE FROM orders WHERE id = :id");
-    $selectedItem = $_POST['delIcon'];
-    $orderStatement->bindParam(':id', $selectedItem);
+    $orderStatement->bindParam(':id', $_POST['delIcon']);
+
     if($orderStatement->execute() === false){
         throw new DatabaseException();
     }
@@ -12,15 +12,10 @@ if(isset($_POST['delIcon'])) {
     die();
 }
 
-if(isset($_POST['check-user-data'])) {
-
-}
-
 if(isset($_POST['realized'])) {
 
     $orderStatement = $pdo->prepare("UPDATE orders SET status='zrealizowano' WHERE id = :id");
-    $selectedItem = $_POST['realized'];
-    $orderStatement->bindParam(':id', $selectedItem);
+    $orderStatement->bindParam(':id', $_POST['realized']);
 
     if($orderStatement->execute() === false){
         throw new DatabaseException();
@@ -33,7 +28,7 @@ if(isset($_POST['realized'])) {
         WHERE orders.id = :id
         ORDER BY orders.id
     ");
-    $usersStatement->bindParam(':id', $selectedItem);
+    $usersStatement->bindParam(':id', $_POST['realized']);
 
     if($usersStatement->execute() === false){
         throw new DatabaseException();
@@ -54,8 +49,7 @@ if(isset($_POST['realized'])) {
 if(isset($_POST['expectant'])) {
 
     $orderStatement = $pdo->prepare("UPDATE orders SET status='oczekujący' WHERE id = :id");
-    $selectedItem = $_POST['expectant'];
-    $orderStatement->bindParam(':id', $selectedItem);
+    $orderStatement->bindParam(':id', $_POST['expectant']);
     if($orderStatement->execute() === false){
         throw new DatabaseException();
     }

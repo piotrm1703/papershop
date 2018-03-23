@@ -21,16 +21,12 @@ require_once (__DIR__.'/templates/adminEditProductForm.php');
 
 if(isset($_POST['edited'])) {
 
-    $category = ($_POST['edit-category']);
-    $content = ($_POST['edit-content']);
-    $price = ($_POST['edit-price']);
-    $imgId = ($_POST['edit-img']);
     $id = substr($_GET['page'], 11);
     $productStatement = $pdo->prepare("UPDATE products SET category = :category , content = :content, uploadID = :uploadID , price = :price WHERE id = :id");
-    $productStatement->bindParam(':category', $category);
-    $productStatement->bindParam(':content', $content);
-    $productStatement->bindParam(':uploadID', $imgId);
-    $productStatement->bindParam(':price', $price);
+    $productStatement->bindParam(':category',  $_POST['edit-category']);
+    $productStatement->bindParam(':content', $_POST['edit-content']);
+    $productStatement->bindParam(':uploadID',  $_POST['edit-img']);
+    $productStatement->bindParam(':price', $_POST['edit-price']);
     $productStatement->bindParam(':id', $id);
     if($productStatement->execute() === false){
         throw new DatabaseException();
@@ -42,7 +38,6 @@ if(isset($_POST['edited'])) {
 if(isset($_POST['delete']) && isset($_POST['edit-category'])) {
 
     $id = substr($_GET['page'], 11);
-    $category = ($_POST['edit-category']);
     $productStatement = $pdo->prepare("DELETE FROM products WHERE id = :id ");
     $productStatement->bindParam(':id', $id);
     if($productStatement->execute() === false){
@@ -51,5 +46,3 @@ if(isset($_POST['delete']) && isset($_POST['edit-category'])) {
     header('Location: /?page='.$_POST['edit-category'].'');
     die();
 }
-
-
