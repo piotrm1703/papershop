@@ -13,8 +13,8 @@ if($usersStatement->execute() === false){
 }
 $usersStatement = $usersStatement->fetchAll();
 
-foreach ($usersStatement as $userData ){
-    $user = $userData;
+foreach ($usersStatement as $users ){
+    $user = $users;
 }
 
 require_once (__DIR__.'/templates/editUserForm.php');
@@ -31,26 +31,19 @@ if(isset($_POST['edit_user'])){
 
     $checkUserInput = new RegistryValidation();
 
-    if($checkUserInput->firstnameCheck($_POST['edit-firstname']) == true || $checkUserInput->surnameCheck($_POST['edit-surname']) == true
-        || $checkUserInput->cityCheck($_POST['edit-city']) == true || $checkUserInput->zipcodeCheck($_POST['edit-city']) == true
-        || $checkUserInput->addressCheck($_POST['edit-city']) == true){
+    if($checkUserInput->firstnameCheck($_POST['edit-firstname']) || $checkUserInput->surnameCheck($_POST['edit-surname'])
+        || $checkUserInput->cityCheck($_POST['edit-city']) || $checkUserInput->zipcodeCheck($_POST['edit-city'])
+        || $checkUserInput->addressCheck($_POST['edit-city'])){
         echo ' Popraw błędy!';
 
     } else {
 
-        $firstname = ($_POST['edit-firstname']);
-        $surname = ($_POST['edit-surname']);
-        $city = ($_POST['edit-city']);
-        $zipcode = ($_POST['edit-zipcode']);
-        $address = ($_POST['edit-address']);
-
-
         $userStatement = $pdo->prepare('UPDATE users SET firstname = :firstname, surname = :surname, city = :city, zipcode = :zipcode, address = :address WHERE username = :username');
-        $userStatement->bindParam(':firstname', $firstname);
-        $userStatement->bindParam(':surname', $surname);
-        $userStatement->bindParam(':city', $city);
-        $userStatement->bindParam(':zipcode', $zipcode);
-        $userStatement->bindParam(':address', $address);
+        $userStatement->bindParam(':firstname', $_POST['edit-firstname']);
+        $userStatement->bindParam(':surname', $_POST['edit-surname']);
+        $userStatement->bindParam(':city', $_POST['edit-city']);
+        $userStatement->bindParam(':zipcode', $_POST['edit-zipcode']);
+        $userStatement->bindParam(':address', $_POST['edit-address']);
         $userStatement->bindParam(':username', $currentUser);
         if ($userStatement->execute() === false) {
             throw new DatabaseException();

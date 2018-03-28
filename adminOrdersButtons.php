@@ -50,9 +50,11 @@ if(isset($_POST['expectant'])) {
 
     $orderStatement = $pdo->prepare("UPDATE orders SET status='oczekujący' WHERE id = :id");
     $orderStatement->bindParam(':id', $_POST['expectant']);
+
     if($orderStatement->execute() === false){
         throw new DatabaseException();
     }
+
     header('Location: /?page=orders');
     die();
 }
