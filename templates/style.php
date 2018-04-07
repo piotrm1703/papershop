@@ -559,8 +559,9 @@
         right: 15px;
     }
     .delete_comment_button:hover {
+        background: none;
         opacity: 0.8;
-        background-color: darkred;
+        color: darkslategrey;
     }
     /*end of product view style*/
 
