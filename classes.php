@@ -51,11 +51,11 @@ class RegistryValidation
         if ($password !== $password_repeated) {
             echo 'Hasła różnią się!';
             return true;
-        } elseif (strlen($password) < 8 || strlen($password_repeated) < 8) {
-            echo 'Twoje hasło musi zawierać conajmniej 8 znaków!';
+        } elseif (strlen($password) < 10 || strlen($password_repeated) < 10) {
+            echo 'Twoje hasło musi zawierać conajmniej 10 znaków!';
             return true;
-        } elseif (strlen($password) > 20 || strlen($password_repeated) > 20) {
-            echo 'Twoje hasło może zawierać maksymalnie 20 znaków!';
+        } elseif (strlen($password) > 50 || strlen($password_repeated) > 50) {
+            echo 'Twoje hasło może zawierać maksymalnie 50 znaków!';
             return true;
         } elseif (!preg_match("#[0-9]+#", $password)) {
             echo 'Twoje hasło musi zawierać conajmniej 1 cyfrę!';
@@ -65,6 +65,9 @@ class RegistryValidation
             return true;
         } elseif (!preg_match("#[a-z]+#", $password)) {
             echo 'Twoje hasło musi zawierać conajmniej 1 małą literę!';
+            return true;
+        } elseif (!preg_match('/[\'\/~`\!@#\$%\^&\*\(\)_\-\+=\{\}\[\]\|;:"\<\>,\.\?\\\]/', $password)) {
+            echo 'Twoje hasło musi zawierać conajmniej 1 znak specjalny!';
             return true;
         } else {
             return false;

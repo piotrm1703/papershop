@@ -32,7 +32,7 @@ if(isset($_POST['register'])) {
     if($checkUserInput->firstnameCheck($_POST['register-firstname']) == true || $checkUserInput->surnameCheck($_POST['register-surname']) == true
         || $checkUserInput->usernameCheck($_POST['register-username'],$usernameArray) == true || $checkUserInput->passwordCheck($_POST['password'],$_POST['password_repeated']) == true
         || $checkUserInput->emailCheck($_POST['register-email'],$emailArray) == true || $checkUserInput->cityCheck($_POST['register-city']) == true
-        || $checkUserInput->zipcodeCheck($_POST['zipcode-city']) == true || $checkUserInput->addressCheck($_POST['address-city']) == true){
+        || $checkUserInput->zipcodeCheck($_POST['register-zipcode']) == true || $checkUserInput->addressCheck($_POST['register-address']) == true){
         echo ' Popraw błędy!';
 
     } else {
