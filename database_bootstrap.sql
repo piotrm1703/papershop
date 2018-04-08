@@ -104,8 +104,8 @@ INSERT INTO uploads VALUES
   (NULL, '/uploads/papieroffsetowy.jpg');
 
 INSERT INTO users VALUES
-  (NULL, 'Konto administratora', 'uzupelnij', 'admin', '$2y$10$8kF.nVSxdZTC3Za/FK8WT.hbPgxQeE8V3xHGVcrxoFTgFtbCKL4l6', 'uzupelnij', 'uzupelnij', 'uzupelnij', 'uzupelnij', '',1),
-  (NULL, 'Konto administratora', 'uzupelnij', 'administracja', '$2y$10$.HFyeEfk4sAOXIsKNioKSOPq33v90f2Mg.t9jqgT976ThQ8IxikA.', 'uzupelnij', 'uzupelnij', 'uzupelnij', 'uzupelnij', '',1);
+  (NULL, 'Konto administratora', 'uzupelnij', 'admin', '$2y$10$8kF.nVSxdZTC3Za/FK8WT.hbPgxQeE8V3xHGVcrxoFTgFtbCKL4l6', 'uzupelnij', 'uzupelnij', 'uzupelnij', 'uzupelnij', '', 1),
+  (NULL, 'Konto administratora', 'uzupelnij', 'administracja', '$2y$10$.HFyeEfk4sAOXIsKNioKSOPq33v90f2Mg.t9jqgT976ThQ8IxikA.', 'uzupelnij', 'uzupelnij', 'uzupelnij', 'uzupelnij', '', 1);
 
 INSERT INTO products VALUES
   (NULL, 'Papiery-powlekane', 'Papiery powlekane - produkt 1', '2', '23.99'),
