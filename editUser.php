@@ -32,8 +32,8 @@ if(isset($_POST['edit_user'])){
     $checkUserInput = new RegistryValidation();
 
     if($checkUserInput->firstnameCheck($_POST['edit-firstname']) || $checkUserInput->surnameCheck($_POST['edit-surname'])
-        || $checkUserInput->cityCheck($_POST['edit-city']) || $checkUserInput->zipcodeCheck($_POST['edit-city'])
-        || $checkUserInput->addressCheck($_POST['edit-city'])){
+        || $checkUserInput->cityCheck($_POST['edit-city']) || $checkUserInput->zipcodeCheck($_POST['edit-zipcode'])
+        || $checkUserInput->addressCheck($_POST['edit-address'])){
         echo ' Popraw błędy!';
 
     } else {

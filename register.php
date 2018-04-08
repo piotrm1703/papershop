@@ -37,13 +37,15 @@ if(isset($_POST['register'])) {
 
     } else {
 
+        $password = $_POST['password'];
+        $passwordHashed = password_hash($password, PASSWORD_DEFAULT);
         $verifyKey = generateRandomString();
 
         $userStatement = $pdo->prepare("INSERT INTO users(id, firstname, surname, username, password, email, city, zipcode, address, verifyKey) VALUES(NULL, :firstname, :surname, :username, :password, :email, :city, :zipcode, :address, :verifyKey)");
         $userStatement->bindParam(':firstname', $_POST['register-firstname']);
         $userStatement->bindParam(':surname', $_POST['register-surname']);
         $userStatement->bindParam(':username', $_POST['register-username']);
-        $userStatement->bindParam(':password', $_POST['password']);
+        $userStatement->bindParam(':password', $passwordHashed);
         $userStatement->bindParam(':email', $_POST['register-email']);
         $userStatement->bindParam(':city', $_POST['register-city']);
         $userStatement->bindParam(':zipcode', $_POST['register-zipcode']);
@@ -64,3 +66,11 @@ if(isset($_POST['register'])) {
         die();
     }
 }
+
+$pas = 'admin';
+$pas1 = 'admin1';
+$hash = password_hash($pas,PASSWORD_DEFAULT);
+$hash1 = password_hash($pas1,PASSWORD_DEFAULT);
+var_dump($hash);
+var_dump($hash1);
+

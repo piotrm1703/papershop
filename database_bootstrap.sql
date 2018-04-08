@@ -1,61 +1,97 @@
-CREATE DATABASE PaperShop;
+CREATE DATABASE PaperShop CHARACTER SET utf8 COLLATE utf8_general_ci;
 
-CREATE TABLE users (
+CREATE TABLE users  (
     id INT PRIMARY KEY AUTO_INCREMENT,
-    firstname TEXT,
-    surname TEXT,
-    username TEXT,
-    password TEXT,
-    email VARCHAR(256),
-    city TEXT,
-    zipcode TEXT,
-    address TEXT,
-    verifyKey TEXT
-);
+    firstname VARCHAR(200)
+              CHARACTER SET utf8
+              COLLATE utf8_polish_ci,
+    surname   VARCHAR(200)
+              CHARACTER SET utf8
+              COLLATE utf8_polish_ci,
+    username  VARCHAR(200),
+    password  VARCHAR(200),
+    email     VARCHAR(256),
+    city      VARCHAR(200)
+              CHARACTER SET utf8
+              COLLATE utf8_polish_ci,
+    zipcode   VARCHAR(200),
+    address   VARCHAR(200)
+              CHARACTER SET utf8
+              COLLATE utf8_polish_ci,
+    verifyKey VARCHAR(30)
+)
+    CHARACTER SET utf8 COLLATE utf8_general_ci
+;
 
 CREATE TABLE uploads (
     id  INT PRIMARY KEY AUTO_INCREMENT,
     url VARCHAR(256)
-);
+)
+    CHARACTER SET utf8 COLLATE utf8_general_ci
+;
 
 CREATE TABLE messages (
     id        INT PRIMARY KEY AUTO_INCREMENT,
-    firstname TEXT,
-    surname   TEXT,
+    firstname VARCHAR(200)
+              CHARACTER SET utf8
+              COLLATE utf8_polish_ci,
+    surname   VARCHAR(200)
+              CHARACTER SET utf8
+              COLLATE utf8_polish_ci,
     email     VARCHAR(256),
-    subject   TEXT,
-    content   TEXT,
+    subject   VARCHAR(200)
+              CHARACTER SET utf8
+              COLLATE utf8_polish_ci,
+    content   VARCHAR(10000)
+              CHARACTER SET utf8
+              COLLATE utf8_polish_ci,
     date      DATE,
-    status    TEXT
-);
+    status    VARCHAR(50)
+              CHARACTER SET utf8
+              COLLATE utf8_polish_ci
+)
+    CHARACTER SET utf8 COLLATE utf8_general_ci
+;
 
 CREATE TABLE orders (
     id        INT PRIMARY KEY AUTO_INCREMENT,
     clientID  INT ,
     sum       FLOAT(10, 2),
-    products  TEXT,
+    products  VARCHAR(1000),
     date      DATE,
-    status    TEXT,
+    status    VARCHAR(50)
+              CHARACTER SET utf8
+              COLLATE utf8_polish_ci,
     FOREIGN KEY (clientID) REFERENCES users(id) ON DELETE NO ACTION ON UPDATE NO ACTION
-);
+)
+    CHARACTER SET utf8 COLLATE utf8_general_ci
+;
 
 CREATE TABLE products (
     id       INT PRIMARY KEY AUTO_INCREMENT,
-    category TEXT,
-    content  TEXT,
+    category VARCHAR(200),
+    content  VARCHAR(10000)
+             CHARACTER SET utf8
+             COLLATE utf8_polish_ci,
     uploadID INT,
     price    FLOAT(10, 2),
     FOREIGN KEY (uploadID) REFERENCES uploads(id) ON DELETE SET NULL ON UPDATE NO ACTION
-);
+)
+    CHARACTER SET utf8 COLLATE utf8_general_ci
+;
 
 CREATE TABLE comments (
     id       INT PRIMARY KEY AUTO_INCREMENT,
     productID INT,
     clientID  INT,
-    content TEXT,
+    content VARCHAR(10000)
+            CHARACTER SET utf8
+            COLLATE utf8_polish_ci,
     FOREIGN KEY (productID) REFERENCES products(id) ON DELETE SET NULL ON UPDATE NO ACTION,
     FOREIGN KEY (clientID) REFERENCES users(id) ON DELETE SET NULL ON UPDATE NO ACTION
-);
+)
+    CHARACTER SET utf8 COLLATE utf8_general_ci
+;
 
 INSERT INTO uploads VALUES
     (NULL, '/uploads/no-image.jpg'),
@@ -67,8 +103,8 @@ INSERT INTO uploads VALUES
     (NULL, '/uploads/papieroffsetowy.jpg');
 
 INSERT INTO users VALUES
-    (NULL, 'uzupelnij', 'uzupelnij', 'admin', 'admin', 'uzupelnij', 'uzupelnij', 'uzupelnij', 'uzupelnij', ''),
-    (NULL, 'uzupelnij', 'uzupelnij', 'administracja', 'admin1', 'uzupelnij', 'uzupelnij', 'uzupelnij', 'uzupelnij', '');
+    (NULL, 'Konto administratora', 'uzupelnij', 'admin', '$2y$10$8kF.nVSxdZTC3Za/FK8WT.hbPgxQeE8V3xHGVcrxoFTgFtbCKL4l6', 'uzupelnij', 'uzupelnij', 'uzupelnij', 'uzupelnij', ''),
+    (NULL, 'Konto administratora', 'uzupelnij', 'administracja', '$2y$10$.HFyeEfk4sAOXIsKNioKSOPq33v90f2Mg.t9jqgT976ThQ8IxikA.', 'uzupelnij', 'uzupelnij', 'uzupelnij', 'uzupelnij', '');
 
 INSERT INTO products VALUES
     (NULL, 'Papiery-powlekane', 'Papiery powlekane - produkt 1', '2', '23.99'),
@@ -92,38 +128,3 @@ INSERT INTO products VALUES
     (NULL, 'Papiery-samokopiujace', 'Papier samokopiujący - produkt 4', '6', '39.99'),
     (NULL, 'Papier-offsetowy', 'Papier offsetowy - produkt 1', '7', '39.99'),
     (NULL, 'Papier-offsetowy', 'Papier offsetowy - produkt 2', '7', '39.99');
-
-ALTER DATABASE PaperShop CHARACTER SET utf8 COLLATE utf8_general_ci;
-
-ALTER TABLE users CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE users MODIFY firstname VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_polish_ci;
-ALTER TABLE users MODIFY surname VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_polish_ci;
-ALTER TABLE users MODIFY username VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE users MODIFY password VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE users MODIFY email VARCHAR(256) CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE users MODIFY city VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_polish_ci;
-ALTER TABLE users MODIFY zipcode VARCHAR(10) CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE users MODIFY address VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_polish_ci;
-ALTER TABLE users MODIFY verifyKey VARCHAR(30) CHARACTER SET utf8 COLLATE utf8_general_ci;
-
-ALTER TABLE uploads CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE uploads MODIFY url VARCHAR(256) CHARACTER SET utf8 COLLATE utf8_general_ci;
-
-ALTER TABLE messages CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE messages MODIFY firstname VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_polish_ci;
-ALTER TABLE messages MODIFY surname VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_polish_ci;
-ALTER TABLE messages MODIFY email VARCHAR(256) CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE messages MODIFY subject VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_polish_ci;
-ALTER TABLE messages MODIFY content VARCHAR(10000) CHARACTER SET utf8 COLLATE utf8_polish_ci;
-ALTER TABLE messages MODIFY status VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_polish_ci;
-
-ALTER TABLE orders CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE orders MODIFY products VARCHAR(1000) CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE orders MODIFY status VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_polish_ci;
-
-ALTER TABLE products CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE products MODIFY category VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE products MODIFY content VARCHAR(10000) CHARACTER SET utf8 COLLATE utf8_polish_ci;
-
-ALTER TABLE comments CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
-ALTER TABLE comments MODIFY content VARCHAR(10000) CHARACTER SET utf8 COLLATE utf8_polish_ci;
