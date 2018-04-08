@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ALL);
-
+header('X-Frame-Options: DENY');
 
 function handleError($exception, $message = null, $file = null, $line = null)
 {
