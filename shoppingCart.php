@@ -4,7 +4,7 @@
 
 <?php
 
-if (isset($_POST['addToCart'])) {
+if (isset($_POST['addToCart']) && $_POST['quantity']>0) {
     if (isset($_SESSION['cart'])) {
         $_SESSION['cart'];
     } else {
@@ -91,19 +91,3 @@ if (isset($_SESSION['cart'])) {
 if(isset($_SESSION['cart']) && $_SESSION['cart'] !== []) {
     require_once (__DIR__.'/templates/cartButtons.php');
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

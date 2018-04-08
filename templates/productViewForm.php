@@ -18,7 +18,7 @@
 <div class="productcontainer">
     <form action="/?page=shoppingCart" method="post">
         <button class="addToCart" name="addToCart" type="submit" value="<?php echo htmlEscape($product->id); ?>">Dodaj do koszyka</button>
-        <input class="quantityField" type="number" name="quantity" placeholder="Liczba..." required min="0">
+        <input class="quantityField" type="number" name="quantity" placeholder="Liczba..." required min="1">
     </form>
     <form action="/?page=comments_product-<?php echo htmlEscape($product->id); ?>" style="margin-bottom: -65px;" method="post">
         <button class="comment_button" name="comment" type="submit" value="<?php echo htmlEscape($product->id); ?>">Komentarze</button>

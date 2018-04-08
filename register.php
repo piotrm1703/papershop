@@ -66,11 +66,3 @@ if(isset($_POST['register'])) {
         die();
     }
 }
-
-$pas = 'admin';
-$pas1 = 'admin1';
-$hash = password_hash($pas,PASSWORD_DEFAULT);
-$hash1 = password_hash($pas1,PASSWORD_DEFAULT);
-var_dump($hash);
-var_dump($hash1);
-

@@ -5,7 +5,7 @@ require_once (__DIR__.'/templates/loginForm.php');
 if(isset($_POST['login'])){
     global $pdo;
 
-    $usersStatement = $pdo->prepare("SELECT username, password FROM users WHERE username = :username AND verifyKey = :verifyKey");
+    $usersStatement = $pdo->prepare('SELECT username, password FROM users WHERE username = :username AND verifyKey = :verifyKey');
     $username = htmlEscape($_POST['username']) ;
     $verifyKey = '';
     $usersStatement->bindParam(':username', $username);
