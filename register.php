@@ -27,7 +27,7 @@ if(isset($_POST['register'])) {
         $emailArray[] = $data->email;
     }
 
-    $checkUserInput = new RegistryValidation();
+    $checkUserInput = new RegisterValidation();
 
     if($checkUserInput->firstnameCheck($_POST['register-firstname']) == true || $checkUserInput->surnameCheck($_POST['register-surname']) == true
         || $checkUserInput->usernameCheck($_POST['register-username'],$usernameArray) == true || $checkUserInput->passwordCheck($_POST['password'],$_POST['password_repeated']) == true

@@ -8,7 +8,7 @@ class DatabaseException extends Exception
     }
 }
 
-class RegistryValidation
+class RegisterValidation
 {
     public function firstnameCheck($name)
     {
