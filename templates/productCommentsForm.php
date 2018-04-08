@@ -25,7 +25,7 @@ foreach($comments as $comment){
             <b><?php echo $comment->firstname; ?></b> napisał/a:
         </div>
 
-    <?php if(isset($_SESSION['authenticatedUser']) && ($_SESSION['authenticatedUser'] === 'administracja' || $_SESSION['authenticatedUser'] === 'admin' )) { ?>
+    <?php if(isAdmin()) { ?>
         <form class="comment_button_form" action="/?page=comments_product-<?php echo htmlEscape($currentProduct); ?>" method="post">
             <button class="delete_comment_button" type="submit" name="delete_comment" value="<?php echo $comment->id ?>" onclick="return confirm('Czy na pewno chcesz usunąć ten komentarz?')"><span class="fa fa-close"></span></button>
         </form>

@@ -2,7 +2,7 @@
 
     <?php echo htmlEscape($product->content); ?>
     <img src=" <?php echo htmlEscape($product->url); ?>" class="imgView">
-    <?php if(isset($_SESSION['authenticatedUser']) && ($_SESSION['authenticatedUser'] === 'administracja' || $_SESSION['authenticatedUser'] === 'admin' )) { ?>
+    <?php if(isAdmin()) { ?>
         <div>
             <form action="/?page=editProduct<?php echo htmlEscape($product->id); ?>" method="post">
                 <button name="edit" class="editButton" type="submit" title="Edytuj lub usuń produkt" value="<?php echo htmlEscape($product->id); ?>"><span class="fa fa-wrench" style="font-size: 20px"></span></button>

@@ -14,7 +14,27 @@ function sqlLikeEscape($value)
     return addcslashes($value,'%_');
 }
 
+function isAdmin()
+{
+    global $pdo;
+    $userStatement = $pdo->prepare('SELECT admin FROM users WHERE username = :username');
+    $userStatement->bindParam(':username', $_SESSION['authenticatedUser']);
+
+    if ($userStatement->execute() === false) {
+        throw new DatabaseException();
+    }
+
+    $isAdmin = $userStatement->fetch();
+
+    if($isAdmin['admin'] === '1'){
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function siteInterface(){
+
     require_once(__DIR__.'/templates/header.php');
     require_once (__DIR__.'/templates/style.php');
     if(!isset($_SESSION['authenticatedUser'])){
@@ -23,7 +43,7 @@ function siteInterface(){
         require_once (__DIR__.'/logout.php');
     }
     require_once (__DIR__.'/templates/navtop.php');
-    if(isset($_SESSION['authenticatedUser']) && ($_SESSION['authenticatedUser'] === 'admin1' || $_SESSION['authenticatedUser'] === 'admin' )){
+    if(isAdmin()){
         require_once (__DIR__.'/templates/adminNavForm.php');
     }
     require_once(__DIR__.'/templates/sidemenu.php');
