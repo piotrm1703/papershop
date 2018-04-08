@@ -16,9 +16,9 @@ function sqlLikeEscape($value)
 
 function isAdmin()
 {
-    if(isset($_SESSION['authenticatedUser'])){
+//    if(isset($_SESSION['authenticatedUser'])){
         global $pdo;
-        $userStatement = $pdo->prepare('SELECT admin FROM users WHERE username = :username');
+        $userStatement = $pdo->prepare('SELECT isAdmin FROM users WHERE username = :username');
         $userStatement->bindParam(':username', $_SESSION['authenticatedUser']);
 
         if ($userStatement->execute() === false) {
@@ -33,7 +33,7 @@ function isAdmin()
             return false;
         }
     }
-}
+//}
 
 function siteInterface(){
 
