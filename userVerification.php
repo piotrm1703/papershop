@@ -1,6 +1,6 @@
 <?php
 
-$userStatement = $pdo->prepare('SELECT admin FROM users WHERE username = :username');
+$userStatement = $pdo->prepare('SELECT isAdmin FROM users WHERE username = :username');
 $userStatement->bindParam(':username', $_SESSION['authenticatedUser']);
 
 if ($userStatement->execute() === false) {
@@ -9,7 +9,7 @@ if ($userStatement->execute() === false) {
 
 $isAdmin = $userStatement->fetch();
 
-if($isAdmin['admin'] !== '1'){
+if($isAdmin['isAdmin'] !== '1'){
     header('Location: /');
     die();
 }
