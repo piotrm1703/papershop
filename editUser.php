@@ -29,7 +29,7 @@ if(isset($_POST['edit_user'])){
         throw new Exception('Jakiś gamoń kombinuje z polami');
     }
 
-    $checkUserInput = new RegistryValidation();
+    $checkUserInput = new RegisterValidation();
 
     if($checkUserInput->firstnameCheck($_POST['edit-firstname']) || $checkUserInput->surnameCheck($_POST['edit-surname'])
         || $checkUserInput->cityCheck($_POST['edit-city']) || $checkUserInput->zipcodeCheck($_POST['edit-zipcode'])
