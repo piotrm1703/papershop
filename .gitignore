@@ -1,8 +1,5 @@
 /.idea/
 /var/
-/nauka/
 /connectDB.php
 /web/debug.txt
-/vagrantfile
-/.vagrant/
 /web/uploads/
