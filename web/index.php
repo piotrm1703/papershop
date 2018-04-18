@@ -25,14 +25,8 @@ function handleError($exception, $message = null, $file = null, $line = null)
             $file = $exception->getFile();
             $line = $exception->getLine();
         }
-        error_log(sprintf(
-            '%s: %s, Message: %s, FILE: %s, LINE: %s',
-            $type,
-            $exception,
-            $message,
-            $file,
-            $line
-        ));
+        error_log( "$type".' '."$exception".' '."$message".' '."$file".' '."$line");
+
         // czyścimy wszystkie bufory,
         // żeby na ekranie był tylko nasz komunikat błędu
         while (ob_get_level() > 0) {
